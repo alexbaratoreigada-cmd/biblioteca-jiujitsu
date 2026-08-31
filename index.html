@@ -3,82 +3,73 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Biblioteca de técnicas — Jiu-Jitsu</title>
+<title>Biblioteca de técnicas — No-Gi</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg: #10181a;
-    --bg-grain: rgba(255,255,255,0.015);
-    --panel: #16211f;
-    --panel-2: #1c2a28;
-    --panel-3: #223330;
-    --border: #2b3c39;
-    --text: #eef4f1;
-    --text-dim: #9db3ac;
-    --text-faint: #64807a;
+    --ink: #0e1113;
+    --surface: #171b1e;
+    --surface-2: #1d2226;
+    --surface-3: #232a2e;
+    --line: #262c30;
+    --text: #f3f1ea;
+    --text-dim: #98a2a8;
+    --text-faint: #5a6469;
 
-    --teal: #3fc9ac;
-    --teal-2: #2a9d86;
-    --teal-dim: #1c3e39;
-    --teal-soft: #274944;
+    --accent: #ff7a3d;
+    --accent-light: #ffb37e;
+    --accent-dim: #4a2f1e;
+    --accent-soft: #271c14;
 
-    --coral: #ff8f66;
-    --coral-dim: #5a3a2c;
-    --coral-soft: #3a2c26;
+    --choke: #4fb0c9;
+    --choke-dim: #1c343c;
+    --choke-soft: #142228;
 
-    --sand: #e0ab6d;
-    --gold: #f0c25e;
+    --rival: #8a939b;
+    --rival-dark: #3a4046;
+    --rival-light: #a3acb3;
 
-    --display: 'Baloo 2', system-ui, sans-serif;
-    --body: 'Nunito', system-ui, sans-serif;
-
-    --radius: 14px;
+    --display: 'Oswald', sans-serif;
+    --body: 'Inter', system-ui, sans-serif;
   }
 
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
   body{
     margin:0;
-    background:
-      radial-gradient(circle at 15% 0%, rgba(63,201,172,0.07), transparent 45%),
-      radial-gradient(circle at 90% 10%, rgba(255,143,102,0.05), transparent 40%),
-      var(--bg);
+    background:var(--ink);
     color:var(--text);
     font-family:var(--body);
     -webkit-font-smoothing:antialiased;
-    padding:36px 18px 90px;
   }
 
-  .page{max-width:760px; margin:0 auto;}
+  .page{max-width:760px; margin:0 auto; padding:0 20px 100px;}
 
   /* ---------- Header ---------- */
-  header{margin-bottom:26px;}
-  .eyebrow{
-    display:inline-flex;
-    align-items:center;
-    gap:7px;
+  header{padding:44px 0 0;}
+  .badges{display:flex; gap:8px; margin-bottom:18px;}
+  .badge{
     font-family:var(--body);
     font-weight:700;
-    font-size:12.5px;
-    letter-spacing:0.4px;
+    font-size:11.5px;
+    letter-spacing:0.6px;
     text-transform:uppercase;
-    color:var(--teal);
-    background:var(--teal-soft);
-    border:1px solid var(--teal-dim);
-    padding:5px 11px;
-    border-radius:999px;
-    margin-bottom:14px;
+    color:var(--accent-light);
+    background:var(--accent-soft);
+    border:1px solid var(--accent-dim);
+    padding:5px 10px;
+    border-radius:5px;
   }
-  .eyebrow svg{width:13px; height:13px;}
   header h1{
     font-family:var(--display);
     font-weight:700;
-    font-size:clamp(30px,6vw,42px);
-    margin:0 0 10px;
-    letter-spacing:0.2px;
-    line-height:1.1;
+    font-size:clamp(32px,6vw,44px);
+    margin:0 0 12px;
+    letter-spacing:0.3px;
+    line-height:1.05;
+    text-transform:uppercase;
   }
   header .subtitle{
     color:var(--text-dim);
@@ -88,664 +79,564 @@
     margin:0;
   }
 
-  /* ---------- Position selector ---------- */
+  /* ---------- Tabs ---------- */
   .positions{
     display:flex;
-    gap:8px;
+    gap:2px;
     overflow-x:auto;
-    padding:24px 0 24px;
-    margin-bottom:6px;
-    border-bottom:1px solid var(--border);
+    margin-top:32px;
+    border-bottom:1px solid var(--line);
     scrollbar-width:none;
   }
   .positions::-webkit-scrollbar{display:none;}
-  .position-chip{
+  .position-tab{
     all:unset;
     flex:0 0 auto;
     display:flex;
-    align-items:center;
-    gap:8px;
+    align-items:baseline;
+    gap:7px;
     font-family:var(--display);
     font-weight:600;
-    font-size:14.5px;
-    color:var(--text-dim);
-    background:var(--panel);
-    border:1px solid var(--border);
-    border-radius:10px;
-    padding:10px 16px;
+    font-size:15px;
+    text-transform:uppercase;
+    letter-spacing:0.3px;
+    color:var(--text-faint);
+    padding:14px 16px;
     cursor:pointer;
-    transition:background .18s ease, border-color .18s ease, color .18s ease, transform .12s ease;
+    border-bottom:2px solid transparent;
+    transition:color .15s ease, border-color .15s ease;
   }
-  .position-chip:hover{
-    border-color:var(--teal-dim);
-    color:var(--text);
-  }
-  .position-chip:active{transform:scale(0.97);}
-  .position-chip .count{
+  .position-tab:hover{color:var(--text-dim);}
+  .position-tab .n{
     font-family:var(--body);
-    font-weight:700;
+    font-weight:600;
     font-size:11px;
     color:var(--text-faint);
-    background:var(--panel-2);
-    border-radius:999px;
-    padding:2px 7px;
   }
-  .position-chip.active{
-    background:var(--teal-soft);
-    border-color:var(--teal);
-    color:#fff;
-  }
-  .position-chip.active .count{
-    background:var(--teal-2);
-    color:#0e1a17;
-  }
+  .position-tab.active{color:var(--text); border-color:var(--accent);}
+  .position-tab.active .n{color:var(--accent-light);}
 
   /* ---------- Toolbar ---------- */
   .toolbar{
     display:flex;
-    justify-content:flex-end;
-    padding-top:18px;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 0 4px;
   }
+  .toolbar .hint{font-size:12.5px; color:var(--text-faint);}
   .toolbar button{
     all:unset;
     cursor:pointer;
     font-family:var(--body);
-    font-weight:700;
+    font-weight:600;
     font-size:12.5px;
     color:var(--text-dim);
-    border:1px solid var(--border);
-    border-radius:8px;
-    padding:7px 12px;
+    border-bottom:1px solid var(--line);
+    padding:2px 0;
     transition:color .15s ease, border-color .15s ease;
   }
-  .toolbar button:hover{color:var(--text); border-color:var(--teal-dim);}
+  .toolbar button:hover{color:var(--accent-light); border-color:var(--accent-dim);}
 
   /* ---------- Position sections ---------- */
   .position-section{display:none;}
   .position-section.active{display:block;}
 
-  .tree{padding-top:18px;}
-
-  .node--root{margin-bottom:8px;}
-  .node--root h2{
+  .pos-intro{padding:22px 0 4px;}
+  .pos-intro h2{
     font-family:var(--display);
     font-weight:700;
-    font-size:26px;
-    margin:0 0 10px;
-    display:flex;
-    align-items:center;
-    gap:10px;
+    font-size:24px;
+    text-transform:uppercase;
+    margin:0 0 8px;
   }
-  .node-note{
+  .pos-intro p{
     color:var(--text-dim);
     font-size:14.5px;
     line-height:1.6;
-    margin:0 0 6px;
     max-width:58ch;
+    margin:0;
   }
 
-  /* ---------- Position demo diagram ---------- */
-  .pos-demo{
-    margin:18px 0 26px;
-    background:var(--panel);
-    border:1px solid var(--border);
-    border-radius:var(--radius);
-    padding:14px 14px 10px;
+  /* ---------- Demo diagrams ---------- */
+  .demo{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:14px 14px 4px;
+    margin:18px 0;
   }
-  .pos-demo svg{display:block; width:100%; height:auto;}
-  .pos-demo-caption{
+  .demo svg{display:block; width:100%; height:auto; max-width:400px; margin:0 auto;}
+  .demo-foot{
     display:flex;
     align-items:center;
     justify-content:center;
     gap:18px;
     flex-wrap:wrap;
-    font-size:12.5px;
-    color:var(--text-faint);
-    padding:8px 4px 2px;
+    font-size:12px;
     font-weight:600;
+    color:var(--text-faint);
+    padding:10px 4px 12px;
   }
-  .pos-demo-caption span{display:inline-flex; align-items:center; gap:6px;}
-  .pos-demo-caption i{
-    width:10px; height:10px;
-    border-radius:3px;
-    display:inline-block;
-  }
-  .dot-teal{background:var(--teal);}
-  .dot-sand{background:var(--sand);}
-
-  /* ---------- Tree branches ---------- */
-  .branch{
-    display:flex;
-    flex-direction:column;
-    gap:14px;
-    margin-left:14px;
-    padding-left:22px;
-    border-left:2px dashed var(--teal-dim);
-  }
-  .branch--defenses{
-    border-left:2px dashed var(--coral-dim);
-    margin-top:12px;
-    margin-left:6px;
-    padding-left:20px;
-    gap:12px;
+  .demo-foot span{display:inline-flex; align-items:center; gap:6px;}
+  .demo-foot i{width:9px; height:9px; border-radius:50%; display:inline-block;}
+  .dot-you{background:var(--accent);}
+  .dot-rival{background:var(--rival);}
+  .demo-cap{
+    text-align:center;
+    font-size:12px;
+    color:var(--text-faint);
+    padding:2px 8px 12px;
+    line-height:1.5;
   }
 
-  .node{position:relative;}
-  .branch > .node::before{
-    content:'';
-    position:absolute;
-    left:-22px;
-    top:24px;
-    width:22px;
-    height:2px;
-    background:var(--teal-dim);
+  /* ---------- Technique list ---------- */
+  .list{margin-top:8px;}
+  .tech{
+    border-top:1px solid var(--line);
   }
-  .branch--defenses > .node::before{
-    left:-20px;
-    top:20px;
-    background:var(--coral-dim);
-  }
+  .tech:last-child{border-bottom:1px solid var(--line);}
 
-  .node-head{
+  .tech-head{
     all:unset;
     display:flex;
     align-items:flex-start;
-    gap:12px;
+    gap:14px;
     width:100%;
-    background:var(--panel);
-    border:1px solid var(--border);
-    border-radius:12px;
-    padding:14px 16px;
+    padding:18px 2px;
     cursor:pointer;
-    transition:background .18s ease, border-color .18s ease;
   }
-  .node--sub > .node-head:hover{
-    background:var(--panel-2);
-    border-color:var(--teal-dim);
-  }
-  .node--def > .node-head{
-    padding:11px 14px;
-    border-radius:10px;
-  }
-  .node--def > .node-head:hover{
-    background:var(--coral-soft);
-    border-color:var(--coral-dim);
-  }
-
-  .tag-icon{
+  .tech-num{
     flex:0 0 auto;
-    width:26px; height:26px;
-    margin-top:1px;
-    border-radius:8px;
-    background:var(--teal-soft);
-    color:var(--teal);
-    padding:5px;
-  }
-  .node--def .tag-icon{
-    width:20px; height:20px;
-    background:var(--coral-soft);
-    color:var(--coral);
-    padding:4px;
-  }
-
-  .node-head-text{flex:1; min-width:0;}
-  .node-title{
-    display:block;
     font-family:var(--display);
     font-weight:600;
-    font-size:16.5px;
+    font-size:13px;
+    color:var(--text-faint);
+    padding-top:2px;
+    width:20px;
+  }
+  .tech-body{flex:1; min-width:0;}
+  .tech-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    margin-bottom:5px;
+  }
+  .tech-title{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:17px;
     color:var(--text);
-    margin-bottom:4px;
+    text-transform:uppercase;
+    letter-spacing:0.2px;
   }
-  .node--def .node-title{
-    font-family:var(--body);
+  .tag{
+    flex:0 0 auto;
+    font-size:10.5px;
     font-weight:700;
-    font-size:14px;
-    color:#f0d9cd;
-    margin-bottom:2px;
+    letter-spacing:0.5px;
+    text-transform:uppercase;
+    padding:3px 8px;
+    border-radius:4px;
   }
-  .node-setup{
-    display:block;
-    font-size:13.8px;
+  .tag--lock{color:var(--accent-light); background:var(--accent-soft); border:1px solid var(--accent-dim);}
+  .tag--choke{color:var(--choke); background:var(--choke-soft); border:1px solid var(--choke-dim);}
+  .tech-setup{
+    font-size:14px;
     color:var(--text-dim);
     line-height:1.55;
+    max-width:60ch;
   }
-
   .chev{
     flex:0 0 auto;
-    width:18px; height:18px;
-    margin-top:4px;
-    stroke:var(--text-dim);
+    width:16px; height:16px;
+    margin-top:5px;
+    stroke:var(--text-faint);
     stroke-width:2.4;
     fill:none;
     stroke-linecap:round;
     stroke-linejoin:round;
-    transition:transform .3s ease;
+    transition:transform .3s ease, stroke .2s ease;
   }
-  .node[data-open="true"] > .node-head .chev{
+  .tech[data-open="true"] > .tech-head .chev{
     transform:rotate(180deg);
-    stroke:var(--teal);
-  }
-  .node--def[data-open="true"] > .node-head .chev{
-    stroke:var(--coral);
+    stroke:var(--accent);
   }
 
   .collapse{
     display:grid;
     grid-template-rows:0fr;
-    transition:grid-template-rows .35s ease;
+    transition:grid-template-rows .32s ease;
   }
-  .node[data-open="true"] > .collapse{
-    grid-template-rows:1fr;
-  }
+  .tech[data-open="true"] > .collapse{grid-template-rows:1fr;}
   .collapse-inner{overflow:hidden;}
 
-  /* ---------- Technique demo (inline, inside submission node) ---------- */
-  .tech-demo{
-    margin:4px 0 14px;
-    background:var(--panel-2);
-    border:1px solid var(--border);
-    border-radius:10px;
-    padding:10px 10px 6px;
-  }
-  .tech-demo svg{display:block; width:100%; max-width:320px; height:auto; margin:0 auto;}
-  .tech-demo-label{
-    text-align:center;
-    font-size:11.5px;
+  .tech-content{padding:0 2px 22px 34px;}
+
+  .defenses-label{
+    font-family:var(--display);
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:0.6px;
+    text-transform:uppercase;
     color:var(--text-faint);
-    font-weight:700;
-    padding:6px 4px 0;
+    margin:6px 0 12px;
   }
 
-  .counter{
-    margin:12px 2px 2px;
-    padding:12px 14px;
-    background:var(--panel);
-    border:1px solid var(--border);
-    border-left:3px solid var(--gold);
-    border-radius:8px;
-    font-size:13.8px;
+  .defense{
+    border-left:2px solid var(--line);
+    padding:2px 0 2px 16px;
+    margin-bottom:16px;
+  }
+  .defense:last-child{margin-bottom:0;}
+  .defense-title{
+    font-size:14px;
+    font-weight:600;
+    color:#e8d4c4;
+    margin-bottom:6px;
+    line-height:1.4;
+  }
+  .tip{
+    font-size:13.5px;
     line-height:1.6;
-    color:var(--text);
+    color:var(--text-dim);
+    padding-left:0;
   }
-  .counter strong{
-    color:var(--gold);
-    font-weight:700;
-  }
+  .tip strong{color:var(--accent-light); font-weight:700;}
 
   footer{
-    margin-top:44px;
-    padding-top:20px;
-    border-top:1px solid var(--border);
+    margin-top:50px;
+    padding-top:22px;
+    border-top:1px solid var(--line);
     color:var(--text-faint);
-    font-size:13px;
+    font-size:12.5px;
     line-height:1.6;
   }
 
   @media (max-width:480px){
-    .branch{margin-left:6px; padding-left:16px;}
-    .branch--defenses{padding-left:14px;}
-    .branch > .node::before,
-    .branch--defenses > .node::before{left:-16px; width:16px;}
+    .tech-content{padding-left:26px;}
   }
+
+  /* ---------- Shared demo animation ---------- */
+  @keyframes gripRotate{
+    0%,15%{ transform: rotate(0deg); }
+    50%,70%{ transform: rotate(var(--rot, -14deg)); }
+    100%{ transform: rotate(0deg); }
+  }
+  .anim-rot{
+    transform-box: fill-box;
+    transform-origin: var(--origin, 50% 50%);
+    animation: gripRotate 3.2s ease-in-out infinite;
+  }
+  @keyframes flowPulse{
+    0%,15%{ opacity:.25; stroke-dashoffset:22; }
+    50%,70%{ opacity:1; stroke-dashoffset:0; }
+    100%{ opacity:.25; stroke-dashoffset:22; }
+  }
+  .anim-flow{
+    stroke-dasharray:6 5;
+    animation: flowPulse 3.2s ease-in-out infinite;
+  }
+  @keyframes ringPulse{
+    0%,15%{ opacity:.2; }
+    50%,70%{ opacity:.9; }
+    100%{ opacity:.2; }
+  }
+  .anim-ring{ animation: ringPulse 3.2s ease-in-out infinite; }
 </style>
 </head>
 <body>
 <div class="page">
 
   <header>
-    <span class="eyebrow">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 3v18M5 8l7-5 7 5M5 16l7 5 7-5"/></svg>
-      Biblioteca interactiva
-    </span>
+    <div class="badges">
+      <span class="badge">Sin gi</span>
+      <span class="badge">18 técnicas</span>
+    </div>
     <h1>Biblioteca de técnicas</h1>
-    <p class="subtitle">Elige una posición y despliega sus ramas: qué sumisiones salen desde ahí, cómo se suele defender el rival y qué hacer cuando lo hace.</p>
+    <p class="subtitle">Sumisiones de no-gi por posición: cómo se defienden habitualmente y a qué transicionar cuando el rival se defiende bien. Sin agarres de kimono — solo lo que funciona con o sin camiseta.</p>
   </header>
 
   <nav class="positions" aria-label="Posiciones">
-    <button class="position-chip active" type="button" data-target="montada">Montada <span class="count">5</span></button>
-    <button class="position-chip" type="button" data-target="guardia">Guardia cerrada <span class="count">5</span></button>
-    <button class="position-chip" type="button" data-target="espalda">Espalda <span class="count">4</span></button>
-    <button class="position-chip" type="button" data-target="lateral">Control lateral <span class="count">4</span></button>
+    <button class="position-tab active" type="button" data-target="montada">Montada <span class="n">05</span></button>
+    <button class="position-tab" type="button" data-target="guardia">Guardia <span class="n">05</span></button>
+    <button class="position-tab" type="button" data-target="espalda">Espalda <span class="n">04</span></button>
+    <button class="position-tab" type="button" data-target="lateral">Lateral <span class="n">04</span></button>
   </nav>
 
   <div class="toolbar">
+    <span class="hint">Toca una técnica para desplegarla</span>
     <button type="button" id="toggleAll" data-state="closed">Desplegar todo</button>
   </div>
 
-  <main class="tree">
+  <main>
+
+    <!-- shared arrow marker -->
+    <svg width="0" height="0" style="position:absolute">
+      <defs>
+        <marker id="ah" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="var(--accent-light)"/>
+        </marker>
+      </defs>
+    </svg>
 
     <!-- ============================================================ MONTADA ============================================================ -->
     <section class="position-section active" id="montada">
-      <div class="node node--root">
+      <div class="pos-intro">
         <h2>Montada</h2>
-        <p class="node-note">Mantén el peso repartido y las rodillas pegadas a las costillas — es lo que evita que te vuelquen (buck &amp; roll) mientras buscas la sumisión.</p>
+        <p>Peso repartido y rodillas clavadas en las costillas — es lo que evita que te vuelquen mientras buscas la sumisión.</p>
       </div>
 
-      <div class="pos-demo">
-        <svg viewBox="0 0 260 140" xmlns="http://www.w3.org/2000/svg">
-          <ellipse cx="130" cy="132" rx="112" ry="6" fill="rgba(0,0,0,0.28)"/>
-          <g stroke="var(--sand)" stroke-linecap="round" stroke-linejoin="round" fill="var(--sand)">
-            <circle cx="40" cy="95" r="13"/>
-            <line x1="55" y1="95" x2="140" y2="95" stroke-width="14"/>
-            <line x1="90" y1="95" x2="68" y2="118" stroke-width="9"/>
-            <line x1="140" y1="95" x2="175" y2="75" stroke-width="9"/>
-            <line x1="175" y1="75" x2="207" y2="93" stroke-width="9"/>
+      <div class="demo">
+        <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="160" cy="188" rx="140" ry="7" fill="rgba(0,0,0,.35)"/>
+          <g stroke="var(--rival)" stroke-width="17" stroke-linecap="round" fill="none">
+            <path d="M150 128 L205 106"/>
+            <path d="M205 106 L252 128"/>
           </g>
-          <g stroke="var(--teal)" stroke-linecap="round" stroke-linejoin="round" fill="var(--teal)">
-            <line x1="120" y1="95" x2="95" y2="112" stroke-width="9"/>
-            <line x1="95" y1="112" x2="78" y2="105" stroke-width="9"/>
-            <line x1="120" y1="95" x2="146" y2="112" stroke-width="9"/>
-            <line x1="146" y1="112" x2="163" y2="104" stroke-width="9"/>
-            <line x1="120" y1="95" x2="114" y2="35" stroke-width="14"/>
-            <circle cx="111" cy="25" r="12"/>
-            <line x1="115" y1="55" x2="82" y2="80" stroke-width="9"/>
-            <line x1="115" y1="60" x2="142" y2="76" stroke-width="9"/>
+          <circle cx="205" cy="106" r="10" fill="var(--rival)"/>
+          <ellipse cx="258" cy="132" rx="12" ry="9" fill="var(--rival-light)"/>
+          <rect x="55" y="103" width="105" height="50" rx="25" fill="var(--rival-dark)"/>
+          <circle cx="42" cy="128" r="24" fill="var(--rival-dark)"/>
+          <g stroke="var(--rival)" stroke-width="15" stroke-linecap="round" fill="none"><path d="M95 128 L78 158"/></g>
+          <ellipse cx="72" cy="164" rx="10" ry="8" fill="var(--rival-light)"/>
+          <g stroke="var(--accent)" stroke-width="16" stroke-linecap="round" fill="none">
+            <path d="M128 128 L102 150"/><path d="M102 150 L80 143"/>
+            <path d="M128 128 L152 150"/><path d="M152 150 L174 143"/>
           </g>
+          <circle cx="128" cy="128" r="9" fill="var(--accent)"/>
+          <circle cx="102" cy="150" r="8" fill="var(--accent)"/>
+          <circle cx="152" cy="150" r="8" fill="var(--accent)"/>
+          <rect x="105" y="58" width="46" height="78" rx="22" fill="var(--accent)"/>
+          <circle cx="128" cy="42" r="22" fill="var(--accent)"/>
+          <g stroke="var(--accent)" stroke-width="14" stroke-linecap="round" fill="none">
+            <path d="M118 75 L82 98"/><path d="M82 98 L64 88"/>
+            <path d="M138 78 L168 92"/><path d="M168 92 L188 82"/>
+          </g>
+          <circle cx="118" cy="75" r="8" fill="var(--accent)"/>
+          <circle cx="82" cy="98" r="7" fill="var(--accent)"/>
+          <ellipse cx="58" cy="84" rx="9" ry="7" fill="var(--accent-light)"/>
+          <circle cx="138" cy="78" r="8" fill="var(--accent)"/>
+          <circle cx="168" cy="92" r="7" fill="var(--accent)"/>
+          <ellipse cx="193" cy="78" rx="9" ry="7" fill="var(--accent-light)"/>
         </svg>
-        <div class="pos-demo-caption">
-          <span><i class="dot-teal"></i>Tú (montado)</span>
-          <span><i class="dot-sand"></i>Rival</span>
-        </div>
+        <div class="demo-foot"><span><i class="dot-you"></i>Tú (montado)</span><span><i class="dot-rival"></i>Rival</span></div>
       </div>
 
-      <div class="branch">
+      <div class="list">
 
         <!-- Americana -->
-        <div class="node node--sub" data-open="false">
-          <button class="node-head" type="button">
-            <svg class="tag-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2.2"/><path d="M8 11V7.5a4 4 0 018 0V11"/></svg>
-            <span class="node-head-text">
-              <span class="node-title">Americana</span>
-              <span class="node-setup">Aíslas la muñeca en el suelo formando una L y pasas tu otro brazo por debajo del codo hasta agarrarte tu propia muñeca.</span>
+        <div class="tech" data-open="false">
+          <button class="tech-head" type="button">
+            <span class="tech-num">01</span>
+            <span class="tech-body">
+              <span class="tech-top"><span class="tech-title">Americana</span><span class="tag tag--lock">Llave</span></span>
+              <span class="tech-setup">Aíslas la muñeca en el suelo formando una L y pasas tu otro brazo por debajo del codo hasta agarrarte tu propia muñeca.</span>
             </span>
             <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
           </button>
-          <div class="collapse"><div class="collapse-inner">
+          <div class="collapse"><div class="collapse-inner"><div class="tech-content">
 
-            <div class="tech-demo">
-              <svg viewBox="0 0 260 140" xmlns="http://www.w3.org/2000/svg">
-                <ellipse cx="130" cy="132" rx="112" ry="6" fill="rgba(0,0,0,0.28)"/>
-                <g stroke="var(--sand)" stroke-linecap="round" stroke-linejoin="round" fill="var(--sand)">
-                  <circle cx="40" cy="95" r="13"/>
-                  <line x1="55" y1="95" x2="140" y2="95" stroke-width="14"/>
-                  <line x1="140" y1="95" x2="175" y2="75" stroke-width="9"/>
-                  <line x1="175" y1="75" x2="207" y2="93" stroke-width="9"/>
-                  <line x1="85" y1="95" x2="60" y2="72" stroke-width="9"/>
+            <div class="demo">
+              <svg viewBox="0 0 320 220" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="30" cy="120" r="27" fill="var(--rival-dark)"/>
+                <rect x="18" y="132" width="72" height="72" rx="30" fill="var(--rival-dark)"/>
+                <g stroke="var(--rival)" stroke-width="24" stroke-linecap="round" fill="none">
+                  <path d="M62 140 L120 118"/><path d="M120 118 L124 168"/>
                 </g>
-                <g stroke="var(--teal)" stroke-linecap="round" stroke-linejoin="round" fill="var(--teal)">
-                  <line x1="120" y1="95" x2="95" y2="112" stroke-width="9"/>
-                  <line x1="95" y1="112" x2="78" y2="105" stroke-width="9"/>
-                  <line x1="120" y1="95" x2="146" y2="112" stroke-width="9"/>
-                  <line x1="146" y1="112" x2="163" y2="104" stroke-width="9"/>
-                  <line x1="120" y1="95" x2="114" y2="35" stroke-width="14"/>
-                  <circle cx="111" cy="25" r="12"/>
-                  <line x1="112" y1="55" x2="60" y2="72" stroke-width="9"/>
-                  <line x1="112" y1="60" x2="85" y2="88" stroke-width="9"/>
+                <circle cx="120" cy="118" r="14" fill="var(--rival)"/>
+                <ellipse cx="126" cy="180" rx="16" ry="13" fill="var(--rival-light)"/>
+                <g class="anim-rot" style="--origin:56% 62%; --rot:10deg;">
+                  <g stroke="var(--accent)" stroke-width="19" stroke-linecap="round" fill="none">
+                    <path d="M285 70 L215 88"/><path d="M215 88 L182 60"/>
+                  </g>
+                  <circle cx="215" cy="88" r="12" fill="var(--accent)"/>
+                  <ellipse cx="176" cy="54" rx="14" ry="11" fill="var(--accent-light)"/>
+                  <g stroke="var(--accent)" stroke-width="19" stroke-linecap="round" fill="none">
+                    <path d="M270 175 L200 150"/><path d="M200 150 L192 92"/>
+                  </g>
+                  <circle cx="200" cy="150" r="12" fill="var(--accent)"/>
+                  <ellipse cx="188" cy="86" rx="14" ry="11" fill="var(--accent-light)"/>
                 </g>
-                <g fill="none" stroke="var(--coral)" stroke-width="3" stroke-dasharray="4 4">
-                  <circle cx="72" cy="80" r="14"/>
-                </g>
-                <path d="M60 72 Q45 55 55 40" fill="none" stroke="var(--coral)" stroke-width="3" marker-end="url(#arrowM)"/>
+                <circle cx="120" cy="118" r="20" fill="none" stroke="var(--accent-light)" stroke-width="2.5" stroke-dasharray="4 4" class="anim-ring"/>
+                <path class="anim-flow" d="M108 100 Q90 70 100 45" fill="none" stroke="var(--accent-light)" stroke-width="3.5" marker-end="url(#ah)"/>
               </svg>
-              <p class="tech-demo-label">Muñeca clavada al suelo · codo aislado en 90°</p>
+              <p class="demo-cap">Muñeca clavada al suelo · codo aislado en 90° · rotación hacia la cabeza</p>
             </div>
 
-            <div class="branch branch--defenses">
+            <p class="defenses-label">Defensas habituales</p>
 
-              <div class="node node--def" data-open="false">
-                <button class="node-head" type="button">
-                  <svg class="tag-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 18L18 6M6 6l12 12" stroke-linecap="round"/></svg>
-                  <span class="node-head-text">
-                    <span class="node-title">Defensa: junta las manos y pega el codo a las costillas</span>
-                  </span>
-                  <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
-                </button>
-                <div class="collapse"><div class="collapse-inner">
-                  <p class="counter"><strong>Consejo:</strong> lleva la muñeca hacia arriba en vez de hacia abajo y gira la cadera — has convertido la Americana en Kimura sin soltar el agarre.</p>
-                </div></div>
-              </div>
-
-              <div class="node node--def" data-open="false">
-                <button class="node-head" type="button">
-                  <svg class="tag-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 18L18 6M6 6l12 12" stroke-linecap="round"/></svg>
-                  <span class="node-head-text">
-                    <span class="node-title">Defensa: rueda hacia el lado del brazo atrapado</span>
-                  </span>
-                  <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
-                </button>
-                <div class="collapse"><div class="collapse-inner">
-                  <p class="counter"><strong>Consejo:</strong> no frenes el giro — acompáñalo sin soltar el brazo y sube el gancho para tomar la espalda mientras termina de girarse.</p>
-                </div></div>
-              </div>
-
+            <div class="defense">
+              <p class="defense-title">Junta las manos y pega el codo a las costillas</p>
+              <p class="tip"><strong>Transición:</strong> lleva la muñeca hacia arriba en vez de hacia abajo y gira la cadera — conviertes la Americana en Kimura sin soltar el agarre.</p>
             </div>
-          </div></div>
+            <div class="defense">
+              <p class="defense-title">Rueda hacia el lado del brazo atrapado</p>
+              <p class="tip"><strong>Transición:</strong> no frenes el giro — acompáñalo sin soltar el brazo y sube el gancho para tomar la espalda mientras termina de girarse.</p>
+            </div>
+
+          </div></div></div>
         </div>
 
         <!-- Kimura -->
-        <div class="node node--sub" data-open="false">
-          <button class="node-head" type="button">
-            <svg class="tag-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2.2"/><path d="M8 11V7.5a4 4 0 018 0V11"/></svg>
-            <span class="node-head-text">
-              <span class="node-title">Kimura</span>
-              <span class="node-setup">Cuando el rival extiende un brazo para empujarte o crear espacio, atrapas la muñeca y cierras la figura-4 pasando el otro brazo por debajo del codo.</span>
+        <div class="tech" data-open="false">
+          <button class="tech-head" type="button">
+            <span class="tech-num">02</span>
+            <span class="tech-body">
+              <span class="tech-top"><span class="tech-title">Kimura</span><span class="tag tag--lock">Llave</span></span>
+              <span class="tech-setup">Cuando el rival extiende un brazo para empujarte o crear espacio, atrapas la muñeca y cierras la figura-4 pasando el otro brazo por debajo del codo.</span>
             </span>
             <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
           </button>
-          <div class="collapse"><div class="collapse-inner">
+          <div class="collapse"><div class="collapse-inner"><div class="tech-content">
 
-            <div class="tech-demo">
-              <svg viewBox="0 0 260 140" xmlns="http://www.w3.org/2000/svg">
-                <ellipse cx="130" cy="132" rx="112" ry="6" fill="rgba(0,0,0,0.28)"/>
-                <g stroke="var(--sand)" stroke-linecap="round" stroke-linejoin="round" fill="var(--sand)">
-                  <circle cx="40" cy="95" r="13"/>
-                  <line x1="55" y1="95" x2="140" y2="95" stroke-width="14"/>
-                  <line x1="140" y1="95" x2="175" y2="75" stroke-width="9"/>
-                  <line x1="175" y1="75" x2="207" y2="93" stroke-width="9"/>
-                  <line x1="85" y1="95" x2="60" y2="108" stroke-width="9"/>
+            <div class="demo">
+              <svg viewBox="0 0 320 220" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="30" cy="105" r="27" fill="var(--rival-dark)"/>
+                <rect x="20" y="118" width="70" height="70" rx="30" fill="var(--rival-dark)"/>
+                <g stroke="var(--rival)" stroke-width="26" stroke-linecap="round" fill="none">
+                  <path d="M62 128 L138 150"/><path d="M138 150 L196 112"/>
                 </g>
-                <g stroke="var(--teal)" stroke-linecap="round" stroke-linejoin="round" fill="var(--teal)">
-                  <line x1="120" y1="95" x2="95" y2="112" stroke-width="9"/>
-                  <line x1="95" y1="112" x2="78" y2="105" stroke-width="9"/>
-                  <line x1="120" y1="95" x2="146" y2="112" stroke-width="9"/>
-                  <line x1="146" y1="112" x2="163" y2="104" stroke-width="9"/>
-                  <line x1="120" y1="95" x2="114" y2="35" stroke-width="14"/>
-                  <circle cx="111" cy="25" r="12"/>
-                  <line x1="112" y1="52" x2="58" y2="70" stroke-width="9"/>
-                  <line x1="112" y1="58" x2="70" y2="100" stroke-width="9"/>
+                <circle cx="138" cy="150" r="15" fill="var(--rival)"/>
+                <ellipse cx="205" cy="106" rx="17" ry="14" fill="var(--rival-light)"/>
+                <g class="anim-rot" style="--origin:76% 38%; --rot:-14deg;">
+                  <g stroke="var(--accent)" stroke-width="20" stroke-linecap="round" fill="none"><path d="M300 60 L246 84"/><path d="M246 84 L204 108"/></g>
+                  <circle cx="246" cy="84" r="12" fill="var(--accent)"/>
+                  <ellipse cx="200" cy="110" rx="15" ry="12" fill="var(--accent-light)"/>
+                  <g stroke="var(--accent)" stroke-width="20" stroke-linecap="round" fill="none"><path d="M300 172 L214 176"/><path d="M214 176 L238 96"/></g>
+                  <circle cx="214" cy="176" r="12" fill="var(--accent)"/>
+                  <ellipse cx="240" cy="90" rx="15" ry="12" fill="var(--accent-light)"/>
                 </g>
-                <g fill="none" stroke="var(--coral)" stroke-width="3" stroke-dasharray="4 4">
-                  <circle cx="60" cy="108" r="14"/>
-                </g>
-                <path d="M60 108 Q35 105 30 85" fill="none" stroke="var(--coral)" stroke-width="3" marker-end="url(#arrowM)"/>
+                <path class="anim-flow" d="M235 55 A40 40 0 0 1 260 100" fill="none" stroke="var(--accent-light)" stroke-width="3.5" stroke-linecap="round" marker-end="url(#ah)"/>
               </svg>
-              <p class="tech-demo-label">Figura-4 en la muñeca · rotación interna hacia la espalda</p>
+              <p class="demo-cap">Figura-4 en la muñeca · rotación interna hacia la espalda</p>
             </div>
 
-            <div class="branch branch--defenses">
-
-              <div class="node node--def" data-open="false">
-                <button class="node-head" type="button">
-                  <svg class="tag-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 18L18 6M6 6l12 12" stroke-linecap="round"/></svg>
-                  <span class="node-head-text">
-                    <span class="node-title">Defensa: junta las manos (defensa clásica de Kimura)</span>
-                  </span>
-                  <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
-                </button>
-                <div class="collapse"><div class="collapse-inner">
-                  <p class="counter"><strong>Consejo:</strong> si al defender suelta la guardia del brazo libre, pasa directo a triángulo; si no, usa la palanca solo para arrastrarlo y tomar la espalda.</p>
-                </div></div>
-              </div>
-
+            <p class="defenses-label">Defensa habitual</p>
+            <div class="defense">
+              <p class="defense-title">Junta las manos (defensa clásica de Kimura)</p>
+              <p class="tip"><strong>Transición:</strong> si al defender suelta la guardia del brazo libre, pasa directo a triángulo; si no, usa la palanca solo para arrastrarlo y tomar la espalda.</p>
             </div>
-          </div></div>
+
+          </div></div></div>
         </div>
 
         <!-- Armbar cruzado -->
-        <div class="node node--sub" data-open="false">
-          <button class="node-head" type="button">
-            <svg class="tag-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2.2"/><path d="M8 11V7.5a4 4 0 018 0V11"/></svg>
-            <span class="node-head-text">
-              <span class="node-title">Palanca de brazo cruzada</span>
-              <span class="node-setup">El rival empuja con ambas manos en tu pecho: atrapas un brazo, giras 90° hacia su cabeza y pasas la pierna sobre la cara.</span>
+        <div class="tech" data-open="false">
+          <button class="tech-head" type="button">
+            <span class="tech-num">03</span>
+            <span class="tech-body">
+              <span class="tech-top"><span class="tech-title">Palanca de brazo cruzada</span><span class="tag tag--lock">Llave</span></span>
+              <span class="tech-setup">El rival empuja con ambas manos en tu pecho: atrapas un brazo, giras 90° hacia su cabeza y pasas la pierna sobre la cara.</span>
             </span>
             <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
           </button>
-          <div class="collapse"><div class="collapse-inner">
+          <div class="collapse"><div class="collapse-inner"><div class="tech-content">
 
-            <div class="tech-demo">
-              <svg viewBox="0 0 260 140" xmlns="http://www.w3.org/2000/svg">
-                <ellipse cx="130" cy="132" rx="112" ry="6" fill="rgba(0,0,0,0.28)"/>
-                <g stroke="var(--sand)" stroke-linecap="round" stroke-linejoin="round" fill="var(--sand)">
-                  <circle cx="40" cy="98" r="13"/>
-                  <line x1="55" y1="98" x2="150" y2="98" stroke-width="14"/>
-                  <line x1="150" y1="98" x2="185" y2="90" stroke-width="9"/>
-                  <line x1="150" y1="98" x2="180" y2="112" stroke-width="9"/>
+            <div class="demo">
+              <svg viewBox="0 0 320 190" xmlns="http://www.w3.org/2000/svg">
+                <!-- defender: shoulder + straight arm being isolated -->
+                <circle cx="272" cy="50" r="23" fill="var(--rival-dark)"/>
+                <g stroke="var(--rival)" stroke-width="22" stroke-linecap="round" fill="none">
+                  <path d="M258 64 L192 84 L128 98"/>
                 </g>
-                <g stroke="var(--teal)" stroke-linecap="round" stroke-linejoin="round" fill="var(--teal)">
-                  <line x1="60" y1="70" x2="100" y2="62" stroke-width="14"/>
-                  <circle cx="52" cy="66" r="12"/>
-                  <line x1="60" y1="70" x2="45" y2="105" stroke-width="9"/>
-                  <line x1="45" y1="105" x2="30" y2="98" stroke-width="9"/>
-                  <line x1="60" y1="72" x2="42" y2="40" stroke-width="9"/>
-                  <line x1="42" y1="40" x2="35" y2="15" stroke-width="9"/>
+                <circle cx="192" cy="84" r="12" fill="var(--rival)"/>
+                <ellipse cx="114" cy="101" rx="15" ry="12" fill="var(--rival-light)"/>
+
+                <!-- attacker: hips + legs clamping the elbow -->
+                <circle cx="80" cy="150" r="24" fill="var(--accent)"/>
+                <g stroke="var(--accent)" stroke-width="18" stroke-linecap="round" fill="none">
+                  <path d="M95 138 L165 105"/>
+                  <path d="M95 162 L175 128"/>
                 </g>
-                <g stroke="var(--coral)" stroke-width="5" stroke-linecap="round">
-                  <line x1="70" y1="60" x2="150" y2="82" marker-end="url(#arrowM)"/>
+                <ellipse cx="170" cy="100" rx="11" ry="9" fill="var(--accent-light)"/>
+                <ellipse cx="180" cy="123" rx="11" ry="9" fill="var(--accent-light)"/>
+
+                <!-- hyperextension indicator at elbow -->
+                <g class="anim-flow" stroke="var(--accent-light)" stroke-width="3" stroke-linecap="round" fill="none">
+                  <path d="M192 84 L162 62" marker-end="url(#ah)"/>
+                  <path d="M192 84 L222 106" marker-end="url(#ah)"/>
                 </g>
               </svg>
-              <p class="tech-demo-label">Cadera cruzada · brazo extendido, pulgar hacia arriba</p>
+              <p class="demo-cap">Cadera cruzada · rodillas apretando el codo · brazo recto con pulgar arriba</p>
             </div>
 
-            <div class="branch branch--defenses">
-
-              <div class="node node--def" data-open="false">
-                <button class="node-head" type="button">
-                  <svg class="tag-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 18L18 6M6 6l12 12" stroke-linecap="round"/></svg>
-                  <span class="node-head-text">
-                    <span class="node-title">Defensa: junta las manos y dobla el brazo para proteger el codo</span>
-                  </span>
-                  <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
-                </button>
-                <div class="collapse"><div class="collapse-inner">
-                  <p class="counter"><strong>Consejo:</strong> cierra las rodillas sobre el brazo para quitarle palanca al agarre y, si suelta una mano en el forcejeo, cambia a triángulo.</p>
-                </div></div>
-              </div>
-
-              <div class="node node--def" data-open="false">
-                <button class="node-head" type="button">
-                  <svg class="tag-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 18L18 6M6 6l12 12" stroke-linecap="round"/></svg>
-                  <span class="node-head-text">
-                    <span class="node-title">Defensa: se sienta y levanta la cadera (sit up / bridge)</span>
-                  </span>
-                  <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
-                </button>
-                <div class="collapse"><div class="collapse-inner">
-                  <p class="counter"><strong>Consejo:</strong> aprieta las rodillas sobre su tronco para frenar el bridge; si pierdes el ángulo de la palanca, suelta y vuelve a montada en vez de forzar.</p>
-                </div></div>
-              </div>
-
+            <p class="defenses-label">Defensas habituales</p>
+            <div class="defense">
+              <p class="defense-title">Junta las manos y dobla el brazo para proteger el codo</p>
+              <p class="tip"><strong>Transición:</strong> cierra las rodillas sobre el brazo para quitarle palanca al agarre y, si suelta una mano en el forcejeo, cambia a triángulo.</p>
             </div>
-          </div></div>
+            <div class="defense">
+              <p class="defense-title">Se sienta y levanta la cadera (bridge)</p>
+              <p class="tip"><strong>Transición:</strong> aprieta las rodillas sobre su tronco para frenar el bridge; si pierdes el ángulo, suelta y vuelve a montada en vez de forzar.</p>
+            </div>
+
+          </div></div></div>
         </div>
 
-        <!-- Ezekiel -->
-        <div class="node node--sub" data-open="false">
-          <button class="node-head" type="button">
-            <svg class="tag-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4Q3 12 8 20"/><path d="M16 4Q21 12 16 20"/><path d="M12 8v8"/></svg>
-            <span class="node-head-text">
-              <span class="node-title">Estrangulación Ezekiel</span>
-              <span class="node-setup">Con la manga metes el puño bajo su barbilla mientras la otra mano sujeta la manga por detrás del cuello.</span>
+        <!-- Paper cutter -->
+        <div class="tech" data-open="false">
+          <button class="tech-head" type="button">
+            <span class="tech-num">04</span>
+            <span class="tech-body">
+              <span class="tech-top"><span class="tech-title">Estrangulación cortapapel</span><span class="tag tag--choke">Ahogo</span></span>
+              <span class="tech-setup">Cuando el rival gira para escapar la montada, cruzas el antebrazo por su garganta y clavas la otra mano en la colchoneta, cortando con el hueso mientras bajas el pecho.</span>
             </span>
             <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
           </button>
-          <div class="collapse"><div class="collapse-inner">
+          <div class="collapse"><div class="collapse-inner"><div class="tech-content">
 
-            <div class="tech-demo">
-              <svg viewBox="0 0 260 140" xmlns="http://www.w3.org/2000/svg">
-                <ellipse cx="130" cy="132" rx="112" ry="6" fill="rgba(0,0,0,0.28)"/>
-                <g stroke="var(--sand)" stroke-linecap="round" stroke-linejoin="round" fill="var(--sand)">
-                  <circle cx="40" cy="95" r="13"/>
-                  <line x1="55" y1="95" x2="140" y2="95" stroke-width="14"/>
-                  <line x1="140" y1="95" x2="175" y2="75" stroke-width="9"/>
-                  <line x1="175" y1="75" x2="207" y2="93" stroke-width="9"/>
+            <div class="demo">
+              <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="70" cy="140" r="27" fill="var(--rival-dark)"/>
+                <rect x="80" y="128" width="130" height="44" rx="22" fill="var(--rival-dark)"/>
+                <g class="anim-rot" style="--origin:20% 45%; --rot:-8deg;">
+                  <rect x="35" y="55" width="40" height="66" rx="19" fill="var(--accent)"/>
+                  <circle cx="55" cy="42" r="19" fill="var(--accent)"/>
+                  <g stroke="var(--accent)" stroke-width="17" stroke-linecap="round" fill="none">
+                    <path d="M62 92 L92 128"/><path d="M92 128 L145 118"/>
+                  </g>
+                  <circle cx="92" cy="128" r="10" fill="var(--accent)"/>
+                  <ellipse cx="150" cy="112" rx="11" ry="9" fill="var(--accent-light)"/>
+                  <g stroke="var(--accent)" stroke-width="15" stroke-linecap="round" fill="none">
+                    <path d="M42 100 L18 128"/>
+                  </g>
+                  <ellipse cx="12" cy="134" rx="10" ry="8" fill="var(--accent-light)"/>
                 </g>
-                <g stroke="var(--teal)" stroke-linecap="round" stroke-linejoin="round" fill="var(--teal)">
-                  <line x1="120" y1="95" x2="95" y2="112" stroke-width="9"/>
-                  <line x1="95" y1="112" x2="78" y2="105" stroke-width="9"/>
-                  <line x1="120" y1="95" x2="146" y2="112" stroke-width="9"/>
-                  <line x1="146" y1="112" x2="163" y2="104" stroke-width="9"/>
-                  <line x1="120" y1="95" x2="114" y2="35" stroke-width="14"/>
-                  <circle cx="111" cy="25" r="12"/>
-                  <line x1="112" y1="58" x2="75" y2="70" stroke-width="9"/>
-                  <line x1="112" y1="62" x2="70" y2="92" stroke-width="9"/>
-                </g>
-                <path d="M42 88 Q55 96 70 88" fill="none" stroke="var(--coral)" stroke-width="4" marker-end="url(#arrowM)"/>
+                <circle cx="95" cy="135" r="18" fill="none" stroke="var(--choke)" stroke-width="2.5" stroke-dasharray="4 4" class="anim-ring"/>
+                <path class="anim-flow" d="M80 118 Q95 108 112 120" fill="none" stroke="var(--choke)" stroke-width="3.5" marker-end="url(#ah)"/>
               </svg>
-              <p class="tech-demo-label">Antebrazo cruzando la garganta · manga fija en la nuca</p>
+              <p class="demo-cap">Antebrazo cruzando la garganta · mano libre clavada al suelo</p>
             </div>
 
-            <div class="branch branch--defenses">
-
-              <div class="node node--def" data-open="false">
-                <button class="node-head" type="button">
-                  <svg class="tag-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 18L18 6M6 6l12 12" stroke-linecap="round"/></svg>
-                  <span class="node-head-text">
-                    <span class="node-title">Defensa: mete la barbilla y controla ambas muñecas</span>
-                  </span>
-                  <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
-                </button>
-                <div class="collapse"><div class="collapse-inner">
-                  <p class="counter"><strong>Consejo:</strong> si al defender expone el codo del brazo que te controla la muñeca, suelta el Ezekiel y entra directo a Americana con ese brazo.</p>
-                </div></div>
-              </div>
-
+            <p class="defenses-label">Defensa habitual</p>
+            <div class="defense">
+              <p class="defense-title">Mete la barbilla y agarra la muñeca que ahoga con las dos manos</p>
+              <p class="tip"><strong>Transición:</strong> cambia el ángulo hacia el lado contrario del agarre y sigue bajando el pecho — sujetar la muñeca no detiene la presión si mantienes la base y el corte del antebrazo.</p>
             </div>
-          </div></div>
+
+          </div></div></div>
         </div>
 
-        <!-- Cross collar choke -->
-        <div class="node node--sub" data-open="false">
-          <button class="node-head" type="button">
-            <svg class="tag-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4Q3 12 8 20"/><path d="M16 4Q21 12 16 20"/><path d="M12 8v8"/></svg>
-            <span class="node-head-text">
-              <span class="node-title">Estrangulación cruzada de solapas</span>
-              <span class="node-setup">Con el gi, cruzas las manos y agarras la solapa opuesta con cada una, codos cerca del cuello; aprietas llevando los codos al suelo mientras cierras el ángulo.</span>
+        <!-- Arm-triangle desde montada -->
+        <div class="tech" data-open="false">
+          <button class="tech-head" type="button">
+            <span class="tech-num">05</span>
+            <span class="tech-body">
+              <span class="tech-top"><span class="tech-title">Triángulo de brazo (Kata gatame)</span><span class="tag tag--choke">Ahogo</span></span>
+              <span class="tech-setup">Cuando el rival empuja tu pecho con ambas manos, atrapas una contra su propio cuello, pasas tu cabeza al otro lado y entrelazas las manos por detrás del hombro.</span>
             </span>
             <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
           </button>
-          <div class="collapse"><div class="collapse-inner">
-            <div class="branch branch--defenses">
+          <div class="collapse"><div class="collapse-inner"><div class="tech-content">
 
-              <div class="node node--def" data-open="false">
-                <button class="node-head" type="button">
-                  <svg class="tag-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 18L18 6M6 6l12 12" stroke-linecap="round"/></svg>
-                  <span class="node-head-text">
-                    <span class="node-title">Defensa: mete la barbilla y controla las muñecas antes del cierre</span>
-                  </span>
-                  <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
-                </button>
-                <div class="collapse"><div class="collapse-inner">
-                  <p class="counter"><strong>Consejo:</strong> si consigue una solapa pero no la otra, cambia a Ezekiel o arrastra el brazo libre hacia una Americana.</p>
-                </div></div>
-              </div>
-
-              <div class="node node--def" data-open="false">
-                <button class="node-head" type="button">
-                  <svg class="tag-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 18L18 6M6 6l12 12" stroke-linecap="round"/></svg>
-                  <span class="node-head-text">
-                    <span class="node-title">Defensa: hace puente y empuja para crear espacio</span>
-                  </span>
-                  <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
-                </button>
-                <div class="collapse"><div class="collapse-inner">
-                  <p class="counter"><strong>Consejo:</strong> aprieta las rodillas y baja el centro de gravedad; si pierde el aire para empujar, sigue apretando en vez de perseguir el agarre.</p>
-                </div></div>
-              </div>
-
+            <p class="defenses-label">Defensa habitual</p>
+            <div class="defense">
+              <p class="defense-title">Gira hacia el hombro libre para quitar presión del cuello</p>
+              <p class="tip"><strong>Transición:</strong> acompaña el giro y sube la pierna por encima de la cabeza — es la transición directa a montada alta sin soltar el agarre.</p>
             </div>
-          </div></div>
+
+          </div></div></div>
         </div>
 
       </div>
@@ -753,259 +644,199 @@
 
     <!-- ============================================================ GUARDIA ============================================================ -->
     <section class="position-section" id="guardia">
-      <div class="node node--root">
-        <h2>Guardia cerrada</h2>
-        <p class="node-note">Controla siempre una manga o un cuello antes de atacar — sin ese control, el rival postura y te quedas sin ángulo.</p>
+      <div class="pos-intro">
+        <h2>Guardia</h2>
+        <p>Controla siempre una muñeca o un cuello antes de atacar — sin ese control, el rival postura y te quedas sin ángulo.</p>
       </div>
 
-      <div class="pos-demo">
-        <svg viewBox="0 0 260 140" xmlns="http://www.w3.org/2000/svg">
-          <ellipse cx="130" cy="132" rx="112" ry="6" fill="rgba(0,0,0,0.28)"/>
-          <g stroke="var(--sand)" stroke-linecap="round" stroke-linejoin="round" fill="var(--sand)">
-            <line x1="175" y1="100" x2="155" y2="50" stroke-width="14"/>
-            <circle cx="150" cy="42" r="12"/>
-            <line x1="160" y1="65" x2="130" y2="60" stroke-width="9"/>
-            <line x1="165" y1="70" x2="192" y2="55" stroke-width="9"/>
-            <line x1="175" y1="100" x2="185" y2="118" stroke-width="9"/>
+      <div class="demo">
+        <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="160" cy="188" rx="140" ry="7" fill="rgba(0,0,0,.35)"/>
+          <rect x="70" y="118" width="90" height="46" rx="23" fill="var(--rival-dark)"/>
+          <circle cx="150" cy="55" r="22" fill="var(--rival-dark)"/>
+          <g stroke="var(--rival)" stroke-width="19" stroke-linecap="round" fill="none">
+            <path d="M150 118 L150 77"/>
+            <path d="M138 96 L108 90"/><path d="M162 100 L192 82"/>
           </g>
-          <g stroke="var(--teal)" stroke-linecap="round" stroke-linejoin="round" fill="var(--teal)">
-            <circle cx="35" cy="100" r="13"/>
-            <line x1="50" y1="100" x2="120" y2="95" stroke-width="14"/>
-            <line x1="90" y1="95" x2="150" y2="70" stroke-width="9"/>
-            <line x1="120" y1="95" x2="170" y2="55" stroke-width="9"/>
-            <line x1="170" y1="55" x2="195" y2="80" stroke-width="9"/>
-            <line x1="120" y1="95" x2="165" y2="110" stroke-width="9"/>
-            <line x1="165" y1="110" x2="195" y2="85" stroke-width="9"/>
+          <ellipse cx="100" cy="88" rx="10" ry="8" fill="var(--rival-light)"/>
+          <ellipse cx="198" cy="78" rx="10" ry="8" fill="var(--rival-light)"/>
+          <g stroke="var(--rival)" stroke-width="16" stroke-linecap="round" fill="none"><path d="M158 164 L178 190"/></g>
+          <ellipse cx="182" cy="196" rx="10" ry="8" fill="var(--rival-light)"/>
+          <circle cx="42" cy="132" r="24" fill="var(--accent)"/>
+          <rect x="52" y="122" width="70" height="42" rx="21" fill="var(--accent)"/>
+          <g stroke="var(--accent)" stroke-width="17" stroke-linecap="round" fill="none">
+            <path d="M100 130 L155 108"/><path d="M155 108 L180 132"/>
           </g>
+          <circle cx="155" cy="108" r="10" fill="var(--accent)"/>
+          <ellipse cx="185" cy="140" rx="10" ry="8" fill="var(--accent-light)"/>
+          <g stroke="var(--accent)" stroke-width="17" stroke-linecap="round" fill="none">
+            <path d="M100 150 L165 165"/><path d="M165 165 L175 130"/>
+          </g>
+          <circle cx="165" cy="165" r="10" fill="var(--accent)"/>
         </svg>
-        <div class="pos-demo-caption">
-          <span><i class="dot-teal"></i>Tú (abajo, con guardia)</span>
-          <span><i class="dot-sand"></i>Rival (arriba)</span>
-        </div>
+        <div class="demo-foot"><span><i class="dot-you"></i>Tú (guardia)</span><span><i class="dot-rival"></i>Rival</span></div>
       </div>
 
-      <div class="branch">
+      <div class="list">
 
         <!-- Triangulo -->
-        <div class="node node--sub" data-open="false">
-          <button class="node-head" type="button">
-            <svg class="tag-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4Q3 12 8 20"/><path d="M16 4Q21 12 16 20"/><path d="M12 8v8"/></svg>
-            <span class="node-head-text">
-              <span class="node-title">Triángulo</span>
-              <span class="node-setup">Cuando el rival mete un brazo dentro de tu guardia y baja la cabeza a ese mismo lado, atrapas el brazo con tu pierna, subes la cadera y cierras el triángulo alrededor del cuello y el hombro contrario.</span>
+        <div class="tech" data-open="false">
+          <button class="tech-head" type="button">
+            <span class="tech-num">01</span>
+            <span class="tech-body">
+              <span class="tech-top"><span class="tech-title">Triángulo</span><span class="tag tag--choke">Ahogo</span></span>
+              <span class="tech-setup">Cuando el rival mete un brazo dentro de tu guardia y baja la cabeza a ese mismo lado, atrapas el brazo con tu pierna, subes la cadera y cierras el triángulo alrededor del cuello y el hombro contrario.</span>
             </span>
             <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
           </button>
-          <div class="collapse"><div class="collapse-inner">
+          <div class="collapse"><div class="collapse-inner"><div class="tech-content">
 
-            <div class="tech-demo">
-              <svg viewBox="0 0 260 140" xmlns="http://www.w3.org/2000/svg">
-                <ellipse cx="130" cy="132" rx="112" ry="6" fill="rgba(0,0,0,0.28)"/>
-                <g stroke="var(--sand)" stroke-linecap="round" stroke-linejoin="round" fill="var(--sand)">
-                  <line x1="150" y1="100" x2="130" y2="55" stroke-width="14"/>
-                  <circle cx="122" cy="45" r="12"/>
-                  <line x1="140" y1="60" x2="110" y2="50" stroke-width="9"/>
+            <div class="demo">
+              <svg viewBox="0 0 320 210" xmlns="http://www.w3.org/2000/svg">
+                <rect x="20" y="120" width="80" height="44" rx="22" fill="var(--accent)"/>
+                <circle cx="150" cy="45" r="22" fill="var(--rival-dark)"/>
+                <rect x="120" y="55" width="46" height="55" rx="20" fill="var(--rival-dark)"/>
+                <g stroke="var(--rival)" stroke-width="15" stroke-linecap="round" fill="none"><path d="M140 75 L110 55"/></g>
+                <ellipse cx="104" cy="50" rx="9" ry="7" fill="var(--rival-light)"/>
+                <g class="anim-rot" style="--origin:35% 60%; --rot:6deg;">
+                  <g stroke="var(--accent)" stroke-width="20" stroke-linecap="round" fill="none">
+                    <path d="M70 130 L165 95"/><path d="M165 95 L145 40"/>
+                  </g>
+                  <circle cx="165" cy="95" r="12" fill="var(--accent)"/>
+                  <ellipse cx="140" cy="30" rx="12" ry="10" fill="var(--accent-light)"/>
+                  <g stroke="var(--accent)" stroke-width="20" stroke-linecap="round" fill="none">
+                    <path d="M70 148 L150 165"/><path d="M150 165 L128 100"/>
+                  </g>
+                  <circle cx="150" cy="165" r="12" fill="var(--accent)"/>
                 </g>
-                <g stroke="var(--teal)" stroke-linecap="round" stroke-linejoin="round" fill="var(--teal)">
-                  <circle cx="35" cy="100" r="13"/>
-                  <line x1="50" y1="100" x2="115" y2="98" stroke-width="14"/>
-                  <line x1="115" y1="98" x2="150" y2="60" stroke-width="9"/>
-                  <line x1="115" y1="98" x2="145" y2="115" stroke-width="9"/>
-                  <line x1="145" y1="115" x2="125" y2="48" stroke-width="9"/>
-                </g>
-                <g fill="none" stroke="var(--coral)" stroke-width="3" stroke-dasharray="4 4">
-                  <path d="M150 60 L145 115 L125 48 Z"/>
-                </g>
+                <path d="M165 95 L128 100 L140 30 Z" fill="none" stroke="var(--choke)" stroke-width="2.5" stroke-dasharray="5 5" class="anim-ring"/>
               </svg>
-              <p class="tech-demo-label">Cabeza y un brazo dentro del triángulo de piernas</p>
+              <p class="demo-cap">Cabeza y un brazo dentro del triángulo de piernas</p>
             </div>
 
-            <div class="branch branch--defenses">
-
-              <div class="node node--def" data-open="false">
-                <button class="node-head" type="button">
-                  <svg class="tag-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 18L18 6M6 6l12 12" stroke-linecap="round"/></svg>
-                  <span class="node-head-text">
-                    <span class="node-title">Defensa: postura alta y mantiene los dos brazos dentro</span>
-                  </span>
-                  <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
-                </button>
-                <div class="collapse"><div class="collapse-inner">
-                  <p class="counter"><strong>Consejo:</strong> rompe la postura tirando de la nuca antes de intentar el triángulo; sin la cabeza baja, no cierra el ángulo.</p>
-                </div></div>
-              </div>
-
-              <div class="node node--def" data-open="false">
-                <button class="node-head" type="button">
-                  <svg class="tag-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 18L18 6M6 6l12 12" stroke-linecap="round"/></svg>
-                  <span class="node-head-text">
-                    <span class="node-title">Defensa: apila (stack) empujando tus piernas hacia tu cabeza</span>
-                  </span>
-                  <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
-                </button>
-                <div class="collapse"><div class="collapse-inner">
-                  <p class="counter"><strong>Consejo:</strong> agarra el tobillo de apoyo y gira la cadera hacia el hombro atrapado en vez de resistir de frente; el giro deshace el apilamiento.</p>
-                </div></div>
-              </div>
-
+            <p class="defenses-label">Defensas habituales</p>
+            <div class="defense">
+              <p class="defense-title">Postura alta y mantiene los dos brazos dentro</p>
+              <p class="tip"><strong>Transición:</strong> rompe la postura tirando de la nuca antes de intentar el triángulo; sin la cabeza baja, no cierra el ángulo.</p>
             </div>
-          </div></div>
+            <div class="defense">
+              <p class="defense-title">Apila (stack) empujando tus piernas hacia tu cabeza</p>
+              <p class="tip"><strong>Transición:</strong> agarra el tobillo de apoyo y gira la cadera hacia el hombro atrapado en vez de resistir de frente; el giro deshace el apilamiento.</p>
+            </div>
+
+          </div></div></div>
         </div>
 
         <!-- Armbar desde guardia -->
-        <div class="node node--sub" data-open="false">
-          <button class="node-head" type="button">
-            <svg class="tag-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2.2"/><path d="M8 11V7.5a4 4 0 018 0V11"/></svg>
-            <span class="node-head-text">
-              <span class="node-title">Palanca de brazo desde guardia</span>
-              <span class="node-setup">Controlas una manga y el cuello contrario, subes una pierna sobre el hombro del mismo lado, giras la cadera 90° y extiendes el brazo entre tus piernas apretando las rodillas.</span>
+        <div class="tech" data-open="false">
+          <button class="tech-head" type="button">
+            <span class="tech-num">02</span>
+            <span class="tech-body">
+              <span class="tech-top"><span class="tech-title">Palanca de brazo desde guardia</span><span class="tag tag--lock">Llave</span></span>
+              <span class="tech-setup">Controlas una muñeca y el cuello contrario, subes una pierna sobre el hombro del mismo lado, giras la cadera 90° y extiendes el brazo entre tus piernas apretando las rodillas.</span>
             </span>
             <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
           </button>
-          <div class="collapse"><div class="collapse-inner">
-            <div class="branch branch--defenses">
+          <div class="collapse"><div class="collapse-inner"><div class="tech-content">
 
-              <div class="node node--def" data-open="false">
-                <button class="node-head" type="button">
-                  <svg class="tag-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 18L18 6M6 6l12 12" stroke-linecap="round"/></svg>
-                  <span class="node-head-text">
-                    <span class="node-title">Defensa: entrelaza las manos y se sienta sobre los talones</span>
-                  </span>
-                  <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
-                </button>
-                <div class="collapse"><div class="collapse-inner">
-                  <p class="counter"><strong>Consejo:</strong> sube el otro pie a la cadera y separa los codos del rival con tus rodillas antes de tirar de la muñeca.</p>
-                </div></div>
-              </div>
-
-              <div class="node node--def" data-open="false">
-                <button class="node-head" type="button">
-                  <svg class="tag-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 18L18 6M6 6l12 12" stroke-linecap="round"/></svg>
-                  <span class="node-head-text">
-                    <span class="node-title">Defensa: apila para pasar por encima de tu pierna de control</span>
-                  </span>
-                  <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
-                </button>
-                <div class="collapse"><div class="collapse-inner">
-                  <p class="counter"><strong>Consejo:</strong> suelta la pierna alta y rueda con él para quedar encima; conviertes el intento de escape en un pase o barrida a tu favor.</p>
-                </div></div>
-              </div>
-
+            <p class="defenses-label">Defensas habituales</p>
+            <div class="defense">
+              <p class="defense-title">Entrelaza las manos y se sienta sobre los talones</p>
+              <p class="tip"><strong>Transición:</strong> sube el otro pie a la cadera y separa los codos del rival con tus rodillas antes de tirar de la muñeca.</p>
             </div>
-          </div></div>
+            <div class="defense">
+              <p class="defense-title">Apila para pasar por encima de tu pierna de control</p>
+              <p class="tip"><strong>Transición:</strong> suelta la pierna alta y rueda con él para quedar encima; conviertes el intento de escape en un pase o barrida a tu favor.</p>
+            </div>
+
+          </div></div></div>
         </div>
 
         <!-- Kimura desde guardia -->
-        <div class="node node--sub" data-open="false">
-          <button class="node-head" type="button">
-            <svg class="tag-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2.2"/><path d="M8 11V7.5a4 4 0 018 0V11"/></svg>
-            <span class="node-head-text">
-              <span class="node-title">Kimura desde guardia</span>
-              <span class="node-setup">Cuando apoya la mano en el suelo o en tu pecho, atrapas la muñeca y cierras la figura-4 mientras giras la cadera hacia el lado contrario para quitarle la base.</span>
+        <div class="tech" data-open="false">
+          <button class="tech-head" type="button">
+            <span class="tech-num">03</span>
+            <span class="tech-body">
+              <span class="tech-top"><span class="tech-title">Kimura desde guardia</span><span class="tag tag--lock">Llave</span></span>
+              <span class="tech-setup">Cuando apoya la mano en el suelo o en tu pecho, atrapas la muñeca y cierras la figura-4 mientras giras la cadera hacia el lado contrario para quitarle la base.</span>
             </span>
             <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
           </button>
-          <div class="collapse"><div class="collapse-inner">
-            <div class="branch branch--defenses">
+          <div class="collapse"><div class="collapse-inner"><div class="tech-content">
 
-              <div class="node node--def" data-open="false">
-                <button class="node-head" type="button">
-                  <svg class="tag-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 18L18 6M6 6l12 12" stroke-linecap="round"/></svg>
-                  <span class="node-head-text">
-                    <span class="node-title">Defensa: junta las manos y se acerca a ti para quitar la palanca</span>
-                  </span>
-                  <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
-                </button>
-                <div class="collapse"><div class="collapse-inner">
-                  <p class="counter"><strong>Consejo:</strong> usa la palanca solo para arrastrarlo y hacer una barrida (sweep) en vez de forzar la sumisión.</p>
-                </div></div>
-              </div>
-
+            <p class="defenses-label">Defensa habitual</p>
+            <div class="defense">
+              <p class="defense-title">Junta las manos y se acerca a ti para quitar la palanca</p>
+              <p class="tip"><strong>Transición:</strong> usa la palanca solo para arrastrarlo y hacer una barrida (sweep) en vez de forzar la sumisión.</p>
             </div>
-          </div></div>
+
+          </div></div></div>
         </div>
 
         <!-- Guillotina -->
-        <div class="node node--sub" data-open="false">
-          <button class="node-head" type="button">
-            <svg class="tag-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4Q3 12 8 20"/><path d="M16 4Q21 12 16 20"/><path d="M12 8v8"/></svg>
-            <span class="node-head-text">
-              <span class="node-title">Guillotina</span>
-              <span class="node-setup">Cuando el rival mete la cabeza dentro de la guardia sin control, pasas un brazo bajo su cuello, entrelazas las manos y cierras subiendo las caderas mientras las piernas empujan sus bíceps o su cadera hacia atrás.</span>
+        <div class="tech" data-open="false">
+          <button class="tech-head" type="button">
+            <span class="tech-num">04</span>
+            <span class="tech-body">
+              <span class="tech-top"><span class="tech-title">Guillotina</span><span class="tag tag--choke">Ahogo</span></span>
+              <span class="tech-setup">Cuando el rival mete la cabeza dentro de la guardia sin control, pasas un brazo bajo su cuello, entrelazas las manos y cierras subiendo las caderas mientras las piernas empujan sus bíceps o su cadera hacia atrás.</span>
             </span>
             <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
           </button>
-          <div class="collapse"><div class="collapse-inner">
+          <div class="collapse"><div class="collapse-inner"><div class="tech-content">
 
-            <div class="tech-demo">
-              <svg viewBox="0 0 260 140" xmlns="http://www.w3.org/2000/svg">
-                <ellipse cx="130" cy="132" rx="112" ry="6" fill="rgba(0,0,0,0.28)"/>
-                <g stroke="var(--sand)" stroke-linecap="round" stroke-linejoin="round" fill="var(--sand)">
-                  <line x1="160" y1="100" x2="120" y2="70" stroke-width="14"/>
-                  <circle cx="108" cy="62" r="12"/>
-                  <line x1="160" y1="100" x2="180" y2="115" stroke-width="9"/>
+            <div class="demo">
+              <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
+                <rect x="30" y="115" width="80" height="42" rx="21" fill="var(--accent)"/>
+                <circle cx="42" cy="136" r="22" fill="var(--accent)"/>
+                <circle cx="145" cy="65" r="21" fill="var(--rival-dark)"/>
+                <rect x="118" y="75" width="44" height="55" rx="19" fill="var(--rival-dark)"/>
+                <g stroke="var(--rival)" stroke-width="15" stroke-linecap="round" fill="none"><path d="M162 115 L188 132"/></g>
+                <ellipse cx="193" cy="137" rx="9" ry="7" fill="var(--rival-light)"/>
+                <g class="anim-rot" style="--origin:30% 55%; --rot:-7deg;">
+                  <g stroke="var(--accent)" stroke-width="18" stroke-linecap="round" fill="none">
+                    <path d="M95 122 L130 92"/><path d="M130 92 L108 66"/>
+                  </g>
+                  <circle cx="130" cy="92" r="11" fill="var(--accent)"/>
+                  <ellipse cx="102" cy="60" rx="12" ry="9" fill="var(--accent-light)"/>
+                  <g stroke="var(--accent)" stroke-width="18" stroke-linecap="round" fill="none">
+                    <path d="M95 140 L128 150"/><path d="M128 150 L104 88"/>
+                  </g>
+                  <ellipse cx="98" cy="82" rx="12" ry="9" fill="var(--accent-light)"/>
                 </g>
-                <g stroke="var(--teal)" stroke-linecap="round" stroke-linejoin="round" fill="var(--teal)">
-                  <circle cx="35" cy="100" r="13"/>
-                  <line x1="50" y1="100" x2="115" y2="98" stroke-width="14"/>
-                  <line x1="90" y1="98" x2="108" y2="62" stroke-width="9"/>
-                  <line x1="115" y1="98" x2="150" y2="70" stroke-width="9"/>
-                  <line x1="150" y1="70" x2="130" y2="45" stroke-width="9"/>
-                  <line x1="115" y1="98" x2="150" y2="105" stroke-width="9"/>
-                  <line x1="150" y1="105" x2="130" y2="80" stroke-width="9"/>
-                </g>
-                <path d="M96 78 Q108 90 122 78" fill="none" stroke="var(--coral)" stroke-width="4" marker-end="url(#arrowM)"/>
+                <circle cx="130" cy="80" r="20" fill="none" stroke="var(--choke)" stroke-width="2.5" stroke-dasharray="4 4" class="anim-ring"/>
               </svg>
-              <p class="tech-demo-label">Cuello envuelto · piernas empujando la cadera del rival</p>
+              <p class="demo-cap">Antebrazo bajo la barbilla · manos entrelazadas · piernas empujando la cadera</p>
             </div>
 
-            <div class="branch branch--defenses">
-
-              <div class="node node--def" data-open="false">
-                <button class="node-head" type="button">
-                  <svg class="tag-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 18L18 6M6 6l12 12" stroke-linecap="round"/></svg>
-                  <span class="node-head-text">
-                    <span class="node-title">Defensa: mete la barbilla y coloca las manos en tu cadera para alejarse</span>
-                  </span>
-                  <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
-                </button>
-                <div class="collapse"><div class="collapse-inner">
-                  <p class="counter"><strong>Consejo:</strong> cierra las piernas altas en su espalda para que no pueda alejar el pecho, y aprieta el ángulo hacia el lado contrario del pulgar del agarre.</p>
-                </div></div>
-              </div>
-
+            <p class="defenses-label">Defensa habitual</p>
+            <div class="defense">
+              <p class="defense-title">Mete la barbilla y coloca las manos en tu cadera para alejarse</p>
+              <p class="tip"><strong>Transición:</strong> cierra las piernas altas en su espalda para que no pueda alejar el pecho, y aprieta el ángulo hacia el lado contrario del pulgar del agarre.</p>
             </div>
-          </div></div>
+
+          </div></div></div>
         </div>
 
         <!-- Omoplata -->
-        <div class="node node--sub" data-open="false">
-          <button class="node-head" type="button">
-            <svg class="tag-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2.2"/><path d="M8 11V7.5a4 4 0 018 0V11"/></svg>
-            <span class="node-head-text">
-              <span class="node-title">Omoplata</span>
-              <span class="node-setup">Desde una Kimura defendida (junta las manos), sueltas el agarre de la muñeca, subes la pierna del mismo lado sobre el hombro y giras hasta quedar perpendicular, atrapando el brazo con la pierna como llave de hombro.</span>
+        <div class="tech" data-open="false">
+          <button class="tech-head" type="button">
+            <span class="tech-num">05</span>
+            <span class="tech-body">
+              <span class="tech-top"><span class="tech-title">Omoplata</span><span class="tag tag--lock">Llave</span></span>
+              <span class="tech-setup">Desde una Kimura defendida (junta las manos), sueltas el agarre de la muñeca, subes la pierna del mismo lado sobre el hombro y giras hasta quedar perpendicular, atrapando el brazo con la pierna como llave de hombro.</span>
             </span>
             <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
           </button>
-          <div class="collapse"><div class="collapse-inner">
-            <div class="branch branch--defenses">
+          <div class="collapse"><div class="collapse-inner"><div class="tech-content">
 
-              <div class="node node--def" data-open="false">
-                <button class="node-head" type="button">
-                  <svg class="tag-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 18L18 6M6 6l12 12" stroke-linecap="round"/></svg>
-                  <span class="node-head-text">
-                    <span class="node-title">Defensa: rueda hacia adelante (forward roll) para safar el hombro</span>
-                  </span>
-                  <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
-                </button>
-                <div class="collapse"><div class="collapse-inner">
-                  <p class="counter"><strong>Consejo:</strong> antes de que complete el giro, suelta la pierna y toma la espalda; el giro hacia delante suele dejarte justo detrás.</p>
-                </div></div>
-              </div>
-
+            <p class="defenses-label">Defensa habitual</p>
+            <div class="defense">
+              <p class="defense-title">Rueda hacia adelante (forward roll) para safar el hombro</p>
+              <p class="tip"><strong>Transición:</strong> antes de que complete el giro, suelta la pierna y toma la espalda; el giro hacia delante suele dejarte justo detrás.</p>
             </div>
-          </div></div>
+
+          </div></div></div>
         </div>
 
       </div>
@@ -1013,181 +844,146 @@
 
     <!-- ============================================================ ESPALDA ============================================================ -->
     <section class="position-section" id="espalda">
-      <div class="node node--root">
+      <div class="pos-intro">
         <h2>Espalda</h2>
-        <p class="node-note">Prioriza los ganchos y el control del cuello antes que la sumisión — sin base no hay estrangulación que aguante.</p>
+        <p>Prioriza los ganchos y el control del cuello antes que la sumisión — sin base no hay estrangulación que aguante.</p>
       </div>
 
-      <div class="pos-demo">
-        <svg viewBox="0 0 260 140" xmlns="http://www.w3.org/2000/svg">
-          <ellipse cx="130" cy="132" rx="112" ry="6" fill="rgba(0,0,0,0.28)"/>
-          <g stroke="var(--sand)" stroke-linecap="round" stroke-linejoin="round" fill="var(--sand)">
-            <line x1="130" y1="110" x2="120" y2="45" stroke-width="14"/>
-            <circle cx="117" cy="35" r="12"/>
-            <line x1="122" y1="65" x2="100" y2="85" stroke-width="9"/>
-            <line x1="122" y1="70" x2="145" y2="90" stroke-width="9"/>
-            <line x1="130" y1="110" x2="158" y2="103" stroke-width="9"/>
-            <line x1="158" y1="103" x2="182" y2="93" stroke-width="9"/>
-            <line x1="130" y1="110" x2="150" y2="122" stroke-width="9"/>
-            <line x1="150" y1="122" x2="176" y2="118" stroke-width="9"/>
+      <div class="demo">
+        <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="160" cy="188" rx="140" ry="7" fill="rgba(0,0,0,.35)"/>
+
+          <!-- attacker: torso sliver + hook leg peeking from behind (drawn first, gets occluded) -->
+          <rect x="88" y="95" width="42" height="60" rx="19" fill="var(--accent)"/>
+          <g stroke="var(--accent)" stroke-width="14" stroke-linecap="round" fill="none">
+            <path d="M148 148 L124 172"/><path d="M124 172 L96 168"/>
           </g>
-          <g stroke="var(--teal)" stroke-linecap="round" stroke-linejoin="round" fill="var(--teal)">
-            <line x1="138" y1="105" x2="152" y2="48" stroke-width="14"/>
-            <circle cx="153" cy="38" r="12"/>
-            <line x1="140" y1="58" x2="103" y2="76" stroke-width="9"/>
-            <line x1="138" y1="106" x2="118" y2="120" stroke-width="9"/>
-            <line x1="118" y1="120" x2="97" y2="110" stroke-width="9"/>
+          <circle cx="196" cy="40" r="18" fill="var(--accent)"/>
+
+          <!-- defender: base figure, drawn on top of the attacker's torso sliver -->
+          <circle cx="150" cy="48" r="22" fill="var(--rival-dark)"/>
+          <rect x="124" y="60" width="52" height="86" rx="23" fill="var(--rival-dark)"/>
+          <g stroke="var(--rival)" stroke-width="17" stroke-linecap="round" fill="none">
+            <path d="M150 146 L178 164"/><path d="M178 164 L208 154"/>
           </g>
+          <ellipse cx="213" cy="151" rx="10" ry="8" fill="var(--rival-light)"/>
+
+          <!-- attacker's choking arm: drawn last, wraps the front of the neck -->
+          <g stroke="var(--accent)" stroke-width="18" stroke-linecap="round" fill="none">
+            <path d="M206 68 L156 92 L112 78"/>
+          </g>
+          <circle cx="156" cy="92" r="11" fill="var(--accent)"/>
+          <ellipse cx="104" cy="74" rx="11" ry="9" fill="var(--accent-light)"/>
         </svg>
-        <div class="pos-demo-caption">
-          <span><i class="dot-teal"></i>Tú (ganchos puestos)</span>
-          <span><i class="dot-sand"></i>Rival</span>
-        </div>
+        <div class="demo-foot"><span><i class="dot-you"></i>Tú (ganchos puestos)</span><span><i class="dot-rival"></i>Rival</span></div>
       </div>
 
-      <div class="branch">
+      <div class="list">
 
-        <!-- Mata Leon -->
-        <div class="node node--sub" data-open="false">
-          <button class="node-head" type="button">
-            <svg class="tag-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4Q3 12 8 20"/><path d="M16 4Q21 12 16 20"/><path d="M12 8v8"/></svg>
-            <span class="node-head-text">
-              <span class="node-title">Mata León (estrangulación de espalda)</span>
-              <span class="node-setup">Con los dos ganchos puestos, pasas un brazo bajo la barbilla del rival buscando el cuello, agarras tu propio bíceps con la otra mano y empujas su cabeza hacia el brazo que estrangula.</span>
+        <!-- Mata Leon / RNC -->
+        <div class="tech" data-open="false">
+          <button class="tech-head" type="button">
+            <span class="tech-num">01</span>
+            <span class="tech-body">
+              <span class="tech-top"><span class="tech-title">Mata León (Rear Naked Choke)</span><span class="tag tag--choke">Ahogo</span></span>
+              <span class="tech-setup">Con los dos ganchos puestos, pasas un brazo bajo la barbilla del rival buscando el cuello, agarras tu propio bíceps con la otra mano y empujas su cabeza hacia el brazo que estrangula.</span>
             </span>
             <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
           </button>
-          <div class="collapse"><div class="collapse-inner">
+          <div class="collapse"><div class="collapse-inner"><div class="tech-content">
 
-            <div class="tech-demo">
-              <svg viewBox="0 0 260 140" xmlns="http://www.w3.org/2000/svg">
-                <ellipse cx="130" cy="132" rx="112" ry="6" fill="rgba(0,0,0,0.28)"/>
-                <g stroke="var(--sand)" stroke-linecap="round" stroke-linejoin="round" fill="var(--sand)">
-                  <line x1="130" y1="110" x2="120" y2="45" stroke-width="14"/>
-                  <circle cx="117" cy="35" r="12"/>
-                  <line x1="130" y1="110" x2="158" y2="103" stroke-width="9"/>
-                  <line x1="130" y1="110" x2="150" y2="122" stroke-width="9"/>
+            <div class="demo">
+              <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="150" cy="50" r="24" fill="var(--rival-dark)"/>
+                <rect x="122" y="65" width="52" height="90" rx="24" fill="var(--rival-dark)"/>
+                <g stroke="var(--rival)" stroke-width="16" stroke-linecap="round" fill="none"><path d="M134 88 L100 65"/></g>
+                <ellipse cx="94" cy="60" rx="9" ry="7" fill="var(--rival-light)"/>
+                <rect x="40" y="80" width="120" height="72" rx="26" fill="var(--accent)"/>
+                <circle cx="42" cy="65" r="21" fill="var(--accent)"/>
+                <g class="anim-rot" style="--origin:45% 40%; --rot:5deg;">
+                  <g stroke="var(--accent)" stroke-width="19" stroke-linecap="round" fill="none">
+                    <path d="M130 100 L98 60"/><path d="M98 60 L145 45"/>
+                  </g>
+                  <circle cx="98" cy="60" r="12" fill="var(--accent)"/>
+                  <ellipse cx="150" cy="38" rx="12" ry="10" fill="var(--accent-light)"/>
                 </g>
-                <g stroke="var(--teal)" stroke-linecap="round" stroke-linejoin="round" fill="var(--teal)">
-                  <line x1="138" y1="105" x2="152" y2="48" stroke-width="14"/>
-                  <circle cx="153" cy="38" r="12"/>
-                  <line x1="140" y1="55" x2="95" y2="60" stroke-width="9"/>
-                  <line x1="138" y1="70" x2="112" y2="95" stroke-width="9"/>
-                </g>
-                <g fill="none" stroke="var(--coral)" stroke-width="4">
-                  <path d="M95 60 Q108 42 130 46" marker-end="url(#arrowM)"/>
-                </g>
+                <g stroke="var(--accent)" stroke-width="15" stroke-linecap="round" fill="none"><path d="M155 100 L185 78"/></g>
+                <ellipse cx="190" cy="72" rx="10" ry="8" fill="var(--accent-light)"/>
+                <circle cx="122" cy="55" r="18" fill="none" stroke="var(--choke)" stroke-width="2.5" stroke-dasharray="4 4" class="anim-ring"/>
               </svg>
-              <p class="tech-demo-label">Antebrazo rodeando el cuello · mano libre empujando la cabeza</p>
+              <p class="demo-cap">Antebrazo rodeando el cuello · mano libre empujando la cabeza</p>
             </div>
 
-            <div class="branch branch--defenses">
-
-              <div class="node node--def" data-open="false">
-                <button class="node-head" type="button">
-                  <svg class="tag-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 18L18 6M6 6l12 12" stroke-linecap="round"/></svg>
-                  <span class="node-head-text">
-                    <span class="node-title">Defensa: baja la barbilla y agarra con ambas manos la manga que estrangula</span>
-                  </span>
-                  <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
-                </button>
-                <div class="collapse"><div class="collapse-inner">
-                  <p class="counter"><strong>Consejo:</strong> no tires del brazo hacia atrás — gira ligeramente el cuerpo hacia el lado contrario para reabrir el ángulo del cuello.</p>
-                </div></div>
-              </div>
-
+            <p class="defenses-label">Defensa habitual</p>
+            <div class="defense">
+              <p class="defense-title">Baja la barbilla y agarra con ambas manos el antebrazo que ahoga</p>
+              <p class="tip"><strong>Transición:</strong> no tires del brazo hacia atrás — gira ligeramente el cuerpo hacia el lado contrario para reabrir el ángulo del cuello. Si aprieta el codo al pecho para bloquear el choke, pasa a la compresión de bíceps.</p>
             </div>
-          </div></div>
+
+          </div></div></div>
         </div>
 
-        <!-- Arco y flecha -->
-        <div class="node node--sub" data-open="false">
-          <button class="node-head" type="button">
-            <svg class="tag-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4Q3 12 8 20"/><path d="M16 4Q21 12 16 20"/><path d="M12 8v8"/></svg>
-            <span class="node-head-text">
-              <span class="node-title">Estrangulación arco y flecha</span>
-              <span class="node-setup">Con un gancho puesto y una solapa cruzada controlada detrás del cuello, agarras el pantalón o la pierna contraria y te arqueas hacia atrás mientras tiras de la solapa, formando un arco con el cuerpo.</span>
+        <!-- Bicep slicer -->
+        <div class="tech" data-open="false">
+          <button class="tech-head" type="button">
+            <span class="tech-num">02</span>
+            <span class="tech-body">
+              <span class="tech-top"><span class="tech-title">Compresión de bíceps</span><span class="tag tag--lock">Llave</span></span>
+              <span class="tech-setup">Si el rival bloquea el Mata León agarrando tu antebrazo con las dos manos y pega el codo al pecho, cruzas tu otro brazo por encima de ese codo y clavas la espinilla contra su bíceps, haciendo palanca hacia arriba.</span>
             </span>
             <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
           </button>
-          <div class="collapse"><div class="collapse-inner">
-            <div class="branch branch--defenses">
+          <div class="collapse"><div class="collapse-inner"><div class="tech-content">
 
-              <div class="node node--def" data-open="false">
-                <button class="node-head" type="button">
-                  <svg class="tag-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 18L18 6M6 6l12 12" stroke-linecap="round"/></svg>
-                  <span class="node-head-text">
-                    <span class="node-title">Defensa: gira el tronco hacia ti para quitar el ángulo de la solapa</span>
-                  </span>
-                  <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
-                </button>
-                <div class="collapse"><div class="collapse-inner">
-                  <p class="counter"><strong>Consejo:</strong> suelta la pierna y persigue la espalda en vez de forzar; el giro suele dejarte igualmente detrás con control de cuello.</p>
-                </div></div>
-              </div>
-
+            <p class="defenses-label">Defensa habitual</p>
+            <div class="defense">
+              <p class="defense-title">Suelta el agarre del antebrazo en cuanto siente la presión en el bíceps</p>
+              <p class="tip"><strong>Transición:</strong> si suelta para escapar la compresión, vuelve de inmediato al Mata León — soltar libera el cuello.</p>
             </div>
-          </div></div>
+
+          </div></div></div>
         </div>
 
         <!-- Armbar desde espalda -->
-        <div class="node node--sub" data-open="false">
-          <button class="node-head" type="button">
-            <svg class="tag-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2.2"/><path d="M8 11V7.5a4 4 0 018 0V11"/></svg>
-            <span class="node-head-text">
-              <span class="node-title">Palanca de brazo desde la espalda</span>
-              <span class="node-setup">Aíslas un brazo del rival cruzándolo sobre su propio pecho, mantienes el gancho del mismo lado y ruedas hacia ese costado para quedar perpendicular, extendiendo el brazo sobre tu cadera.</span>
+        <div class="tech" data-open="false">
+          <button class="tech-head" type="button">
+            <span class="tech-num">03</span>
+            <span class="tech-body">
+              <span class="tech-top"><span class="tech-title">Palanca de brazo desde la espalda</span><span class="tag tag--lock">Llave</span></span>
+              <span class="tech-setup">Aíslas un brazo del rival cruzándolo sobre su propio pecho, mantienes el gancho del mismo lado y ruedas hacia ese costado para quedar perpendicular, extendiendo el brazo sobre tu cadera.</span>
             </span>
             <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
           </button>
-          <div class="collapse"><div class="collapse-inner">
-            <div class="branch branch--defenses">
+          <div class="collapse"><div class="collapse-inner"><div class="tech-content">
 
-              <div class="node node--def" data-open="false">
-                <button class="node-head" type="button">
-                  <svg class="tag-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 18L18 6M6 6l12 12" stroke-linecap="round"/></svg>
-                  <span class="node-head-text">
-                    <span class="node-title">Defensa: junta las manos antes de que aísle el brazo</span>
-                  </span>
-                  <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
-                </button>
-                <div class="collapse"><div class="collapse-inner">
-                  <p class="counter"><strong>Consejo:</strong> si ya rodaste y junta las manos tarde, sigue el giro y termina la palanca igualmente — el agarre tardío no aguanta la presión de la cadera.</p>
-                </div></div>
-              </div>
-
+            <p class="defenses-label">Defensa habitual</p>
+            <div class="defense">
+              <p class="defense-title">Junta las manos antes de que aísle el brazo</p>
+              <p class="tip"><strong>Transición:</strong> si ya rodaste y junta las manos tarde, sigue el giro y termina la palanca igualmente — el agarre tardío no aguanta la presión de la cadera.</p>
             </div>
-          </div></div>
+
+          </div></div></div>
         </div>
 
-        <!-- Ude garami / crucifijo -->
-        <div class="node node--sub" data-open="false">
-          <button class="node-head" type="button">
-            <svg class="tag-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2.2"/><path d="M8 11V7.5a4 4 0 018 0V11"/></svg>
-            <span class="node-head-text">
-              <span class="node-title">Ude garami (crucifijo)</span>
-              <span class="node-setup">Cuando el rival lleva una mano a defender el cuello, atrapas esa muñeca, pasas tu otro brazo por debajo de su codo y giras la muñeca hacia su cadera mientras mantienes el gancho de ese lado.</span>
+        <!-- Ude garami -->
+        <div class="tech" data-open="false">
+          <button class="tech-head" type="button">
+            <span class="tech-num">04</span>
+            <span class="tech-body">
+              <span class="tech-top"><span class="tech-title">Ude garami (crucifijo)</span><span class="tag tag--lock">Llave</span></span>
+              <span class="tech-setup">Cuando el rival lleva una mano a defender el cuello, atrapas esa muñeca, pasas tu otro brazo por debajo de su codo y giras la muñeca hacia su cadera mientras mantienes el gancho de ese lado.</span>
             </span>
             <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
           </button>
-          <div class="collapse"><div class="collapse-inner">
-            <div class="branch branch--defenses">
+          <div class="collapse"><div class="collapse-inner"><div class="tech-content">
 
-              <div class="node node--def" data-open="false">
-                <button class="node-head" type="button">
-                  <svg class="tag-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 18L18 6M6 6l12 12" stroke-linecap="round"/></svg>
-                  <span class="node-head-text">
-                    <span class="node-title">Defensa: mantiene el codo pegado al cuerpo y no lo separa</span>
-                  </span>
-                  <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
-                </button>
-                <div class="collapse"><div class="collapse-inner">
-                  <p class="counter"><strong>Consejo:</strong> no fuerces el brazo pegado; usa el control para llevarlo a Mata León abriendo el otro lado del cuello.</p>
-                </div></div>
-              </div>
-
+            <p class="defenses-label">Defensa habitual</p>
+            <div class="defense">
+              <p class="defense-title">Mantiene el codo pegado al cuerpo y no lo separa</p>
+              <p class="tip"><strong>Transición:</strong> no fuerces el brazo pegado; usa el control para llevarlo a Mata León abriendo el otro lado del cuello.</p>
             </div>
-          </div></div>
+
+          </div></div></div>
         </div>
 
       </div>
@@ -1195,183 +991,139 @@
 
     <!-- ============================================================ LATERAL ============================================================ -->
     <section class="position-section" id="lateral">
-      <div class="node node--root">
+      <div class="pos-intro">
         <h2>Control lateral</h2>
-        <p class="node-note">La presión de pecho vale más que la fuerza de los brazos — clava el esternón antes de buscar cualquier llave.</p>
+        <p>La presión de pecho vale más que la fuerza de los brazos — clava el esternón antes de buscar cualquier llave.</p>
       </div>
 
-      <div class="pos-demo">
-        <svg viewBox="0 0 260 140" xmlns="http://www.w3.org/2000/svg">
-          <ellipse cx="130" cy="132" rx="112" ry="6" fill="rgba(0,0,0,0.28)"/>
-          <g stroke="var(--sand)" stroke-linecap="round" stroke-linejoin="round" fill="var(--sand)">
-            <circle cx="35" cy="100" r="13"/>
-            <line x1="50" y1="100" x2="180" y2="100" stroke-width="14"/>
-            <line x1="90" y1="100" x2="72" y2="75" stroke-width="9"/>
-            <line x1="180" y1="100" x2="212" y2="93" stroke-width="9"/>
+      <div class="demo">
+        <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="160" cy="188" rx="140" ry="7" fill="rgba(0,0,0,.35)"/>
+          <circle cx="42" cy="130" r="24" fill="var(--rival-dark)"/>
+          <rect x="52" y="118" width="150" height="46" rx="23" fill="var(--rival-dark)"/>
+          <g stroke="var(--rival)" stroke-width="16" stroke-linecap="round" fill="none"><path d="M100 130 L82 102"/></g>
+          <ellipse cx="76" cy="96" rx="9" ry="7" fill="var(--rival-light)"/>
+          <g stroke="var(--rival)" stroke-width="16" stroke-linecap="round" fill="none"><path d="M202 130 L235 120"/></g>
+          <ellipse cx="240" cy="118" rx="10" ry="8" fill="var(--rival-light)"/>
+          <rect x="95" y="80" width="110" height="44" rx="22" fill="var(--accent)"/>
+          <circle cx="90" cy="68" r="22" fill="var(--accent)"/>
+          <g stroke="var(--accent)" stroke-width="16" stroke-linecap="round" fill="none">
+            <path d="M110 90 L72 108"/>
+            <path d="M188 92 L220 72"/><path d="M220 72 L248 82"/>
           </g>
-          <g stroke="var(--teal)" stroke-linecap="round" stroke-linejoin="round" fill="var(--teal)">
-            <line x1="95" y1="76" x2="160" y2="80" stroke-width="14"/>
-            <circle cx="86" cy="68" r="12"/>
-            <line x1="160" y1="80" x2="188" y2="98" stroke-width="9"/>
-            <line x1="188" y1="98" x2="212" y2="88" stroke-width="9"/>
-            <line x1="160" y1="80" x2="192" y2="68" stroke-width="9"/>
-            <line x1="192" y1="68" x2="216" y2="58" stroke-width="9"/>
-            <line x1="100" y1="74" x2="62" y2="90" stroke-width="9"/>
-            <line x1="122" y1="78" x2="140" y2="103" stroke-width="9"/>
+          <ellipse cx="66" cy="112" rx="10" ry="8" fill="var(--accent-light)"/>
+          <ellipse cx="253" cy="80" rx="10" ry="8" fill="var(--accent-light)"/>
+          <g stroke="var(--accent)" stroke-width="14" stroke-linecap="round" fill="none">
+            <path d="M195 118 L225 138"/><path d="M225 138 L250 128"/>
           </g>
         </svg>
-        <div class="pos-demo-caption">
-          <span><i class="dot-teal"></i>Tú (encima, perpendicular)</span>
-          <span><i class="dot-sand"></i>Rival</span>
-        </div>
+        <div class="demo-foot"><span><i class="dot-you"></i>Tú (perpendicular)</span><span><i class="dot-rival"></i>Rival</span></div>
       </div>
 
-      <div class="branch">
+      <div class="list">
 
         <!-- Kimura desde lateral -->
-        <div class="node node--sub" data-open="false">
-          <button class="node-head" type="button">
-            <svg class="tag-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2.2"/><path d="M8 11V7.5a4 4 0 018 0V11"/></svg>
-            <span class="node-head-text">
-              <span class="node-title">Kimura desde control lateral</span>
-              <span class="node-setup">Con el brazo del rival más cercano a ti separado del cuerpo, pasas tu brazo por debajo de su codo, agarras tu propia muñeca en figura-4 y giras hacia su espalda manteniendo la presión de pecho.</span>
+        <div class="tech" data-open="false">
+          <button class="tech-head" type="button">
+            <span class="tech-num">01</span>
+            <span class="tech-body">
+              <span class="tech-top"><span class="tech-title">Kimura desde control lateral</span><span class="tag tag--lock">Llave</span></span>
+              <span class="tech-setup">Con el brazo del rival más cercano a ti separado del cuerpo, pasas tu brazo por debajo de su codo, agarras tu propia muñeca en figura-4 y giras hacia su espalda manteniendo la presión de pecho.</span>
             </span>
             <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
           </button>
-          <div class="collapse"><div class="collapse-inner">
+          <div class="collapse"><div class="collapse-inner"><div class="tech-content">
 
-            <div class="tech-demo">
-              <svg viewBox="0 0 260 140" xmlns="http://www.w3.org/2000/svg">
-                <ellipse cx="130" cy="132" rx="112" ry="6" fill="rgba(0,0,0,0.28)"/>
-                <g stroke="var(--sand)" stroke-linecap="round" stroke-linejoin="round" fill="var(--sand)">
-                  <circle cx="35" cy="100" r="13"/>
-                  <line x1="50" y1="100" x2="180" y2="100" stroke-width="14"/>
-                  <line x1="180" y1="100" x2="212" y2="93" stroke-width="9"/>
-                  <line x1="90" y1="100" x2="70" y2="70" stroke-width="9"/>
-                </g>
-                <g stroke="var(--teal)" stroke-linecap="round" stroke-linejoin="round" fill="var(--teal)">
-                  <line x1="95" y1="76" x2="160" y2="80" stroke-width="14"/>
-                  <circle cx="86" cy="68" r="12"/>
-                  <line x1="160" y1="80" x2="192" y2="68" stroke-width="9"/>
-                  <line x1="192" y1="68" x2="216" y2="58" stroke-width="9"/>
-                  <line x1="105" y1="78" x2="72" y2="55" stroke-width="9"/>
-                  <line x1="105" y1="80" x2="60" y2="82" stroke-width="9"/>
-                </g>
-                <g fill="none" stroke="var(--coral)" stroke-width="3" stroke-dasharray="4 4">
-                  <circle cx="70" cy="70" r="14"/>
-                </g>
-                <path d="M70 70 Q45 78 40 100" fill="none" stroke="var(--coral)" stroke-width="3" marker-end="url(#arrowM)"/>
-              </svg>
-              <p class="tech-demo-label">Figura-4 en el brazo aislado · pecho clavado</p>
+            <p class="defenses-label">Defensa habitual</p>
+            <div class="defense">
+              <p class="defense-title">Pega el codo a las costillas y agarra su propia cadera</p>
+              <p class="tip"><strong>Transición:</strong> pasa a montada o a la espalda usando el control de la muñeca como palanca para girarlo, en vez de forzar la sumisión desde el ángulo cerrado.</p>
             </div>
 
-            <div class="branch branch--defenses">
-
-              <div class="node node--def" data-open="false">
-                <button class="node-head" type="button">
-                  <svg class="tag-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 18L18 6M6 6l12 12" stroke-linecap="round"/></svg>
-                  <span class="node-head-text">
-                    <span class="node-title">Defensa: pega el codo a las costillas y agarra su propia cadera</span>
-                  </span>
-                  <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
-                </button>
-                <div class="collapse"><div class="collapse-inner">
-                  <p class="counter"><strong>Consejo:</strong> pasa a montada o a la espalda usando el control de la muñeca como palanca para girarlo, en vez de forzar la sumisión desde el ángulo cerrado.</p>
-                </div></div>
-              </div>
-
-            </div>
-          </div></div>
+          </div></div></div>
         </div>
 
         <!-- Americana desde lateral -->
-        <div class="node node--sub" data-open="false">
-          <button class="node-head" type="button">
-            <svg class="tag-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2.2"/><path d="M8 11V7.5a4 4 0 018 0V11"/></svg>
-            <span class="node-head-text">
-              <span class="node-title">Americana desde control lateral</span>
-              <span class="node-setup">Cuando el rival empuja tu cadera con el brazo cercano, lo aíslas en forma de L contra el suelo y pasas tu otro brazo por debajo del codo hasta agarrarte la muñeca.</span>
+        <div class="tech" data-open="false">
+          <button class="tech-head" type="button">
+            <span class="tech-num">02</span>
+            <span class="tech-body">
+              <span class="tech-top"><span class="tech-title">Americana desde control lateral</span><span class="tag tag--lock">Llave</span></span>
+              <span class="tech-setup">Cuando el rival empuja tu cadera con el brazo cercano, lo aíslas en forma de L contra el suelo y pasas tu otro brazo por debajo del codo hasta agarrarte la muñeca.</span>
             </span>
             <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
           </button>
-          <div class="collapse"><div class="collapse-inner">
-            <div class="branch branch--defenses">
+          <div class="collapse"><div class="collapse-inner"><div class="tech-content">
 
-              <div class="node node--def" data-open="false">
-                <button class="node-head" type="button">
-                  <svg class="tag-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 18L18 6M6 6l12 12" stroke-linecap="round"/></svg>
-                  <span class="node-head-text">
-                    <span class="node-title">Defensa: dobla el codo hacia dentro y lo pega al cuerpo</span>
-                  </span>
-                  <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
-                </button>
-                <div class="collapse"><div class="collapse-inner">
-                  <p class="counter"><strong>Consejo:</strong> cambia la dirección de la palanca hacia Kimura sin soltar el agarre de la muñeca.</p>
-                </div></div>
-              </div>
-
+            <p class="defenses-label">Defensa habitual</p>
+            <div class="defense">
+              <p class="defense-title">Dobla el codo hacia dentro y lo pega al cuerpo</p>
+              <p class="tip"><strong>Transición:</strong> cambia la dirección de la palanca hacia Kimura sin soltar el agarre de la muñeca.</p>
             </div>
-          </div></div>
+
+          </div></div></div>
         </div>
 
-        <!-- Guillotina arm-in desde lateral -->
-        <div class="node node--sub" data-open="false">
-          <button class="node-head" type="button">
-            <svg class="tag-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4Q3 12 8 20"/><path d="M16 4Q21 12 16 20"/><path d="M12 8v8"/></svg>
-            <span class="node-head-text">
-              <span class="node-title">Guillotina con el brazo dentro</span>
-              <span class="node-setup">Si el rival mete un brazo entre los dos al defenderse, envuelves su cuello y ese brazo juntos, entrelazas las manos y aprietas llevando los codos al suelo mientras subes la cadera.</span>
+        <!-- Guillotina arm-in -->
+        <div class="tech" data-open="false">
+          <button class="tech-head" type="button">
+            <span class="tech-num">03</span>
+            <span class="tech-body">
+              <span class="tech-top"><span class="tech-title">Guillotina con el brazo dentro</span><span class="tag tag--choke">Ahogo</span></span>
+              <span class="tech-setup">Si el rival mete un brazo entre los dos al defenderse, envuelves su cuello y ese brazo juntos, entrelazas las manos y aprietas llevando los codos al suelo mientras subes la cadera.</span>
             </span>
             <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
           </button>
-          <div class="collapse"><div class="collapse-inner">
-            <div class="branch branch--defenses">
+          <div class="collapse"><div class="collapse-inner"><div class="tech-content">
 
-              <div class="node node--def" data-open="false">
-                <button class="node-head" type="button">
-                  <svg class="tag-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 18L18 6M6 6l12 12" stroke-linecap="round"/></svg>
-                  <span class="node-head-text">
-                    <span class="node-title">Defensa: gira hacia el brazo atrapado para quitar ángulo</span>
-                  </span>
-                  <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
-                </button>
-                <div class="collapse"><div class="collapse-inner">
-                  <p class="counter"><strong>Consejo:</strong> sigue el giro con él y sube a montada manteniendo el agarre; el giro no libera el brazo, solo cambia la posición.</p>
-                </div></div>
-              </div>
-
+            <p class="defenses-label">Defensa habitual</p>
+            <div class="defense">
+              <p class="defense-title">Gira hacia el brazo atrapado para quitar ángulo</p>
+              <p class="tip"><strong>Transición:</strong> sigue el giro con él y sube a montada manteniendo el agarre; el giro no libera el brazo, solo cambia la posición.</p>
             </div>
-          </div></div>
+
+          </div></div></div>
         </div>
 
         <!-- Kata gatame -->
-        <div class="node node--sub" data-open="false">
-          <button class="node-head" type="button">
-            <svg class="tag-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4Q3 12 8 20"/><path d="M16 4Q21 12 16 20"/><path d="M12 8v8"/></svg>
-            <span class="node-head-text">
-              <span class="node-title">Kata gatame (brazo y cabeza)</span>
-              <span class="node-setup">Envuelves la cabeza y un brazo del rival juntos con tu brazo, entrelazas las manos por detrás del hombro y aprietas subiendo la cadera; también sirve para pasar a montada saltando por encima.</span>
+        <div class="tech" data-open="false">
+          <button class="tech-head" type="button">
+            <span class="tech-num">04</span>
+            <span class="tech-body">
+              <span class="tech-top"><span class="tech-title">Kata gatame (brazo y cabeza)</span><span class="tag tag--choke">Ahogo</span></span>
+              <span class="tech-setup">Envuelves la cabeza y un brazo del rival juntos con tu brazo, entrelazas las manos por detrás del hombro y aprietas subiendo la cadera; también sirve para pasar a montada saltando por encima.</span>
             </span>
             <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
           </button>
-          <div class="collapse"><div class="collapse-inner">
-            <div class="branch branch--defenses">
+          <div class="collapse"><div class="collapse-inner"><div class="tech-content">
 
-              <div class="node node--def" data-open="false">
-                <button class="node-head" type="button">
-                  <svg class="tag-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 18L18 6M6 6l12 12" stroke-linecap="round"/></svg>
-                  <span class="node-head-text">
-                    <span class="node-title">Defensa: gira el cuerpo hacia el hombro libre para quitar presión</span>
-                  </span>
-                  <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
-                </button>
-                <div class="collapse"><div class="collapse-inner">
-                  <p class="counter"><strong>Consejo:</strong> acompaña el giro y salta la pierna por encima para pasar a montada sin soltar el agarre — es la transición clásica de kata gatame.</p>
-                </div></div>
-              </div>
-
+            <div class="demo">
+              <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="55" cy="90" r="24" fill="var(--rival-dark)"/>
+                <rect x="65" y="80" width="90" height="46" rx="23" fill="var(--rival-dark)"/>
+                <g stroke="var(--rival)" stroke-width="15" stroke-linecap="round" fill="none"><path d="M150 100 L182 118"/></g>
+                <ellipse cx="188" cy="122" rx="9" ry="7" fill="var(--rival-light)"/>
+                <rect x="90" y="120" width="120" height="48" rx="24" fill="var(--accent)"/>
+                <circle cx="215" cy="105" r="22" fill="var(--accent)"/>
+                <g class="anim-rot" style="--origin:35% 55%; --rot:-6deg;">
+                  <g stroke="var(--accent)" stroke-width="20" stroke-linecap="round" fill="none">
+                    <path d="M200 128 L110 100"/><path d="M110 100 L58 108"/>
+                  </g>
+                  <circle cx="110" cy="100" r="12" fill="var(--accent)"/>
+                  <ellipse cx="50" cy="112" rx="12" ry="10" fill="var(--accent-light)"/>
+                </g>
+                <path d="M58 90 A58 58 0 0 1 110 130" fill="none" stroke="var(--choke)" stroke-width="2.5" stroke-dasharray="5 5" class="anim-ring"/>
+              </svg>
+              <p class="demo-cap">Cabeza y brazo envueltos juntos · manos entrelazadas tras el hombro</p>
             </div>
-          </div></div>
+
+            <p class="defenses-label">Defensa habitual</p>
+            <div class="defense">
+              <p class="defense-title">Gira el cuerpo hacia el hombro libre para quitar presión</p>
+              <p class="tip"><strong>Transición:</strong> acompaña el giro y salta la pierna por encima para pasar a montada sin soltar el agarre — es la transición clásica de kata gatame.</p>
+            </div>
+
+          </div></div></div>
         </div>
 
       </div>
@@ -1380,21 +1132,13 @@
   </main>
 
   <footer>
-    <p>Biblioteca de técnicas de Jiu-Jitsu — 18 técnicas repartidas en 4 posiciones, con defensas comunes y consejos para transicionar cuando el rival se defiende bien. Contenido pensado como guía de estudio, no sustituye la práctica supervisada en el tatami.</p>
+    <p>Biblioteca de técnicas no-gi — 18 técnicas repartidas en 4 posiciones, con defensas comunes y transiciones cuando el rival se defiende bien. Guía de estudio, no sustituye la práctica supervisada en el tatami.</p>
   </footer>
 
 </div>
 
-<svg width="0" height="0" style="position:absolute">
-  <defs>
-    <marker id="arrowM" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" fill="var(--coral)"/>
-    </marker>
-  </defs>
-</svg>
-
 <script>
-  document.querySelectorAll('.node-head').forEach(function(btn){
+  document.querySelectorAll('.tech-head').forEach(function(btn){
     btn.addEventListener('click', function(){
       var node = btn.parentElement;
       var isOpen = node.getAttribute('data-open') === 'true';
@@ -1402,16 +1146,17 @@
     });
   });
 
-  document.querySelectorAll('.position-chip').forEach(function(chip){
-    chip.addEventListener('click', function(){
-      document.querySelectorAll('.position-chip').forEach(function(c){ c.classList.remove('active'); });
-      chip.classList.add('active');
-      var target = chip.getAttribute('data-target');
+  document.querySelectorAll('.position-tab').forEach(function(tab){
+    tab.addEventListener('click', function(){
+      document.querySelectorAll('.position-tab').forEach(function(t){ t.classList.remove('active'); });
+      tab.classList.add('active');
+      var target = tab.getAttribute('data-target');
       document.querySelectorAll('.position-section').forEach(function(s){
         s.classList.toggle('active', s.id === target);
       });
-      document.getElementById('toggleAll').setAttribute('data-state', 'closed');
-      document.getElementById('toggleAll').textContent = 'Desplegar todo';
+      var toggle = document.getElementById('toggleAll');
+      toggle.setAttribute('data-state', 'closed');
+      toggle.textContent = 'Desplegar todo';
     });
   });
 
@@ -1419,7 +1164,7 @@
     var btn = this;
     var opening = btn.getAttribute('data-state') === 'closed';
     var activeSection = document.querySelector('.position-section.active');
-    activeSection.querySelectorAll('.node[data-open]').forEach(function(n){
+    activeSection.querySelectorAll('.tech[data-open]').forEach(function(n){
       n.setAttribute('data-open', opening ? 'true' : 'false');
     });
     btn.setAttribute('data-state', opening ? 'open' : 'closed');

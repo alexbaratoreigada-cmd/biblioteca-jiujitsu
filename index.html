@@ -3,365 +3,460 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Biblioteca de técnicas — No-Gi</title>
+<title>Biblioteca de técnicas</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink: #0e1113;
-    --surface: #171b1e;
-    --surface-2: #1d2226;
-    --surface-3: #232a2e;
-    --line: #262c30;
-    --text: #f3f1ea;
-    --text-dim: #98a2a8;
-    --text-faint: #5a6469;
+    --ink: #0d1511;
+    --surface: #16211a;
+    --surface-2: #1c2a21;
+    --surface-3: #24362a;
+    --line: #2b3d30;
 
-    --accent: #ff7a3d;
-    --accent-light: #ffb37e;
-    --accent-dim: #4a2f1e;
-    --accent-soft: #271c14;
+    --text: #f2efe4;
+    --text-dim: #adbdb0;
+    --text-faint: #728075;
 
-    --choke: #4fb0c9;
-    --choke-dim: #1c343c;
-    --choke-soft: #142228;
+    --green: #6bbd8a;
+    --green-deep: #2f6b45;
+    --green-dim: #1f3a29;
+    --green-soft: #17281d;
 
-    --rival: #8a939b;
-    --rival-dark: #3a4046;
-    --rival-light: #a3acb3;
+    --gold: #dcac57;
+    --gold-deep: #8a642c;
+    --gold-dim: #3a2e18;
+    --gold-soft: #221b10;
 
     --display: 'Oswald', sans-serif;
-    --body: 'Inter', system-ui, sans-serif;
+    --serif: 'Source Serif 4', Georgia, serif;
   }
 
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
   body{
     margin:0;
-    background:var(--ink);
+    background:
+      radial-gradient(ellipse 900px 500px at 20% -10%, rgba(107,189,138,0.10), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 100% 10%, rgba(220,172,87,0.06), transparent 55%),
+      var(--ink);
     color:var(--text);
-    font-family:var(--body);
+    font-family:var(--serif);
     -webkit-font-smoothing:antialiased;
   }
 
-  .page{max-width:760px; margin:0 auto; padding:0 20px 100px;}
+  .page{max-width:780px; margin:0 auto; padding:0 20px 110px;}
 
   /* ---------- Header ---------- */
-  header{padding:44px 0 0;}
-  .badges{display:flex; gap:8px; margin-bottom:18px;}
-  .badge{
-    font-family:var(--body);
-    font-weight:700;
-    font-size:11.5px;
-    letter-spacing:0.6px;
+  header{padding:50px 0 0;}
+  .kicker{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:12.5px;
+    letter-spacing:2.5px;
     text-transform:uppercase;
-    color:var(--accent-light);
-    background:var(--accent-soft);
-    border:1px solid var(--accent-dim);
-    padding:5px 10px;
-    border-radius:5px;
+    color:var(--green);
+    margin:0 0 16px;
   }
   header h1{
     font-family:var(--display);
     font-weight:700;
-    font-size:clamp(32px,6vw,44px);
-    margin:0 0 12px;
+    font-size:clamp(34px,6.5vw,48px);
+    margin:0 0 18px;
     letter-spacing:0.3px;
     line-height:1.05;
     text-transform:uppercase;
+    color:var(--text);
+  }
+  .rule{
+    width:86px; height:4px; border-radius:2px;
+    background:linear-gradient(to right, var(--green), var(--gold));
+    margin:0 0 22px;
   }
   header .subtitle{
     color:var(--text-dim);
-    font-size:15.5px;
-    line-height:1.6;
-    max-width:56ch;
+    font-size:17px;
+    line-height:1.72;
+    max-width:62ch;
     margin:0;
   }
+  header .subtitle strong{color:var(--text); font-weight:600;}
 
   /* ---------- Tabs ---------- */
   .positions{
     display:flex;
-    gap:2px;
-    overflow-x:auto;
-    margin-top:32px;
-    border-bottom:1px solid var(--line);
-    scrollbar-width:none;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:38px;
   }
-  .positions::-webkit-scrollbar{display:none;}
   .position-tab{
     all:unset;
-    flex:0 0 auto;
-    display:flex;
-    align-items:baseline;
-    gap:7px;
     font-family:var(--display);
     font-weight:600;
-    font-size:15px;
+    font-size:14px;
     text-transform:uppercase;
-    letter-spacing:0.3px;
-    color:var(--text-faint);
-    padding:14px 16px;
+    letter-spacing:0.4px;
+    color:var(--text-dim);
+    background:var(--surface);
+    border:1.5px solid var(--line);
+    border-radius:999px;
+    padding:11px 22px;
     cursor:pointer;
-    border-bottom:2px solid transparent;
-    transition:color .15s ease, border-color .15s ease;
+    transition:background .18s ease, border-color .18s ease, color .18s ease;
   }
-  .position-tab:hover{color:var(--text-dim);}
-  .position-tab .n{
-    font-family:var(--body);
-    font-weight:600;
-    font-size:11px;
-    color:var(--text-faint);
+  .position-tab:hover{border-color:var(--green-deep); color:var(--text);}
+  .position-tab.active{
+    background:linear-gradient(135deg, var(--green-deep), #234f34);
+    border-color:var(--green);
+    color:#fff;
   }
-  .position-tab.active{color:var(--text); border-color:var(--accent);}
-  .position-tab.active .n{color:var(--accent-light);}
 
   /* ---------- Toolbar ---------- */
   .toolbar{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:20px 0 4px;
+    padding:26px 2px 0;
   }
-  .toolbar .hint{font-size:12.5px; color:var(--text-faint);}
+  .toolbar .hint{font-size:13.5px; color:var(--text-faint); font-style:italic;}
   .toolbar button{
     all:unset;
     cursor:pointer;
-    font-family:var(--body);
+    font-family:var(--display);
     font-weight:600;
     font-size:12.5px;
-    color:var(--text-dim);
-    border-bottom:1px solid var(--line);
-    padding:2px 0;
-    transition:color .15s ease, border-color .15s ease;
+    letter-spacing:0.3px;
+    text-transform:uppercase;
+    color:var(--text);
+    background:var(--surface-2);
+    border:1.5px solid var(--line);
+    border-radius:8px;
+    padding:9px 16px;
+    transition:border-color .15s ease, background .15s ease;
   }
-  .toolbar button:hover{color:var(--accent-light); border-color:var(--accent-dim);}
+  .toolbar button:hover{border-color:var(--green); background:var(--green-soft);}
 
   /* ---------- Position sections ---------- */
   .position-section{display:none;}
   .position-section.active{display:block;}
 
-  .pos-intro{padding:22px 0 4px;}
+  .pos-intro{padding:30px 0 6px; border-bottom:1px solid var(--line); margin-bottom:26px;}
   .pos-intro h2{
     font-family:var(--display);
     font-weight:700;
-    font-size:24px;
+    font-size:27px;
     text-transform:uppercase;
-    margin:0 0 8px;
+    margin:0 0 10px;
+    color:var(--text);
   }
   .pos-intro p{
     color:var(--text-dim);
-    font-size:14.5px;
-    line-height:1.6;
-    max-width:58ch;
-    margin:0;
+    font-size:15.5px;
+    line-height:1.7;
+    max-width:62ch;
+    margin:0 0 22px;
   }
 
-  /* ---------- Demo diagrams ---------- */
-  .demo{
+  /* ---------- Technique cards ---------- */
+  .list{display:flex; flex-direction:column; gap:16px;}
+
+  .tech{
+    position:relative;
     background:var(--surface);
     border:1px solid var(--line);
     border-radius:16px;
-    padding:14px 14px 4px;
-    margin:18px 0;
+    overflow:hidden;
+    transition:border-color .2s ease, box-shadow .2s ease;
   }
-  .demo svg{display:block; width:100%; height:auto; max-width:400px; margin:0 auto;}
-  .demo-foot{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:18px;
-    flex-wrap:wrap;
-    font-size:12px;
-    font-weight:600;
-    color:var(--text-faint);
-    padding:10px 4px 12px;
-  }
-  .demo-foot span{display:inline-flex; align-items:center; gap:6px;}
-  .demo-foot i{width:9px; height:9px; border-radius:50%; display:inline-block;}
-  .dot-you{background:var(--accent);}
-  .dot-rival{background:var(--rival);}
-  .demo-cap{
-    text-align:center;
-    font-size:12px;
-    color:var(--text-faint);
-    padding:2px 8px 12px;
-    line-height:1.5;
+  .tech[data-open="true"]{
+    border-color:var(--green-deep);
+    box-shadow:0 8px 28px rgba(0,0,0,0.28);
   }
 
-  /* ---------- Technique list ---------- */
-  .list{margin-top:8px;}
-  .tech{
-    border-top:1px solid var(--line);
+  .ghost-num{
+    position:absolute;
+    bottom:-22px; right:14px;
+    font-family:var(--display);
+    font-weight:700;
+    font-size:88px;
+    color:var(--green);
+    opacity:0.06;
+    line-height:1;
+    pointer-events:none;
+    user-select:none;
+    z-index:0;
   }
-  .tech:last-child{border-bottom:1px solid var(--line);}
+  .tech-head, .tech-content{position:relative; z-index:1;}
 
   .tech-head{
     all:unset;
-    display:flex;
-    align-items:flex-start;
-    gap:14px;
+    display:block;
     width:100%;
-    padding:18px 2px;
+    padding:20px 22px;
     cursor:pointer;
+    position:relative;
   }
-  .tech-num{
-    flex:0 0 auto;
-    font-family:var(--display);
-    font-weight:600;
-    font-size:13px;
-    color:var(--text-faint);
-    padding-top:2px;
-    width:20px;
-  }
-  .tech-body{flex:1; min-width:0;}
   .tech-top{
     display:flex;
     align-items:center;
-    justify-content:space-between;
-    gap:10px;
-    margin-bottom:5px;
+    gap:13px;
   }
-  .tech-title{
+  .tech-num{
+    flex:0 0 auto;
+    width:34px; height:34px;
+    border-radius:50%;
+    background:var(--green-soft);
+    border:1.5px solid var(--green-dim);
+    color:var(--green);
     font-family:var(--display);
     font-weight:600;
-    font-size:17px;
+    font-size:13px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .tech-title{
+    flex:1;
+    font-family:var(--display);
+    font-weight:600;
+    font-size:19px;
     color:var(--text);
     text-transform:uppercase;
     letter-spacing:0.2px;
   }
   .tag{
     flex:0 0 auto;
+    font-family:var(--display);
     font-size:10.5px;
-    font-weight:700;
-    letter-spacing:0.5px;
+    font-weight:600;
+    letter-spacing:0.6px;
     text-transform:uppercase;
-    padding:3px 8px;
-    border-radius:4px;
+    padding:4px 10px;
+    border-radius:999px;
   }
-  .tag--lock{color:var(--accent-light); background:var(--accent-soft); border:1px solid var(--accent-dim);}
-  .tag--choke{color:var(--choke); background:var(--choke-soft); border:1px solid var(--choke-dim);}
-  .tech-setup{
-    font-size:14px;
-    color:var(--text-dim);
-    line-height:1.55;
-    max-width:60ch;
-  }
+  .tag--lock{color:#0e1e14; background:var(--green);}
+  .tag--choke{color:#241b0a; background:var(--gold);}
   .chev{
     flex:0 0 auto;
-    width:16px; height:16px;
-    margin-top:5px;
-    stroke:var(--text-faint);
-    stroke-width:2.4;
+    width:30px; height:30px;
+    border-radius:50%;
+    background:var(--surface-2);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .chev svg{
+    width:14px; height:14px;
+    stroke:var(--text-dim);
+    stroke-width:2.6;
     fill:none;
     stroke-linecap:round;
     stroke-linejoin:round;
-    transition:transform .3s ease, stroke .2s ease;
+    transition:transform .3s ease;
   }
-  .tech[data-open="true"] > .tech-head .chev{
-    transform:rotate(180deg);
-    stroke:var(--accent);
+  .tech[data-open="true"] .chev{background:var(--green-dim);}
+  .tech[data-open="true"] .chev svg{transform:rotate(180deg); stroke:var(--green);}
+
+  .tech-teaser{
+    display:block;
+    font-size:14.5px;
+    line-height:1.6;
+    color:var(--text-faint);
+    margin:12px 0 0 47px;
+    max-width:56ch;
   }
 
   .collapse{
     display:grid;
     grid-template-rows:0fr;
-    transition:grid-template-rows .32s ease;
+    transition:grid-template-rows .34s ease;
   }
   .tech[data-open="true"] > .collapse{grid-template-rows:1fr;}
   .collapse-inner{overflow:hidden;}
 
-  .tech-content{padding:0 2px 22px 34px;}
+  .tech-content{
+    padding:2px 24px 26px 24px;
+    border-top:1px solid var(--line);
+    margin-top:18px;
+    padding-top:20px;
+  }
 
-  .defenses-label{
+  .ctx{
+    font-size:16px;
+    line-height:1.75;
+    color:var(--text-dim);
+    margin:0 0 24px;
+  }
+  .ctx::first-letter{
     font-family:var(--display);
-    font-size:12px;
-    font-weight:600;
-    letter-spacing:0.6px;
-    text-transform:uppercase;
-    color:var(--text-faint);
-    margin:6px 0 12px;
+    font-weight:700;
+    font-size:1.4em;
+    color:var(--green);
   }
 
-  .defense{
-    border-left:2px solid var(--line);
-    padding:2px 0 2px 16px;
-    margin-bottom:16px;
-  }
-  .defense:last-child{margin-bottom:0;}
-  .defense-title{
-    font-size:14px;
+  .sect-label{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family:var(--display);
     font-weight:600;
-    color:#e8d4c4;
-    margin-bottom:6px;
+    font-size:12.5px;
+    letter-spacing:1.2px;
+    text-transform:uppercase;
+    color:var(--green);
+    margin:0 0 14px;
+  }
+  .sect-label::after{
+    content:'';
+    flex:1;
+    height:1px;
+    background:var(--line);
+  }
+  .sect-label.gold{color:var(--gold);}
+
+  .steps{
+    list-style:none;
+    margin:0 0 26px;
+    padding:0;
+    counter-reset:step;
+  }
+  .steps li{
+    position:relative;
+    padding:0 0 18px 38px;
+    font-size:15px;
+    line-height:1.65;
+    color:var(--text-dim);
+  }
+  .steps li:last-child{padding-bottom:0;}
+  .steps li::before{
+    counter-increment:step;
+    content:counter(step);
+    position:absolute;
+    left:0; top:0;
+    width:25px; height:25px;
+    border-radius:50%;
+    background:var(--surface-3);
+    border:1.5px solid var(--green-dim);
+    color:var(--green);
+    font-family:var(--display);
+    font-weight:600;
+    font-size:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .steps li::after{
+    content:'';
+    position:absolute;
+    left:12px; top:27px; bottom:2px;
+    width:1.5px;
+    background:var(--line);
+  }
+  .steps li:last-child::after{display:none;}
+
+  .details-list{
+    list-style:none;
+    margin:0 0 28px;
+    padding:0;
+  }
+  .details-list li{
+    position:relative;
+    padding-left:22px;
+    margin-bottom:11px;
+    font-size:14.5px;
+    line-height:1.65;
+    color:var(--text-dim);
+  }
+  .details-list li:last-child{margin-bottom:0;}
+  .details-list li::before{
+    content:'';
+    position:absolute;
+    left:1px; top:7px;
+    width:8px; height:8px;
+    background:var(--gold);
+    transform:rotate(45deg);
+    border-radius:1px;
+  }
+
+  .defense-box{
+    background:var(--surface-2);
+    border:1px solid var(--line);
+    border-left:3px solid var(--gold-deep);
+    border-radius:10px;
+    padding:18px 20px;
+    margin-bottom:14px;
+  }
+  .defense-box:last-child{margin-bottom:0;}
+  .defense-title{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:15px;
+    color:var(--text);
+    margin:0 0 6px;
     line-height:1.4;
   }
-  .tip{
-    font-size:13.5px;
+  .defense-body{
+    font-size:14px;
+    line-height:1.65;
+    color:var(--text-dim);
+    margin:0;
+  }
+  .transition-tip{
+    margin-top:12px;
+    background:var(--gold-soft);
+    border-radius:8px;
+    padding:12px 14px;
+  }
+  .tlabel{
+    display:block;
+    font-family:var(--display);
+    font-weight:600;
+    font-size:10.5px;
+    letter-spacing:0.8px;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:5px;
+  }
+  .transition-tip p{
+    margin:0;
+    font-size:14px;
     line-height:1.6;
     color:var(--text-dim);
-    padding-left:0;
   }
-  .tip strong{color:var(--accent-light); font-weight:700;}
 
   footer{
-    margin-top:50px;
-    padding-top:22px;
+    margin-top:56px;
+    padding-top:24px;
     border-top:1px solid var(--line);
     color:var(--text-faint);
-    font-size:12.5px;
-    line-height:1.6;
+    font-size:13px;
+    line-height:1.7;
+    font-family:var(--serif);
   }
 
-  @media (max-width:480px){
-    .tech-content{padding-left:26px;}
+  @media (max-width:520px){
+    .tech-content{padding-left:22px; padding-right:20px;}
+    .tech-teaser{margin-left:0; margin-top:14px;}
+    .ghost-num{font-size:56px; top:-8px;}
   }
-
-  /* ---------- Shared demo animation ---------- */
-  @keyframes gripRotate{
-    0%,15%{ transform: rotate(0deg); }
-    50%,70%{ transform: rotate(var(--rot, -14deg)); }
-    100%{ transform: rotate(0deg); }
-  }
-  .anim-rot{
-    transform-box: fill-box;
-    transform-origin: var(--origin, 50% 50%);
-    animation: gripRotate 3.2s ease-in-out infinite;
-  }
-  @keyframes flowPulse{
-    0%,15%{ opacity:.25; stroke-dashoffset:22; }
-    50%,70%{ opacity:1; stroke-dashoffset:0; }
-    100%{ opacity:.25; stroke-dashoffset:22; }
-  }
-  .anim-flow{
-    stroke-dasharray:6 5;
-    animation: flowPulse 3.2s ease-in-out infinite;
-  }
-  @keyframes ringPulse{
-    0%,15%{ opacity:.2; }
-    50%,70%{ opacity:.9; }
-    100%{ opacity:.2; }
-  }
-  .anim-ring{ animation: ringPulse 3.2s ease-in-out infinite; }
 </style>
 </head>
 <body>
 <div class="page">
 
   <header>
-    <div class="badges">
-      <span class="badge">Sin gi</span>
-      <span class="badge">18 técnicas</span>
-    </div>
+    <p class="kicker">Manual de sumisiones</p>
     <h1>Biblioteca de técnicas</h1>
-    <p class="subtitle">Sumisiones de no-gi por posición: cómo se defienden habitualmente y a qué transicionar cuando el rival se defiende bien. Sin agarres de kimono — solo lo que funciona con o sin camiseta.</p>
+    <div class="rule"></div>
+    <p class="subtitle">Sumisiones organizadas por posición, explicadas con el detalle de un manual: <strong>cómo se llega</strong> a cada una, la <strong>ejecución paso a paso</strong> y las <strong>defensas más habituales</strong> con su transición. Todo pensado para entrenar sin kimono — nada de agarres de solapa, manga o pantalón, solo lo que funciona agarrando piel, muñecas y cuello.</p>
   </header>
 
   <nav class="positions" aria-label="Posiciones">
-    <button class="position-tab active" type="button" data-target="montada">Montada <span class="n">05</span></button>
-    <button class="position-tab" type="button" data-target="guardia">Guardia <span class="n">05</span></button>
-    <button class="position-tab" type="button" data-target="espalda">Espalda <span class="n">04</span></button>
-    <button class="position-tab" type="button" data-target="lateral">Lateral <span class="n">04</span></button>
+    <button class="position-tab active" type="button" data-target="montada">Montada</button>
+    <button class="position-tab" type="button" data-target="guardia">Guardia</button>
+    <button class="position-tab" type="button" data-target="espalda">Espalda</button>
+    <button class="position-tab" type="button" data-target="lateral">Control lateral</button>
   </nav>
 
   <div class="toolbar">
@@ -371,108 +466,64 @@
 
   <main>
 
-    <!-- shared arrow marker -->
-    <svg width="0" height="0" style="position:absolute">
-      <defs>
-        <marker id="ah" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-          <path d="M0,0 L10,5 L0,10 z" fill="var(--accent-light)"/>
-        </marker>
-      </defs>
-    </svg>
-
     <!-- ============================================================ MONTADA ============================================================ -->
     <section class="position-section active" id="montada">
       <div class="pos-intro">
         <h2>Montada</h2>
-        <p>Peso repartido y rodillas clavadas en las costillas — es lo que evita que te vuelquen mientras buscas la sumisión.</p>
-      </div>
-
-      <div class="demo">
-        <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
-          <ellipse cx="160" cy="188" rx="140" ry="7" fill="rgba(0,0,0,.35)"/>
-          <g stroke="var(--rival)" stroke-width="17" stroke-linecap="round" fill="none">
-            <path d="M150 128 L205 106"/>
-            <path d="M205 106 L252 128"/>
-          </g>
-          <circle cx="205" cy="106" r="10" fill="var(--rival)"/>
-          <ellipse cx="258" cy="132" rx="12" ry="9" fill="var(--rival-light)"/>
-          <rect x="55" y="103" width="105" height="50" rx="25" fill="var(--rival-dark)"/>
-          <circle cx="42" cy="128" r="24" fill="var(--rival-dark)"/>
-          <g stroke="var(--rival)" stroke-width="15" stroke-linecap="round" fill="none"><path d="M95 128 L78 158"/></g>
-          <ellipse cx="72" cy="164" rx="10" ry="8" fill="var(--rival-light)"/>
-          <g stroke="var(--accent)" stroke-width="16" stroke-linecap="round" fill="none">
-            <path d="M128 128 L102 150"/><path d="M102 150 L80 143"/>
-            <path d="M128 128 L152 150"/><path d="M152 150 L174 143"/>
-          </g>
-          <circle cx="128" cy="128" r="9" fill="var(--accent)"/>
-          <circle cx="102" cy="150" r="8" fill="var(--accent)"/>
-          <circle cx="152" cy="150" r="8" fill="var(--accent)"/>
-          <rect x="105" y="58" width="46" height="78" rx="22" fill="var(--accent)"/>
-          <circle cx="128" cy="42" r="22" fill="var(--accent)"/>
-          <g stroke="var(--accent)" stroke-width="14" stroke-linecap="round" fill="none">
-            <path d="M118 75 L82 98"/><path d="M82 98 L64 88"/>
-            <path d="M138 78 L168 92"/><path d="M168 92 L188 82"/>
-          </g>
-          <circle cx="118" cy="75" r="8" fill="var(--accent)"/>
-          <circle cx="82" cy="98" r="7" fill="var(--accent)"/>
-          <ellipse cx="58" cy="84" rx="9" ry="7" fill="var(--accent-light)"/>
-          <circle cx="138" cy="78" r="8" fill="var(--accent)"/>
-          <circle cx="168" cy="92" r="7" fill="var(--accent)"/>
-          <ellipse cx="193" cy="78" rx="9" ry="7" fill="var(--accent-light)"/>
-        </svg>
-        <div class="demo-foot"><span><i class="dot-you"></i>Tú (montado)</span><span><i class="dot-rival"></i>Rival</span></div>
+        <p>Peso repartido y rodillas clavadas en las costillas — es lo que evita que te vuelquen mientras buscas la sumisión. Desde aquí el rival solo tiene dos recursos para defenderse: empujar con los brazos o girar el cuerpo, y ambos abren una sumisión distinta.</p>
       </div>
 
       <div class="list">
 
         <!-- Americana -->
         <div class="tech" data-open="false">
+          <span class="ghost-num">01</span>
           <button class="tech-head" type="button">
-            <span class="tech-num">01</span>
-            <span class="tech-body">
-              <span class="tech-top"><span class="tech-title">Americana</span><span class="tag tag--lock">Llave</span></span>
-              <span class="tech-setup">Aíslas la muñeca en el suelo formando una L y pasas tu otro brazo por debajo del codo hasta agarrarte tu propia muñeca.</span>
+            <span class="tech-top">
+              <span class="tech-num">01</span>
+              <span class="tech-title">Americana</span>
+              <span class="tag tag--lock">Llave</span>
+              <span class="chev"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span>
             </span>
-            <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+            <span class="tech-teaser">Aíslas la muñeca en el suelo formando una L y pasas tu otro brazo por debajo del codo hasta agarrarte tu propia muñeca.</span>
           </button>
           <div class="collapse"><div class="collapse-inner"><div class="tech-content">
 
-            <div class="demo">
-              <svg viewBox="0 0 320 220" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="30" cy="120" r="27" fill="var(--rival-dark)"/>
-                <rect x="18" y="132" width="72" height="72" rx="30" fill="var(--rival-dark)"/>
-                <g stroke="var(--rival)" stroke-width="24" stroke-linecap="round" fill="none">
-                  <path d="M62 140 L120 118"/><path d="M120 118 L124 168"/>
-                </g>
-                <circle cx="120" cy="118" r="14" fill="var(--rival)"/>
-                <ellipse cx="126" cy="180" rx="16" ry="13" fill="var(--rival-light)"/>
-                <g class="anim-rot" style="--origin:56% 62%; --rot:10deg;">
-                  <g stroke="var(--accent)" stroke-width="19" stroke-linecap="round" fill="none">
-                    <path d="M285 70 L215 88"/><path d="M215 88 L182 60"/>
-                  </g>
-                  <circle cx="215" cy="88" r="12" fill="var(--accent)"/>
-                  <ellipse cx="176" cy="54" rx="14" ry="11" fill="var(--accent-light)"/>
-                  <g stroke="var(--accent)" stroke-width="19" stroke-linecap="round" fill="none">
-                    <path d="M270 175 L200 150"/><path d="M200 150 L192 92"/>
-                  </g>
-                  <circle cx="200" cy="150" r="12" fill="var(--accent)"/>
-                  <ellipse cx="188" cy="86" rx="14" ry="11" fill="var(--accent-light)"/>
-                </g>
-                <circle cx="120" cy="118" r="20" fill="none" stroke="var(--accent-light)" stroke-width="2.5" stroke-dasharray="4 4" class="anim-ring"/>
-                <path class="anim-flow" d="M108 100 Q90 70 100 45" fill="none" stroke="var(--accent-light)" stroke-width="3.5" marker-end="url(#ah)"/>
-              </svg>
-              <p class="demo-cap">Muñeca clavada al suelo · codo aislado en 90° · rotación hacia la cabeza</p>
-            </div>
+            <p class="ctx">Aparece cuando el rival empuja o aparta tu cadera con las manos, o cuando busca apoyo en el suelo cerca de su cabeza para intentar un puente (bridge). En cualquier caso, el objetivo es el mismo: clavar esa muñeca contra la colchoneta antes de que la retire.</p>
 
-            <p class="defenses-label">Defensas habituales</p>
+            <p class="sect-label">Ejecución</p>
+            <ol class="steps">
+              <li>Clava la muñeca del rival al suelo, cerca de su cabeza, con la palma hacia arriba.</li>
+              <li>Desliza tu brazo del mismo lado por debajo de su codo, manteniéndolo pegado al suelo en un ángulo de 90° — formando una "L".</li>
+              <li>Agárrate tu propia muñeca al otro lado de su brazo, cerrando la figura-4.</li>
+              <li>Sin levantar su codo del suelo, rota la muñeca describiendo un arco hacia su cabeza, como si giraras una llave.</li>
+            </ol>
 
-            <div class="defense">
+            <p class="sect-label gold">Detalles clave</p>
+            <ul class="details-list">
+              <li>El codo del rival debe quedar pegado al suelo durante todo el movimiento; si se separa, pierdes la palanca y solo estás tirando de un brazo suelto.</li>
+              <li>La presión sale de rotar tu propio hombro y cadera, no de tirar con el brazo — es una llave de rotación, no de fuerza bruta.</li>
+              <li>Mantén tu peso centrado sobre su pecho mientras giras: si te inclinas demasiado hacia un lado, facilitas el bridge.</li>
+            </ul>
+
+            <p class="sect-label">Defensas habituales</p>
+
+            <div class="defense-box">
               <p class="defense-title">Junta las manos y pega el codo a las costillas</p>
-              <p class="tip"><strong>Transición:</strong> lleva la muñeca hacia arriba en vez de hacia abajo y gira la cadera — conviertes la Americana en Kimura sin soltar el agarre.</p>
+              <p class="defense-body">La defensa clásica: el rival entrelaza sus propias manos antes de que cierres la figura-4, quitándote el ángulo sobre la muñeca.</p>
+              <div class="transition-tip">
+                <span class="tlabel">Transición</span>
+                <p>Lleva la muñeca hacia arriba en vez de hacia abajo y gira la cadera — conviertes la Americana en Kimura sin soltar el agarre.</p>
+              </div>
             </div>
-            <div class="defense">
+
+            <div class="defense-box">
               <p class="defense-title">Rueda hacia el lado del brazo atrapado</p>
-              <p class="tip"><strong>Transición:</strong> no frenes el giro — acompáñalo sin soltar el brazo y sube el gancho para tomar la espalda mientras termina de girarse.</p>
+              <p class="defense-body">En vez de defender el agarre, el rival gira todo el cuerpo hacia el brazo controlado buscando safar la presión con el movimiento.</p>
+              <div class="transition-tip">
+                <span class="tlabel">Transición</span>
+                <p>No frenes el giro — acompáñalo sin soltar el brazo y sube el gancho para tomar la espalda mientras termina de girarse.</p>
+              </div>
             </div>
 
           </div></div></div>
@@ -480,42 +531,43 @@
 
         <!-- Kimura -->
         <div class="tech" data-open="false">
+          <span class="ghost-num">02</span>
           <button class="tech-head" type="button">
-            <span class="tech-num">02</span>
-            <span class="tech-body">
-              <span class="tech-top"><span class="tech-title">Kimura</span><span class="tag tag--lock">Llave</span></span>
-              <span class="tech-setup">Cuando el rival extiende un brazo para empujarte o crear espacio, atrapas la muñeca y cierras la figura-4 pasando el otro brazo por debajo del codo.</span>
+            <span class="tech-top">
+              <span class="tech-num">02</span>
+              <span class="tech-title">Kimura</span>
+              <span class="tag tag--lock">Llave</span>
+              <span class="chev"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span>
             </span>
-            <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+            <span class="tech-teaser">Cuando el rival extiende un brazo para empujarte o crear espacio, atrapas la muñeca y cierras la figura-4 pasando el otro brazo por debajo del codo.</span>
           </button>
           <div class="collapse"><div class="collapse-inner"><div class="tech-content">
 
-            <div class="demo">
-              <svg viewBox="0 0 320 220" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="30" cy="105" r="27" fill="var(--rival-dark)"/>
-                <rect x="20" y="118" width="70" height="70" rx="30" fill="var(--rival-dark)"/>
-                <g stroke="var(--rival)" stroke-width="26" stroke-linecap="round" fill="none">
-                  <path d="M62 128 L138 150"/><path d="M138 150 L196 112"/>
-                </g>
-                <circle cx="138" cy="150" r="15" fill="var(--rival)"/>
-                <ellipse cx="205" cy="106" rx="17" ry="14" fill="var(--rival-light)"/>
-                <g class="anim-rot" style="--origin:76% 38%; --rot:-14deg;">
-                  <g stroke="var(--accent)" stroke-width="20" stroke-linecap="round" fill="none"><path d="M300 60 L246 84"/><path d="M246 84 L204 108"/></g>
-                  <circle cx="246" cy="84" r="12" fill="var(--accent)"/>
-                  <ellipse cx="200" cy="110" rx="15" ry="12" fill="var(--accent-light)"/>
-                  <g stroke="var(--accent)" stroke-width="20" stroke-linecap="round" fill="none"><path d="M300 172 L214 176"/><path d="M214 176 L238 96"/></g>
-                  <circle cx="214" cy="176" r="12" fill="var(--accent)"/>
-                  <ellipse cx="240" cy="90" rx="15" ry="12" fill="var(--accent-light)"/>
-                </g>
-                <path class="anim-flow" d="M235 55 A40 40 0 0 1 260 100" fill="none" stroke="var(--accent-light)" stroke-width="3.5" stroke-linecap="round" marker-end="url(#ah)"/>
-              </svg>
-              <p class="demo-cap">Figura-4 en la muñeca · rotación interna hacia la espalda</p>
-            </div>
+            <p class="ctx">Se presenta en cuanto el rival extiende un brazo — para empujarte, hacer palanca o simplemente crear espacio — y tú puedes cerrar la figura-4 antes de que lo recoja. Es la sumisión más universal del jiu-jitsu: funciona desde casi cualquier posición encima.</p>
 
-            <p class="defenses-label">Defensa habitual</p>
-            <div class="defense">
+            <p class="sect-label">Ejecución</p>
+            <ol class="steps">
+              <li>Atrapa la muñeca del rival con la mano del mismo lado.</li>
+              <li>Pasa tu otro brazo por debajo de su codo y agárrate tu propia muñeca, cerrando la figura-4.</li>
+              <li>Pega tu pecho al hombro del rival para evitar que gire hacia el brazo atrapado.</li>
+              <li>Rota la muñeca hacia su espalda, como si le colocaras el brazo detrás de la cintura.</li>
+            </ol>
+
+            <p class="sect-label gold">Detalles clave</p>
+            <ul class="details-list">
+              <li>Cuanto más pegado mantengas el codo del rival a su propio cuerpo, menos espacio tiene para defender el agarre.</li>
+              <li>Si notas que gira acompañando el movimiento, no persigas la sumisión: acompaña el giro y toma la espalda.</li>
+              <li>El agarre de figura-4 debe cerrarse con la muñeca, no con los dedos — un agarre de dedos se abre bajo presión.</li>
+            </ul>
+
+            <p class="sect-label">Defensa habitual</p>
+            <div class="defense-box">
               <p class="defense-title">Junta las manos (defensa clásica de Kimura)</p>
-              <p class="tip"><strong>Transición:</strong> si al defender suelta la guardia del brazo libre, pasa directo a triángulo; si no, usa la palanca solo para arrastrarlo y tomar la espalda.</p>
+              <p class="defense-body">El rival entrelaza las manos antes de que cierres la figura-4, la defensa más extendida contra esta llave.</p>
+              <div class="transition-tip">
+                <span class="tlabel">Transición</span>
+                <p>Si al defender suelta la guardia del brazo libre, pasa directo a triángulo; si no, usa la palanca solo para arrastrarlo y tomar la espalda.</p>
+              </div>
             </div>
 
           </div></div></div>
@@ -523,52 +575,53 @@
 
         <!-- Armbar cruzado -->
         <div class="tech" data-open="false">
+          <span class="ghost-num">03</span>
           <button class="tech-head" type="button">
-            <span class="tech-num">03</span>
-            <span class="tech-body">
-              <span class="tech-top"><span class="tech-title">Palanca de brazo cruzada</span><span class="tag tag--lock">Llave</span></span>
-              <span class="tech-setup">El rival empuja con ambas manos en tu pecho: atrapas un brazo, giras 90° hacia su cabeza y pasas la pierna sobre la cara.</span>
+            <span class="tech-top">
+              <span class="tech-num">03</span>
+              <span class="tech-title">Palanca de brazo cruzada</span>
+              <span class="tag tag--lock">Llave</span>
+              <span class="chev"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span>
             </span>
-            <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+            <span class="tech-teaser">El rival empuja con ambas manos en tu pecho: atrapas un brazo, giras 90° hacia su cabeza y pasas la pierna sobre la cara.</span>
           </button>
           <div class="collapse"><div class="collapse-inner"><div class="tech-content">
 
-            <div class="demo">
-              <svg viewBox="0 0 320 190" xmlns="http://www.w3.org/2000/svg">
-                <!-- defender: shoulder + straight arm being isolated -->
-                <circle cx="272" cy="50" r="23" fill="var(--rival-dark)"/>
-                <g stroke="var(--rival)" stroke-width="22" stroke-linecap="round" fill="none">
-                  <path d="M258 64 L192 84 L128 98"/>
-                </g>
-                <circle cx="192" cy="84" r="12" fill="var(--rival)"/>
-                <ellipse cx="114" cy="101" rx="15" ry="12" fill="var(--rival-light)"/>
+            <p class="ctx">Surge cuando el rival empuja con ambas manos en tu pecho para crear distancia — un error clásico bajo montada — dejando un brazo extendido y expuesto entre los dos cuerpos.</p>
 
-                <!-- attacker: hips + legs clamping the elbow -->
-                <circle cx="80" cy="150" r="24" fill="var(--accent)"/>
-                <g stroke="var(--accent)" stroke-width="18" stroke-linecap="round" fill="none">
-                  <path d="M95 138 L165 105"/>
-                  <path d="M95 162 L175 128"/>
-                </g>
-                <ellipse cx="170" cy="100" rx="11" ry="9" fill="var(--accent-light)"/>
-                <ellipse cx="180" cy="123" rx="11" ry="9" fill="var(--accent-light)"/>
+            <p class="sect-label">Ejecución</p>
+            <ol class="steps">
+              <li>Atrapa la muñeca del brazo que empuja con ambas manos.</li>
+              <li>Gira 90° hacia el lado de ese brazo, llevando la rodilla del mismo lado junto a su cabeza.</li>
+              <li>Pasa la otra pierna por encima de su cara hasta quedar sentado perpendicular, con las rodillas apretando su brazo.</li>
+              <li>Cae hacia atrás llevando la cadera al aire y el pulgar del rival hacia arriba mientras extiendes el brazo.</li>
+            </ol>
 
-                <!-- hyperextension indicator at elbow -->
-                <g class="anim-flow" stroke="var(--accent-light)" stroke-width="3" stroke-linecap="round" fill="none">
-                  <path d="M192 84 L162 62" marker-end="url(#ah)"/>
-                  <path d="M192 84 L222 106" marker-end="url(#ah)"/>
-                </g>
-              </svg>
-              <p class="demo-cap">Cadera cruzada · rodillas apretando el codo · brazo recto con pulgar arriba</p>
-            </div>
+            <p class="sect-label gold">Detalles clave</p>
+            <ul class="details-list">
+              <li>Aprieta las rodillas entre sí, no las separes: eso es lo que evita que el rival saque el brazo antes de que termines de sentarte.</li>
+              <li>Sube la cadera hacia su hombro, no hacia atrás en línea recta, para maximizar la palanca sobre el codo.</li>
+              <li>Controla la cadera del rival con tus piernas antes de tirar del brazo — sin ese control, se sienta contigo.</li>
+            </ul>
 
-            <p class="defenses-label">Defensas habituales</p>
-            <div class="defense">
+            <p class="sect-label">Defensas habituales</p>
+
+            <div class="defense-box">
               <p class="defense-title">Junta las manos y dobla el brazo para proteger el codo</p>
-              <p class="tip"><strong>Transición:</strong> cierra las rodillas sobre el brazo para quitarle palanca al agarre y, si suelta una mano en el forcejeo, cambia a triángulo.</p>
+              <p class="defense-body">El rival entrelaza sus manos y dobla el codo hacia su pecho para quitarte la extensión que necesita la palanca.</p>
+              <div class="transition-tip">
+                <span class="tlabel">Transición</span>
+                <p>Cierra las rodillas sobre el brazo para quitarle palanca al agarre y, si suelta una mano en el forcejeo, cambia a triángulo.</p>
+              </div>
             </div>
-            <div class="defense">
+
+            <div class="defense-box">
               <p class="defense-title">Se sienta y levanta la cadera (bridge)</p>
-              <p class="tip"><strong>Transición:</strong> aprieta las rodillas sobre su tronco para frenar el bridge; si pierdes el ángulo, suelta y vuelve a montada en vez de forzar.</p>
+              <p class="defense-body">En vez de proteger el brazo, el rival usa la fuerza de sus piernas y espalda para incorporarse y romper tu base.</p>
+              <div class="transition-tip">
+                <span class="tlabel">Transición</span>
+                <p>Aprieta las rodillas sobre su tronco para frenar el bridge; si pierdes el ángulo, suelta y vuelve a montada en vez de forzar.</p>
+              </div>
             </div>
 
           </div></div></div>
@@ -576,64 +629,86 @@
 
         <!-- Paper cutter -->
         <div class="tech" data-open="false">
+          <span class="ghost-num">04</span>
           <button class="tech-head" type="button">
-            <span class="tech-num">04</span>
-            <span class="tech-body">
-              <span class="tech-top"><span class="tech-title">Estrangulación cortapapel</span><span class="tag tag--choke">Ahogo</span></span>
-              <span class="tech-setup">Cuando el rival gira para escapar la montada, cruzas el antebrazo por su garganta y clavas la otra mano en la colchoneta, cortando con el hueso mientras bajas el pecho.</span>
+            <span class="tech-top">
+              <span class="tech-num">04</span>
+              <span class="tech-title">Estrangulación cortapapel</span>
+              <span class="tag tag--choke">Ahogo</span>
+              <span class="chev"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span>
             </span>
-            <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+            <span class="tech-teaser">Cuando el rival gira para escapar la montada, cruzas el antebrazo por su garganta y clavas la otra mano en la colchoneta, cortando con el hueso mientras bajas el pecho.</span>
           </button>
           <div class="collapse"><div class="collapse-inner"><div class="tech-content">
 
-            <div class="demo">
-              <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="70" cy="140" r="27" fill="var(--rival-dark)"/>
-                <rect x="80" y="128" width="130" height="44" rx="22" fill="var(--rival-dark)"/>
-                <g class="anim-rot" style="--origin:20% 45%; --rot:-8deg;">
-                  <rect x="35" y="55" width="40" height="66" rx="19" fill="var(--accent)"/>
-                  <circle cx="55" cy="42" r="19" fill="var(--accent)"/>
-                  <g stroke="var(--accent)" stroke-width="17" stroke-linecap="round" fill="none">
-                    <path d="M62 92 L92 128"/><path d="M92 128 L145 118"/>
-                  </g>
-                  <circle cx="92" cy="128" r="10" fill="var(--accent)"/>
-                  <ellipse cx="150" cy="112" rx="11" ry="9" fill="var(--accent-light)"/>
-                  <g stroke="var(--accent)" stroke-width="15" stroke-linecap="round" fill="none">
-                    <path d="M42 100 L18 128"/>
-                  </g>
-                  <ellipse cx="12" cy="134" rx="10" ry="8" fill="var(--accent-light)"/>
-                </g>
-                <circle cx="95" cy="135" r="18" fill="none" stroke="var(--choke)" stroke-width="2.5" stroke-dasharray="4 4" class="anim-ring"/>
-                <path class="anim-flow" d="M80 118 Q95 108 112 120" fill="none" stroke="var(--choke)" stroke-width="3.5" marker-end="url(#ah)"/>
-              </svg>
-              <p class="demo-cap">Antebrazo cruzando la garganta · mano libre clavada al suelo</p>
-            </div>
+            <p class="ctx">Aparece cuando el rival gira sobre un costado para escapar la montada (turtle o giro defensivo), exponiendo un lado del cuello mientras el otro brazo queda libre para apoyar en la colchoneta.</p>
 
-            <p class="defenses-label">Defensa habitual</p>
-            <div class="defense">
+            <p class="sect-label">Ejecución</p>
+            <ol class="steps">
+              <li>Cuando gire, desliza el antebrazo del lado contrario a su giro cruzando su garganta.</li>
+              <li>Clava la mano de ese mismo brazo en la colchoneta, junto a su cabeza, para fijar el ángulo.</li>
+              <li>Con la otra mano, agarra tu propia muñeca o su hombro para añadir presión.</li>
+              <li>Baja el pecho y hunde el peso mientras "cortas" con el hueso del antebrazo.</li>
+            </ol>
+
+            <p class="sect-label gold">Detalles clave</p>
+            <ul class="details-list">
+              <li>La presión viene del hueso del antebrazo, no del bíceps — mantén la muñeca recta y el filo del hueso contra el cuello.</li>
+              <li>Si el rival mete la barbilla, sube ligeramente el ángulo del corte en vez de forzar hacia abajo.</li>
+              <li>Tu mano clavada en la colchoneta es la base que impide que el rival complete el giro y te descabalgue.</li>
+            </ul>
+
+            <p class="sect-label">Defensa habitual</p>
+            <div class="defense-box">
               <p class="defense-title">Mete la barbilla y agarra la muñeca que ahoga con las dos manos</p>
-              <p class="tip"><strong>Transición:</strong> cambia el ángulo hacia el lado contrario del agarre y sigue bajando el pecho — sujetar la muñeca no detiene la presión si mantienes la base y el corte del antebrazo.</p>
+              <p class="defense-body">El rival protege el cuello bajando la barbilla y usa ambas manos para intentar despegar tu antebrazo de la garganta.</p>
+              <div class="transition-tip">
+                <span class="tlabel">Transición</span>
+                <p>Cambia el ángulo hacia el lado contrario del agarre y sigue bajando el pecho — sujetar la muñeca no detiene la presión si mantienes la base y el corte del antebrazo.</p>
+              </div>
             </div>
 
           </div></div></div>
         </div>
 
-        <!-- Arm-triangle desde montada -->
+        <!-- Kata gatame montada -->
         <div class="tech" data-open="false">
+          <span class="ghost-num">05</span>
           <button class="tech-head" type="button">
-            <span class="tech-num">05</span>
-            <span class="tech-body">
-              <span class="tech-top"><span class="tech-title">Triángulo de brazo (Kata gatame)</span><span class="tag tag--choke">Ahogo</span></span>
-              <span class="tech-setup">Cuando el rival empuja tu pecho con ambas manos, atrapas una contra su propio cuello, pasas tu cabeza al otro lado y entrelazas las manos por detrás del hombro.</span>
+            <span class="tech-top">
+              <span class="tech-num">05</span>
+              <span class="tech-title">Triángulo de brazo</span>
+              <span class="tag tag--choke">Ahogo</span>
+              <span class="chev"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span>
             </span>
-            <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+            <span class="tech-teaser">Cuando el rival empuja tu pecho con ambas manos, atrapas una contra su propio cuello, pasas tu cabeza al otro lado y entrelazas las manos por detrás del hombro.</span>
           </button>
           <div class="collapse"><div class="collapse-inner"><div class="tech-content">
 
-            <p class="defenses-label">Defensa habitual</p>
-            <div class="defense">
+            <p class="ctx">Ocurre cuando el rival empuja tu pecho con ambas manos y una de ellas queda cerca de su propio cuello — puedes atraparla ahí mismo, contra su carótida, antes de que la retire. También se conoce como Kata gatame.</p>
+
+            <p class="sect-label">Ejecución</p>
+            <ol class="steps">
+              <li>Presiona la mano del rival contra su propio cuello con tu hombro.</li>
+              <li>Pasa tu cabeza y hombro al otro lado de su cabeza, encerrando cabeza y brazo juntos.</li>
+              <li>Entrelaza las manos por detrás de su hombro (agarre en S o gable grip).</li>
+              <li>Aprieta subiendo la cadera y juntando los codos hacia el centro.</li>
+            </ol>
+
+            <p class="sect-label gold">Detalles clave</p>
+            <ul class="details-list">
+              <li>La estrangulación la produce el hombro y el brazo del rival contra su propia carótida, no la fuerza de tu abrazo — la posición importa más que la fuerza.</li>
+              <li>Si no llega a cerrar del todo, camina las rodillas hacia su cabeza antes de apretar, en vez de tirar con los brazos.</li>
+            </ul>
+
+            <p class="sect-label">Defensa habitual</p>
+            <div class="defense-box">
               <p class="defense-title">Gira hacia el hombro libre para quitar presión del cuello</p>
-              <p class="tip"><strong>Transición:</strong> acompaña el giro y sube la pierna por encima de la cabeza — es la transición directa a montada alta sin soltar el agarre.</p>
+              <p class="defense-body">El rival busca aliviar la carótida atrapada girando el cuerpo hacia el lado que aún tiene libre.</p>
+              <div class="transition-tip">
+                <span class="tlabel">Transición</span>
+                <p>Acompaña el giro y sube la pierna por encima de la cabeza — es la transición directa a montada alta sin soltar el agarre.</p>
+              </div>
             </div>
 
           </div></div></div>
@@ -646,82 +721,60 @@
     <section class="position-section" id="guardia">
       <div class="pos-intro">
         <h2>Guardia</h2>
-        <p>Controla siempre una muñeca o un cuello antes de atacar — sin ese control, el rival postura y te quedas sin ángulo.</p>
-      </div>
-
-      <div class="demo">
-        <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
-          <ellipse cx="160" cy="188" rx="140" ry="7" fill="rgba(0,0,0,.35)"/>
-          <rect x="70" y="118" width="90" height="46" rx="23" fill="var(--rival-dark)"/>
-          <circle cx="150" cy="55" r="22" fill="var(--rival-dark)"/>
-          <g stroke="var(--rival)" stroke-width="19" stroke-linecap="round" fill="none">
-            <path d="M150 118 L150 77"/>
-            <path d="M138 96 L108 90"/><path d="M162 100 L192 82"/>
-          </g>
-          <ellipse cx="100" cy="88" rx="10" ry="8" fill="var(--rival-light)"/>
-          <ellipse cx="198" cy="78" rx="10" ry="8" fill="var(--rival-light)"/>
-          <g stroke="var(--rival)" stroke-width="16" stroke-linecap="round" fill="none"><path d="M158 164 L178 190"/></g>
-          <ellipse cx="182" cy="196" rx="10" ry="8" fill="var(--rival-light)"/>
-          <circle cx="42" cy="132" r="24" fill="var(--accent)"/>
-          <rect x="52" y="122" width="70" height="42" rx="21" fill="var(--accent)"/>
-          <g stroke="var(--accent)" stroke-width="17" stroke-linecap="round" fill="none">
-            <path d="M100 130 L155 108"/><path d="M155 108 L180 132"/>
-          </g>
-          <circle cx="155" cy="108" r="10" fill="var(--accent)"/>
-          <ellipse cx="185" cy="140" rx="10" ry="8" fill="var(--accent-light)"/>
-          <g stroke="var(--accent)" stroke-width="17" stroke-linecap="round" fill="none">
-            <path d="M100 150 L165 165"/><path d="M165 165 L175 130"/>
-          </g>
-          <circle cx="165" cy="165" r="10" fill="var(--accent)"/>
-        </svg>
-        <div class="demo-foot"><span><i class="dot-you"></i>Tú (guardia)</span><span><i class="dot-rival"></i>Rival</span></div>
+        <p>Controla siempre una muñeca o un cuello antes de atacar — sin ese control, el rival postura y te quedas sin ángulo. La guardia es la posición con más caminos: casi todas sus sumisiones nacen de la misma pregunta — ¿qué me deja abierto si intenta pasar?</p>
       </div>
 
       <div class="list">
 
         <!-- Triangulo -->
         <div class="tech" data-open="false">
+          <span class="ghost-num">01</span>
           <button class="tech-head" type="button">
-            <span class="tech-num">01</span>
-            <span class="tech-body">
-              <span class="tech-top"><span class="tech-title">Triángulo</span><span class="tag tag--choke">Ahogo</span></span>
-              <span class="tech-setup">Cuando el rival mete un brazo dentro de tu guardia y baja la cabeza a ese mismo lado, atrapas el brazo con tu pierna, subes la cadera y cierras el triángulo alrededor del cuello y el hombro contrario.</span>
+            <span class="tech-top">
+              <span class="tech-num">01</span>
+              <span class="tech-title">Triángulo</span>
+              <span class="tag tag--choke">Ahogo</span>
+              <span class="chev"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span>
             </span>
-            <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+            <span class="tech-teaser">Cuando el rival mete un brazo dentro de tu guardia y baja la cabeza a ese mismo lado, atrapas el brazo con tu pierna y cierras el triángulo alrededor del cuello y el hombro contrario.</span>
           </button>
           <div class="collapse"><div class="collapse-inner"><div class="tech-content">
 
-            <div class="demo">
-              <svg viewBox="0 0 320 210" xmlns="http://www.w3.org/2000/svg">
-                <rect x="20" y="120" width="80" height="44" rx="22" fill="var(--accent)"/>
-                <circle cx="150" cy="45" r="22" fill="var(--rival-dark)"/>
-                <rect x="120" y="55" width="46" height="55" rx="20" fill="var(--rival-dark)"/>
-                <g stroke="var(--rival)" stroke-width="15" stroke-linecap="round" fill="none"><path d="M140 75 L110 55"/></g>
-                <ellipse cx="104" cy="50" rx="9" ry="7" fill="var(--rival-light)"/>
-                <g class="anim-rot" style="--origin:35% 60%; --rot:6deg;">
-                  <g stroke="var(--accent)" stroke-width="20" stroke-linecap="round" fill="none">
-                    <path d="M70 130 L165 95"/><path d="M165 95 L145 40"/>
-                  </g>
-                  <circle cx="165" cy="95" r="12" fill="var(--accent)"/>
-                  <ellipse cx="140" cy="30" rx="12" ry="10" fill="var(--accent-light)"/>
-                  <g stroke="var(--accent)" stroke-width="20" stroke-linecap="round" fill="none">
-                    <path d="M70 148 L150 165"/><path d="M150 165 L128 100"/>
-                  </g>
-                  <circle cx="150" cy="165" r="12" fill="var(--accent)"/>
-                </g>
-                <path d="M165 95 L128 100 L140 30 Z" fill="none" stroke="var(--choke)" stroke-width="2.5" stroke-dasharray="5 5" class="anim-ring"/>
-              </svg>
-              <p class="demo-cap">Cabeza y un brazo dentro del triángulo de piernas</p>
+            <p class="ctx">Se abre cuando el rival mete un brazo dentro de tu guardia mientras baja la cabeza hacia ese mismo lado — normalmente al intentar pasar o al bajar la postura buscando presión.</p>
+
+            <p class="sect-label">Ejecución</p>
+            <ol class="steps">
+              <li>Sube la cadera y coloca el pie del lado del brazo libre alto en su cadera para crear ángulo.</li>
+              <li>Pasa la pierna del lado del brazo atrapado por detrás de su nuca.</li>
+              <li>Cruza el tobillo de esa pierna sobre tu otra rodilla, cerrando el triángulo alrededor del cuello y el hombro contrario.</li>
+              <li>Tira de la cabeza del rival hacia abajo mientras juntas las rodillas para cerrar el ángulo.</li>
+            </ol>
+
+            <p class="sect-label gold">Detalles clave</p>
+            <ul class="details-list">
+              <li>El ángulo se cierra llevando el hombro atrapado hacia el lado contrario, no apretando más fuerte las piernas.</li>
+              <li>Cuanto más baja quede la rodilla de la pierna que estrangula, más cerrado queda el triángulo sobre el cuello.</li>
+              <li>Tirar de la cabeza hacia abajo con las manos añade la presión final que suele faltar cuando el choke está a medias.</li>
+            </ul>
+
+            <p class="sect-label">Defensas habituales</p>
+
+            <div class="defense-box">
+              <p class="defense-title">Postura alta y mantiene los dos brazos dentro</p>
+              <p class="defense-body">El rival se mantiene erguido, sin bajar la cabeza, y procura que ambos brazos queden dentro de tu guardia.</p>
+              <div class="transition-tip">
+                <span class="tlabel">Transición</span>
+                <p>Rompe la postura tirando de la nuca antes de intentar el triángulo; sin la cabeza baja, no cierra el ángulo.</p>
+              </div>
             </div>
 
-            <p class="defenses-label">Defensas habituales</p>
-            <div class="defense">
-              <p class="defense-title">Postura alta y mantiene los dos brazos dentro</p>
-              <p class="tip"><strong>Transición:</strong> rompe la postura tirando de la nuca antes de intentar el triángulo; sin la cabeza baja, no cierra el ángulo.</p>
-            </div>
-            <div class="defense">
+            <div class="defense-box">
               <p class="defense-title">Apila (stack) empujando tus piernas hacia tu cabeza</p>
-              <p class="tip"><strong>Transición:</strong> agarra el tobillo de apoyo y gira la cadera hacia el hombro atrapado en vez de resistir de frente; el giro deshace el apilamiento.</p>
+              <p class="defense-body">El rival se levanta y empuja tus piernas hacia atrás para aplastar el triángulo y pasar por encima.</p>
+              <div class="transition-tip">
+                <span class="tlabel">Transición</span>
+                <p>Agarra el tobillo de apoyo y gira la cadera hacia el hombro atrapado en vez de resistir de frente; el giro deshace el apilamiento.</p>
+              </div>
             </div>
 
           </div></div></div>
@@ -729,24 +782,52 @@
 
         <!-- Armbar desde guardia -->
         <div class="tech" data-open="false">
+          <span class="ghost-num">02</span>
           <button class="tech-head" type="button">
-            <span class="tech-num">02</span>
-            <span class="tech-body">
-              <span class="tech-top"><span class="tech-title">Palanca de brazo desde guardia</span><span class="tag tag--lock">Llave</span></span>
-              <span class="tech-setup">Controlas una muñeca y el cuello contrario, subes una pierna sobre el hombro del mismo lado, giras la cadera 90° y extiendes el brazo entre tus piernas apretando las rodillas.</span>
+            <span class="tech-top">
+              <span class="tech-num">02</span>
+              <span class="tech-title">Palanca de brazo desde guardia</span>
+              <span class="tag tag--lock">Llave</span>
+              <span class="chev"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span>
             </span>
-            <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+            <span class="tech-teaser">Controlas una muñeca y el cuello contrario, subes una pierna sobre el hombro del mismo lado, giras la cadera 90° y extiendes el brazo entre tus piernas.</span>
           </button>
           <div class="collapse"><div class="collapse-inner"><div class="tech-content">
 
-            <p class="defenses-label">Defensas habituales</p>
-            <div class="defense">
+            <p class="ctx">Aparece cuando controlas una muñeca y el cuello contrario del rival, y él deja el brazo controlado sin recogerlo — un descuido habitual mientras intenta romper tu control postural.</p>
+
+            <p class="sect-label">Ejecución</p>
+            <ol class="steps">
+              <li>Sube la pierna del mismo lado que el brazo controlado sobre su hombro.</li>
+              <li>Gira la cadera 90°, llevando la otra pierna hacia su cabeza como pivote.</li>
+              <li>Aprieta las rodillas alrededor del brazo mientras te dejas caer hacia atrás.</li>
+              <li>Extiende la cadera hacia arriba con el pulgar del rival apuntando al techo.</li>
+            </ol>
+
+            <p class="sect-label gold">Detalles clave</p>
+            <ul class="details-list">
+              <li>No sueltes el control del cuello hasta que la pierna esté sobre el hombro — es lo que evita que posture y escape antes de tiempo.</li>
+              <li>La pierna que cruza la cara debe quedar pegada, sin espacio para que meta la barbilla y se defienda.</li>
+            </ul>
+
+            <p class="sect-label">Defensas habituales</p>
+
+            <div class="defense-box">
               <p class="defense-title">Entrelaza las manos y se sienta sobre los talones</p>
-              <p class="tip"><strong>Transición:</strong> sube el otro pie a la cadera y separa los codos del rival con tus rodillas antes de tirar de la muñeca.</p>
+              <p class="defense-body">El rival junta las manos y baja el centro de gravedad sentándose sobre sus propios talones para resistir la extensión.</p>
+              <div class="transition-tip">
+                <span class="tlabel">Transición</span>
+                <p>Sube el otro pie a la cadera y separa los codos del rival con tus rodillas antes de tirar de la muñeca.</p>
+              </div>
             </div>
-            <div class="defense">
+
+            <div class="defense-box">
               <p class="defense-title">Apila para pasar por encima de tu pierna de control</p>
-              <p class="tip"><strong>Transición:</strong> suelta la pierna alta y rueda con él para quedar encima; conviertes el intento de escape en un pase o barrida a tu favor.</p>
+              <p class="defense-body">En vez de defender el brazo, el rival empuja hacia delante para pasar por encima de tu pierna alta y liberarse.</p>
+              <div class="transition-tip">
+                <span class="tlabel">Transición</span>
+                <p>Suelta la pierna alta y rueda con él para quedar encima; conviertes el intento de escape en un pase o barrida a tu favor.</p>
+              </div>
             </div>
 
           </div></div></div>
@@ -754,20 +835,41 @@
 
         <!-- Kimura desde guardia -->
         <div class="tech" data-open="false">
+          <span class="ghost-num">03</span>
           <button class="tech-head" type="button">
-            <span class="tech-num">03</span>
-            <span class="tech-body">
-              <span class="tech-top"><span class="tech-title">Kimura desde guardia</span><span class="tag tag--lock">Llave</span></span>
-              <span class="tech-setup">Cuando apoya la mano en el suelo o en tu pecho, atrapas la muñeca y cierras la figura-4 mientras giras la cadera hacia el lado contrario para quitarle la base.</span>
+            <span class="tech-top">
+              <span class="tech-num">03</span>
+              <span class="tech-title">Kimura desde guardia</span>
+              <span class="tag tag--lock">Llave</span>
+              <span class="chev"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span>
             </span>
-            <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+            <span class="tech-teaser">Cuando apoya la mano en el suelo o en tu pecho, atrapas la muñeca y cierras la figura-4 mientras giras la cadera para quitarle la base.</span>
           </button>
           <div class="collapse"><div class="collapse-inner"><div class="tech-content">
 
-            <p class="defenses-label">Defensa habitual</p>
-            <div class="defense">
+            <p class="ctx">Se presenta cuando el rival apoya una mano en el suelo o en tu pecho para mantener la base y la distancia mientras intenta abrir tu guardia.</p>
+
+            <p class="sect-label">Ejecución</p>
+            <ol class="steps">
+              <li>Atrapa esa muñeca con ambas manos o directamente en figura-4.</li>
+              <li>Gira la cadera hacia el lado contrario del brazo atrapado para quitarle apoyo.</li>
+              <li>Usa las piernas para bloquear su cadera y evitar que se acerque a liberar tensión.</li>
+              <li>Rota la muñeca hacia su espalda mientras mantienes el ángulo con la cadera.</li>
+            </ol>
+
+            <p class="sect-label gold">Detalles clave</p>
+            <ul class="details-list">
+              <li>Bloquear la cadera del rival con los pies es lo que impide la defensa más común: acercarse para quitar la palanca.</li>
+            </ul>
+
+            <p class="sect-label">Defensa habitual</p>
+            <div class="defense-box">
               <p class="defense-title">Junta las manos y se acerca a ti para quitar la palanca</p>
-              <p class="tip"><strong>Transición:</strong> usa la palanca solo para arrastrarlo y hacer una barrida (sweep) en vez de forzar la sumisión.</p>
+              <p class="defense-body">El rival entrelaza las manos y reduce la distancia entre su codo y su cuerpo para neutralizar la rotación.</p>
+              <div class="transition-tip">
+                <span class="tlabel">Transición</span>
+                <p>Usa la palanca solo para arrastrarlo y hacer una barrida (sweep) en vez de forzar la sumisión.</p>
+              </div>
             </div>
 
           </div></div></div>
@@ -775,44 +877,42 @@
 
         <!-- Guillotina -->
         <div class="tech" data-open="false">
+          <span class="ghost-num">04</span>
           <button class="tech-head" type="button">
-            <span class="tech-num">04</span>
-            <span class="tech-body">
-              <span class="tech-top"><span class="tech-title">Guillotina</span><span class="tag tag--choke">Ahogo</span></span>
-              <span class="tech-setup">Cuando el rival mete la cabeza dentro de la guardia sin control, pasas un brazo bajo su cuello, entrelazas las manos y cierras subiendo las caderas mientras las piernas empujan sus bíceps o su cadera hacia atrás.</span>
+            <span class="tech-top">
+              <span class="tech-num">04</span>
+              <span class="tech-title">Guillotina</span>
+              <span class="tag tag--choke">Ahogo</span>
+              <span class="chev"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span>
             </span>
-            <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+            <span class="tech-teaser">Cuando el rival mete la cabeza dentro de la guardia sin control, pasas un brazo bajo su cuello y cierras subiendo las caderas mientras las piernas empujan su cadera hacia atrás.</span>
           </button>
           <div class="collapse"><div class="collapse-inner"><div class="tech-content">
 
-            <div class="demo">
-              <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
-                <rect x="30" y="115" width="80" height="42" rx="21" fill="var(--accent)"/>
-                <circle cx="42" cy="136" r="22" fill="var(--accent)"/>
-                <circle cx="145" cy="65" r="21" fill="var(--rival-dark)"/>
-                <rect x="118" y="75" width="44" height="55" rx="19" fill="var(--rival-dark)"/>
-                <g stroke="var(--rival)" stroke-width="15" stroke-linecap="round" fill="none"><path d="M162 115 L188 132"/></g>
-                <ellipse cx="193" cy="137" rx="9" ry="7" fill="var(--rival-light)"/>
-                <g class="anim-rot" style="--origin:30% 55%; --rot:-7deg;">
-                  <g stroke="var(--accent)" stroke-width="18" stroke-linecap="round" fill="none">
-                    <path d="M95 122 L130 92"/><path d="M130 92 L108 66"/>
-                  </g>
-                  <circle cx="130" cy="92" r="11" fill="var(--accent)"/>
-                  <ellipse cx="102" cy="60" rx="12" ry="9" fill="var(--accent-light)"/>
-                  <g stroke="var(--accent)" stroke-width="18" stroke-linecap="round" fill="none">
-                    <path d="M95 140 L128 150"/><path d="M128 150 L104 88"/>
-                  </g>
-                  <ellipse cx="98" cy="82" rx="12" ry="9" fill="var(--accent-light)"/>
-                </g>
-                <circle cx="130" cy="80" r="20" fill="none" stroke="var(--choke)" stroke-width="2.5" stroke-dasharray="4 4" class="anim-ring"/>
-              </svg>
-              <p class="demo-cap">Antebrazo bajo la barbilla · manos entrelazadas · piernas empujando la cadera</p>
-            </div>
+            <p class="ctx">Se abre cuando el rival mete la cabeza dentro de tu guardia sin control del cuello, ya sea buscando pasar o simplemente agachado por descuido.</p>
 
-            <p class="defenses-label">Defensa habitual</p>
-            <div class="defense">
+            <p class="sect-label">Ejecución</p>
+            <ol class="steps">
+              <li>Pasa un brazo por debajo de su cuello antes de que la levante.</li>
+              <li>Entrelaza las manos — agarre estándar de guillotina o "arm-in" si mete también un brazo.</li>
+              <li>Sube las piernas altas, con los pies en su cadera o en sus bíceps.</li>
+              <li>Cierra subiendo las caderas mientras empujas con las piernas para separarlo del cuerpo.</li>
+            </ol>
+
+            <p class="sect-label gold">Detalles clave</p>
+            <ul class="details-list">
+              <li>La presión sale de subir las caderas hacia el techo, no de tirar de los brazos hacia ti.</li>
+              <li>Cuanto más lejos empujen tus piernas su cadera, menos aire tiene el rival para defender con un bridge.</li>
+            </ul>
+
+            <p class="sect-label">Defensa habitual</p>
+            <div class="defense-box">
               <p class="defense-title">Mete la barbilla y coloca las manos en tu cadera para alejarse</p>
-              <p class="tip"><strong>Transición:</strong> cierra las piernas altas en su espalda para que no pueda alejar el pecho, y aprieta el ángulo hacia el lado contrario del pulgar del agarre.</p>
+              <p class="defense-body">El rival protege el cuello bajando la barbilla y empuja tu cadera con las manos para ganar distancia y aliviar la presión.</p>
+              <div class="transition-tip">
+                <span class="tlabel">Transición</span>
+                <p>Cierra las piernas altas en su espalda para que no pueda alejar el pecho, y aprieta el ángulo hacia el lado contrario del pulgar del agarre.</p>
+              </div>
             </div>
 
           </div></div></div>
@@ -820,20 +920,42 @@
 
         <!-- Omoplata -->
         <div class="tech" data-open="false">
+          <span class="ghost-num">05</span>
           <button class="tech-head" type="button">
-            <span class="tech-num">05</span>
-            <span class="tech-body">
-              <span class="tech-top"><span class="tech-title">Omoplata</span><span class="tag tag--lock">Llave</span></span>
-              <span class="tech-setup">Desde una Kimura defendida (junta las manos), sueltas el agarre de la muñeca, subes la pierna del mismo lado sobre el hombro y giras hasta quedar perpendicular, atrapando el brazo con la pierna como llave de hombro.</span>
+            <span class="tech-top">
+              <span class="tech-num">05</span>
+              <span class="tech-title">Omoplata</span>
+              <span class="tag tag--lock">Llave</span>
+              <span class="chev"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span>
             </span>
-            <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+            <span class="tech-teaser">Desde una Kimura defendida, sueltas el agarre de la muñeca, subes la pierna sobre el hombro y giras hasta quedar perpendicular, atrapando el brazo con la pierna.</span>
           </button>
           <div class="collapse"><div class="collapse-inner"><div class="tech-content">
 
-            <p class="defenses-label">Defensa habitual</p>
-            <div class="defense">
+            <p class="ctx">Nace de una Kimura defendida (el rival junta las manos): en vez de forzar la muñeca, cambias a una llave de hombro usando la misma posición de partida.</p>
+
+            <p class="sect-label">Ejecución</p>
+            <ol class="steps">
+              <li>Suelta el agarre de la muñeca y sube la pierna del mismo lado sobre su hombro.</li>
+              <li>Gira tu cuerpo hasta quedar perpendicular a él, con la pierna envolviendo el brazo.</li>
+              <li>Siéntate y camina las manos hacia sus caderas para evitar que ruede hacia delante.</li>
+              <li>Empuja su cadera hacia el suelo con las manos mientras subes tu propio torso.</li>
+            </ol>
+
+            <p class="sect-label gold">Detalles clave</p>
+            <ul class="details-list">
+              <li>El control de la cadera del rival con las manos es lo que evita el forward roll — no la fuerza de la pierna.</li>
+              <li>Mantén el brazo atrapado pegado a tu pecho durante todo el giro para que no lo recupere.</li>
+            </ul>
+
+            <p class="sect-label">Defensa habitual</p>
+            <div class="defense-box">
               <p class="defense-title">Rueda hacia adelante (forward roll) para safar el hombro</p>
-              <p class="tip"><strong>Transición:</strong> antes de que complete el giro, suelta la pierna y toma la espalda; el giro hacia delante suele dejarte justo detrás.</p>
+              <p class="defense-body">El rival gira hacia delante, siguiendo la dirección de la llave, para liberar el hombro atrapado antes de que se cierre del todo.</p>
+              <div class="transition-tip">
+                <span class="tlabel">Transición</span>
+                <p>Antes de que complete el giro, suelta la pierna y toma la espalda; el giro hacia delante suele dejarte justo detrás.</p>
+              </div>
             </div>
 
           </div></div></div>
@@ -846,78 +968,50 @@
     <section class="position-section" id="espalda">
       <div class="pos-intro">
         <h2>Espalda</h2>
-        <p>Prioriza los ganchos y el control del cuello antes que la sumisión — sin base no hay estrangulación que aguante.</p>
-      </div>
-
-      <div class="demo">
-        <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
-          <ellipse cx="160" cy="188" rx="140" ry="7" fill="rgba(0,0,0,.35)"/>
-
-          <!-- attacker: torso sliver + hook leg peeking from behind (drawn first, gets occluded) -->
-          <rect x="88" y="95" width="42" height="60" rx="19" fill="var(--accent)"/>
-          <g stroke="var(--accent)" stroke-width="14" stroke-linecap="round" fill="none">
-            <path d="M148 148 L124 172"/><path d="M124 172 L96 168"/>
-          </g>
-          <circle cx="196" cy="40" r="18" fill="var(--accent)"/>
-
-          <!-- defender: base figure, drawn on top of the attacker's torso sliver -->
-          <circle cx="150" cy="48" r="22" fill="var(--rival-dark)"/>
-          <rect x="124" y="60" width="52" height="86" rx="23" fill="var(--rival-dark)"/>
-          <g stroke="var(--rival)" stroke-width="17" stroke-linecap="round" fill="none">
-            <path d="M150 146 L178 164"/><path d="M178 164 L208 154"/>
-          </g>
-          <ellipse cx="213" cy="151" rx="10" ry="8" fill="var(--rival-light)"/>
-
-          <!-- attacker's choking arm: drawn last, wraps the front of the neck -->
-          <g stroke="var(--accent)" stroke-width="18" stroke-linecap="round" fill="none">
-            <path d="M206 68 L156 92 L112 78"/>
-          </g>
-          <circle cx="156" cy="92" r="11" fill="var(--accent)"/>
-          <ellipse cx="104" cy="74" rx="11" ry="9" fill="var(--accent-light)"/>
-        </svg>
-        <div class="demo-foot"><span><i class="dot-you"></i>Tú (ganchos puestos)</span><span><i class="dot-rival"></i>Rival</span></div>
+        <p>Prioriza los ganchos y el control del cuello antes que la sumisión — sin base no hay estrangulación que aguante. Es la posición con mayor tasa de sumisión de todo el jiu-jitsu, pero también la que más rápido se pierde si sueltas el control por perseguir el choke.</p>
       </div>
 
       <div class="list">
 
         <!-- Mata Leon / RNC -->
         <div class="tech" data-open="false">
+          <span class="ghost-num">01</span>
           <button class="tech-head" type="button">
-            <span class="tech-num">01</span>
-            <span class="tech-body">
-              <span class="tech-top"><span class="tech-title">Mata León (Rear Naked Choke)</span><span class="tag tag--choke">Ahogo</span></span>
-              <span class="tech-setup">Con los dos ganchos puestos, pasas un brazo bajo la barbilla del rival buscando el cuello, agarras tu propio bíceps con la otra mano y empujas su cabeza hacia el brazo que estrangula.</span>
+            <span class="tech-top">
+              <span class="tech-num">01</span>
+              <span class="tech-title">Mata León (RNC)</span>
+              <span class="tag tag--choke">Ahogo</span>
+              <span class="chev"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span>
             </span>
-            <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+            <span class="tech-teaser">Con los dos ganchos puestos, pasas un brazo bajo la barbilla del rival buscando el cuello, agarras tu propio bíceps y empujas su cabeza hacia el brazo que estrangula.</span>
           </button>
           <div class="collapse"><div class="collapse-inner"><div class="tech-content">
 
-            <div class="demo">
-              <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="150" cy="50" r="24" fill="var(--rival-dark)"/>
-                <rect x="122" y="65" width="52" height="90" rx="24" fill="var(--rival-dark)"/>
-                <g stroke="var(--rival)" stroke-width="16" stroke-linecap="round" fill="none"><path d="M134 88 L100 65"/></g>
-                <ellipse cx="94" cy="60" rx="9" ry="7" fill="var(--rival-light)"/>
-                <rect x="40" y="80" width="120" height="72" rx="26" fill="var(--accent)"/>
-                <circle cx="42" cy="65" r="21" fill="var(--accent)"/>
-                <g class="anim-rot" style="--origin:45% 40%; --rot:5deg;">
-                  <g stroke="var(--accent)" stroke-width="19" stroke-linecap="round" fill="none">
-                    <path d="M130 100 L98 60"/><path d="M98 60 L145 45"/>
-                  </g>
-                  <circle cx="98" cy="60" r="12" fill="var(--accent)"/>
-                  <ellipse cx="150" cy="38" rx="12" ry="10" fill="var(--accent-light)"/>
-                </g>
-                <g stroke="var(--accent)" stroke-width="15" stroke-linecap="round" fill="none"><path d="M155 100 L185 78"/></g>
-                <ellipse cx="190" cy="72" rx="10" ry="8" fill="var(--accent-light)"/>
-                <circle cx="122" cy="55" r="18" fill="none" stroke="var(--choke)" stroke-width="2.5" stroke-dasharray="4 4" class="anim-ring"/>
-              </svg>
-              <p class="demo-cap">Antebrazo rodeando el cuello · mano libre empujando la cabeza</p>
-            </div>
+            <p class="ctx">Con los dos ganchos puestos y control del torso, buscas meter el brazo bajo la barbilla del rival antes de que él lo detecte y lo bloquee con las manos.</p>
 
-            <p class="defenses-label">Defensa habitual</p>
-            <div class="defense">
+            <p class="sect-label">Ejecución</p>
+            <ol class="steps">
+              <li>Pasa un brazo por debajo de su barbilla, con el bíceps y el antebrazo rodeando ambos lados del cuello.</li>
+              <li>Agarra tu propio bíceps del otro brazo con la mano del brazo que estrangula.</li>
+              <li>Coloca la mano libre detrás de su cabeza, empujándola hacia el brazo que ahoga.</li>
+              <li>Cierra juntando los codos hacia el centro del pecho.</li>
+            </ol>
+
+            <p class="sect-label gold">Detalles clave</p>
+            <ul class="details-list">
+              <li>El corte de sangre lo hacen el bíceps y el antebrazo contra ambos lados del cuello, no la tráquea — evita meter solo el antebrazo por delante.</li>
+              <li>Mantén el pecho pegado a su espalda durante todo el proceso para que no pueda girar y liberarse.</li>
+              <li>Si el rival defiende bien el brazo que estrangula, cambia el objetivo: usa la posición para pasar a la compresión de bíceps.</li>
+            </ul>
+
+            <p class="sect-label">Defensa habitual</p>
+            <div class="defense-box">
               <p class="defense-title">Baja la barbilla y agarra con ambas manos el antebrazo que ahoga</p>
-              <p class="tip"><strong>Transición:</strong> no tires del brazo hacia atrás — gira ligeramente el cuerpo hacia el lado contrario para reabrir el ángulo del cuello. Si aprieta el codo al pecho para bloquear el choke, pasa a la compresión de bíceps.</p>
+              <p class="defense-body">El rival mete la barbilla para proteger el cuello y usa ambas manos para intentar despegar tu brazo antes de que cierre el agarre.</p>
+              <div class="transition-tip">
+                <span class="tlabel">Transición</span>
+                <p>No tires del brazo hacia atrás — gira ligeramente el cuerpo hacia el lado contrario para reabrir el ángulo del cuello. Si aprieta el codo al pecho para bloquear el choke, pasa a la compresión de bíceps.</p>
+              </div>
             </div>
 
           </div></div></div>
@@ -925,20 +1019,42 @@
 
         <!-- Bicep slicer -->
         <div class="tech" data-open="false">
+          <span class="ghost-num">02</span>
           <button class="tech-head" type="button">
-            <span class="tech-num">02</span>
-            <span class="tech-body">
-              <span class="tech-top"><span class="tech-title">Compresión de bíceps</span><span class="tag tag--lock">Llave</span></span>
-              <span class="tech-setup">Si el rival bloquea el Mata León agarrando tu antebrazo con las dos manos y pega el codo al pecho, cruzas tu otro brazo por encima de ese codo y clavas la espinilla contra su bíceps, haciendo palanca hacia arriba.</span>
+            <span class="tech-top">
+              <span class="tech-num">02</span>
+              <span class="tech-title">Compresión de bíceps</span>
+              <span class="tag tag--lock">Llave</span>
+              <span class="chev"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span>
             </span>
-            <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+            <span class="tech-teaser">Si el rival bloquea el Mata León agarrando tu antebrazo con las dos manos, cruzas tu otro brazo por encima de su codo y clavas la espinilla contra su bíceps.</span>
           </button>
           <div class="collapse"><div class="collapse-inner"><div class="tech-content">
 
-            <p class="defenses-label">Defensa habitual</p>
-            <div class="defense">
+            <p class="ctx">Se usa cuando el rival bloquea el Mata León agarrando tu antebrazo con ambas manos y pega el codo al pecho para impedir que cierres el choke — una defensa que, sin darse cuenta, le deja el bíceps expuesto contra tu pierna.</p>
+
+            <p class="sect-label">Ejecución</p>
+            <ol class="steps">
+              <li>Cruza tu brazo libre por encima de su codo bloqueado.</li>
+              <li>Sube la espinilla del gancho de ese lado hasta clavarla contra su bíceps.</li>
+              <li>Junta las manos por debajo de su antebrazo, atrapándolo entre tu pierna y tu brazo.</li>
+              <li>Haz palanca llevando la espinilla hacia arriba mientras bajas el antebrazo atrapado.</li>
+            </ol>
+
+            <p class="sect-label gold">Detalles clave</p>
+            <ul class="details-list">
+              <li>La presión es de compresión del músculo, no de doblar la articulación — notarás que el rival suelta en cuanto siente el pellizco.</li>
+              <li>No necesitas mucha amplitud de movimiento: el efecto aparece con muy poco recorrido si el ángulo es correcto.</li>
+            </ul>
+
+            <p class="sect-label">Defensa habitual</p>
+            <div class="defense-box">
               <p class="defense-title">Suelta el agarre del antebrazo en cuanto siente la presión en el bíceps</p>
-              <p class="tip"><strong>Transición:</strong> si suelta para escapar la compresión, vuelve de inmediato al Mata León — soltar libera el cuello.</p>
+              <p class="defense-body">El dolor de la compresión obliga al rival a soltar el bloqueo de inmediato, que era justo lo que protegía su cuello.</p>
+              <div class="transition-tip">
+                <span class="tlabel">Transición</span>
+                <p>Si suelta para escapar la compresión, vuelve de inmediato al Mata León — soltar libera el cuello.</p>
+              </div>
             </div>
 
           </div></div></div>
@@ -946,20 +1062,41 @@
 
         <!-- Armbar desde espalda -->
         <div class="tech" data-open="false">
+          <span class="ghost-num">03</span>
           <button class="tech-head" type="button">
-            <span class="tech-num">03</span>
-            <span class="tech-body">
-              <span class="tech-top"><span class="tech-title">Palanca de brazo desde la espalda</span><span class="tag tag--lock">Llave</span></span>
-              <span class="tech-setup">Aíslas un brazo del rival cruzándolo sobre su propio pecho, mantienes el gancho del mismo lado y ruedas hacia ese costado para quedar perpendicular, extendiendo el brazo sobre tu cadera.</span>
+            <span class="tech-top">
+              <span class="tech-num">03</span>
+              <span class="tech-title">Palanca de brazo desde la espalda</span>
+              <span class="tag tag--lock">Llave</span>
+              <span class="chev"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span>
             </span>
-            <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+            <span class="tech-teaser">Aíslas un brazo del rival cruzándolo sobre su propio pecho, mantienes el gancho del mismo lado y ruedas hacia ese costado para quedar perpendicular.</span>
           </button>
           <div class="collapse"><div class="collapse-inner"><div class="tech-content">
 
-            <p class="defenses-label">Defensa habitual</p>
-            <div class="defense">
+            <p class="ctx">Se abre cuando consigues aislar un brazo del rival cruzándolo sobre su propio pecho antes de que junte las manos para defenderse.</p>
+
+            <p class="sect-label">Ejecución</p>
+            <ol class="steps">
+              <li>Cruza el brazo del rival sobre su pecho con tu mano del mismo lado.</li>
+              <li>Mantén el gancho de ese lado dentro para controlar la cadera.</li>
+              <li>Rueda hacia ese costado, llevando tu cuerpo perpendicular a él.</li>
+              <li>Extiende el brazo sobre tu cadera, pulgar hacia arriba, mientras caes hacia atrás.</li>
+            </ol>
+
+            <p class="sect-label gold">Detalles clave</p>
+            <ul class="details-list">
+              <li>El gancho que mantienes dentro durante el giro es lo que evita que el rival se dé la vuelta y quede encima.</li>
+            </ul>
+
+            <p class="sect-label">Defensa habitual</p>
+            <div class="defense-box">
               <p class="defense-title">Junta las manos antes de que aísle el brazo</p>
-              <p class="tip"><strong>Transición:</strong> si ya rodaste y junta las manos tarde, sigue el giro y termina la palanca igualmente — el agarre tardío no aguanta la presión de la cadera.</p>
+              <p class="defense-body">El rival entrelaza las manos rápidamente en cuanto siente que un brazo empieza a quedar aislado sobre su pecho.</p>
+              <div class="transition-tip">
+                <span class="tlabel">Transición</span>
+                <p>Si ya rodaste y junta las manos tarde, sigue el giro y termina la palanca igualmente — el agarre tardío no aguanta la presión de la cadera.</p>
+              </div>
             </div>
 
           </div></div></div>
@@ -967,20 +1104,41 @@
 
         <!-- Ude garami -->
         <div class="tech" data-open="false">
+          <span class="ghost-num">04</span>
           <button class="tech-head" type="button">
-            <span class="tech-num">04</span>
-            <span class="tech-body">
-              <span class="tech-top"><span class="tech-title">Ude garami (crucifijo)</span><span class="tag tag--lock">Llave</span></span>
-              <span class="tech-setup">Cuando el rival lleva una mano a defender el cuello, atrapas esa muñeca, pasas tu otro brazo por debajo de su codo y giras la muñeca hacia su cadera mientras mantienes el gancho de ese lado.</span>
+            <span class="tech-top">
+              <span class="tech-num">04</span>
+              <span class="tech-title">Ude garami (crucifijo)</span>
+              <span class="tag tag--lock">Llave</span>
+              <span class="chev"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span>
             </span>
-            <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+            <span class="tech-teaser">Cuando el rival lleva una mano a defender el cuello, atrapas esa muñeca y pasas tu otro brazo por debajo de su codo, girando la muñeca hacia su cadera.</span>
           </button>
           <div class="collapse"><div class="collapse-inner"><div class="tech-content">
 
-            <p class="defenses-label">Defensa habitual</p>
-            <div class="defense">
+            <p class="ctx">Aparece cuando el rival lleva una mano a defender su cuello ante una amenaza de estrangulación, dejando la muñeca al alcance de tu brazo libre.</p>
+
+            <p class="sect-label">Ejecución</p>
+            <ol class="steps">
+              <li>Atrapa esa muñeca con la mano del mismo lado.</li>
+              <li>Pasa tu otro brazo por debajo de su codo, entrelazando manos o muñecas.</li>
+              <li>Mantén el gancho de ese lado para que no pueda girar.</li>
+              <li>Gira la muñeca hacia su cadera, manteniendo el codo del rival pegado a su cuerpo.</li>
+            </ol>
+
+            <p class="sect-label gold">Detalles clave</p>
+            <ul class="details-list">
+              <li>No fuerces el brazo si está muy pegado al cuerpo; usa el control para reabrir el cuello y volver al Mata León en su lugar.</li>
+            </ul>
+
+            <p class="sect-label">Defensa habitual</p>
+            <div class="defense-box">
               <p class="defense-title">Mantiene el codo pegado al cuerpo y no lo separa</p>
-              <p class="tip"><strong>Transición:</strong> no fuerces el brazo pegado; usa el control para llevarlo a Mata León abriendo el otro lado del cuello.</p>
+              <p class="defense-body">El rival pega el codo a las costillas para no dar espacio de rotación a la muñeca atrapada.</p>
+              <div class="transition-tip">
+                <span class="tlabel">Transición</span>
+                <p>No fuerces el brazo pegado; usa el control para llevarlo a Mata León abriendo el otro lado del cuello.</p>
+              </div>
             </div>
 
           </div></div></div>
@@ -993,51 +1151,48 @@
     <section class="position-section" id="lateral">
       <div class="pos-intro">
         <h2>Control lateral</h2>
-        <p>La presión de pecho vale más que la fuerza de los brazos — clava el esternón antes de buscar cualquier llave.</p>
-      </div>
-
-      <div class="demo">
-        <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
-          <ellipse cx="160" cy="188" rx="140" ry="7" fill="rgba(0,0,0,.35)"/>
-          <circle cx="42" cy="130" r="24" fill="var(--rival-dark)"/>
-          <rect x="52" y="118" width="150" height="46" rx="23" fill="var(--rival-dark)"/>
-          <g stroke="var(--rival)" stroke-width="16" stroke-linecap="round" fill="none"><path d="M100 130 L82 102"/></g>
-          <ellipse cx="76" cy="96" rx="9" ry="7" fill="var(--rival-light)"/>
-          <g stroke="var(--rival)" stroke-width="16" stroke-linecap="round" fill="none"><path d="M202 130 L235 120"/></g>
-          <ellipse cx="240" cy="118" rx="10" ry="8" fill="var(--rival-light)"/>
-          <rect x="95" y="80" width="110" height="44" rx="22" fill="var(--accent)"/>
-          <circle cx="90" cy="68" r="22" fill="var(--accent)"/>
-          <g stroke="var(--accent)" stroke-width="16" stroke-linecap="round" fill="none">
-            <path d="M110 90 L72 108"/>
-            <path d="M188 92 L220 72"/><path d="M220 72 L248 82"/>
-          </g>
-          <ellipse cx="66" cy="112" rx="10" ry="8" fill="var(--accent-light)"/>
-          <ellipse cx="253" cy="80" rx="10" ry="8" fill="var(--accent-light)"/>
-          <g stroke="var(--accent)" stroke-width="14" stroke-linecap="round" fill="none">
-            <path d="M195 118 L225 138"/><path d="M225 138 L250 128"/>
-          </g>
-        </svg>
-        <div class="demo-foot"><span><i class="dot-you"></i>Tú (perpendicular)</span><span><i class="dot-rival"></i>Rival</span></div>
+        <p>La presión de pecho vale más que la fuerza de los brazos — clava el esternón antes de buscar cualquier llave. Casi todas las sumisiones desde aquí dependen de un solo factor: qué brazo del rival queda separado del cuerpo y por cuánto tiempo.</p>
       </div>
 
       <div class="list">
 
         <!-- Kimura desde lateral -->
         <div class="tech" data-open="false">
+          <span class="ghost-num">01</span>
           <button class="tech-head" type="button">
-            <span class="tech-num">01</span>
-            <span class="tech-body">
-              <span class="tech-top"><span class="tech-title">Kimura desde control lateral</span><span class="tag tag--lock">Llave</span></span>
-              <span class="tech-setup">Con el brazo del rival más cercano a ti separado del cuerpo, pasas tu brazo por debajo de su codo, agarras tu propia muñeca en figura-4 y giras hacia su espalda manteniendo la presión de pecho.</span>
+            <span class="tech-top">
+              <span class="tech-num">01</span>
+              <span class="tech-title">Kimura desde control lateral</span>
+              <span class="tag tag--lock">Llave</span>
+              <span class="chev"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span>
             </span>
-            <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+            <span class="tech-teaser">Con el brazo del rival más cercano a ti separado del cuerpo, pasas tu brazo por debajo de su codo y agarras tu propia muñeca en figura-4.</span>
           </button>
           <div class="collapse"><div class="collapse-inner"><div class="tech-content">
 
-            <p class="defenses-label">Defensa habitual</p>
-            <div class="defense">
+            <p class="ctx">Se presenta cuando el brazo cercano del rival queda separado del cuerpo, normalmente buscando espacio o empujando tu cadera para crear distancia.</p>
+
+            <p class="sect-label">Ejecución</p>
+            <ol class="steps">
+              <li>Pasa tu brazo por debajo de su codo y agárrate la propia muñeca en figura-4.</li>
+              <li>Mantén la presión de pecho sobre su esternón durante todo el movimiento.</li>
+              <li>Gira su muñeca hacia su espalda, caminando tus rodillas hacia su cabeza si necesitas más ángulo.</li>
+              <li>Si no llega la sumisión, usa la palanca para girarlo boca abajo o para subir a montada.</li>
+            </ol>
+
+            <p class="sect-label gold">Detalles clave</p>
+            <ul class="details-list">
+              <li>Perder la presión de pecho es lo que más suele frenar esta llave — prioriza el peso sobre el brazo antes que la velocidad del giro.</li>
+            </ul>
+
+            <p class="sect-label">Defensa habitual</p>
+            <div class="defense-box">
               <p class="defense-title">Pega el codo a las costillas y agarra su propia cadera</p>
-              <p class="tip"><strong>Transición:</strong> pasa a montada o a la espalda usando el control de la muñeca como palanca para girarlo, en vez de forzar la sumisión desde el ángulo cerrado.</p>
+              <p class="defense-body">El rival recoge el brazo hacia su propio cuerpo y se agarra a sí mismo para quitarte el ángulo de la figura-4.</p>
+              <div class="transition-tip">
+                <span class="tlabel">Transición</span>
+                <p>Pasa a montada o a la espalda usando el control de la muñeca como palanca para girarlo, en vez de forzar la sumisión desde el ángulo cerrado.</p>
+              </div>
             </div>
 
           </div></div></div>
@@ -1045,20 +1200,41 @@
 
         <!-- Americana desde lateral -->
         <div class="tech" data-open="false">
+          <span class="ghost-num">02</span>
           <button class="tech-head" type="button">
-            <span class="tech-num">02</span>
-            <span class="tech-body">
-              <span class="tech-top"><span class="tech-title">Americana desde control lateral</span><span class="tag tag--lock">Llave</span></span>
-              <span class="tech-setup">Cuando el rival empuja tu cadera con el brazo cercano, lo aíslas en forma de L contra el suelo y pasas tu otro brazo por debajo del codo hasta agarrarte la muñeca.</span>
+            <span class="tech-top">
+              <span class="tech-num">02</span>
+              <span class="tech-title">Americana desde control lateral</span>
+              <span class="tag tag--lock">Llave</span>
+              <span class="chev"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span>
             </span>
-            <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+            <span class="tech-teaser">Cuando el rival empuja tu cadera con el brazo cercano, lo aíslas en forma de L contra el suelo y pasas tu otro brazo por debajo del codo.</span>
           </button>
           <div class="collapse"><div class="collapse-inner"><div class="tech-content">
 
-            <p class="defenses-label">Defensa habitual</p>
-            <div class="defense">
+            <p class="ctx">Ocurre cuando el rival empuja tu cadera con el brazo cercano para crear espacio, dejando la muñeca cerca del suelo y al alcance.</p>
+
+            <p class="sect-label">Ejecución</p>
+            <ol class="steps">
+              <li>Aísla esa muñeca contra el suelo en forma de L, con el codo a 90°.</li>
+              <li>Pasa tu otro brazo por debajo de su codo y agárrate la muñeca, cerrando la figura-4.</li>
+              <li>Mantén el pecho pegado a su hombro para que no pueda girar hacia el brazo.</li>
+              <li>Rota la muñeca hacia su cabeza en arco.</li>
+            </ol>
+
+            <p class="sect-label gold">Detalles clave</p>
+            <ul class="details-list">
+              <li>Igual que en montada, la clave es no dejar que el codo se separe del suelo durante todo el giro.</li>
+            </ul>
+
+            <p class="sect-label">Defensa habitual</p>
+            <div class="defense-box">
               <p class="defense-title">Dobla el codo hacia dentro y lo pega al cuerpo</p>
-              <p class="tip"><strong>Transición:</strong> cambia la dirección de la palanca hacia Kimura sin soltar el agarre de la muñeca.</p>
+              <p class="defense-body">El rival recoge el brazo antes de que quede aislado contra el suelo, doblando el codo hacia su propio torso.</p>
+              <div class="transition-tip">
+                <span class="tlabel">Transición</span>
+                <p>Cambia la dirección de la palanca hacia Kimura sin soltar el agarre de la muñeca.</p>
+              </div>
             </div>
 
           </div></div></div>
@@ -1066,20 +1242,41 @@
 
         <!-- Guillotina arm-in -->
         <div class="tech" data-open="false">
+          <span class="ghost-num">03</span>
           <button class="tech-head" type="button">
-            <span class="tech-num">03</span>
-            <span class="tech-body">
-              <span class="tech-top"><span class="tech-title">Guillotina con el brazo dentro</span><span class="tag tag--choke">Ahogo</span></span>
-              <span class="tech-setup">Si el rival mete un brazo entre los dos al defenderse, envuelves su cuello y ese brazo juntos, entrelazas las manos y aprietas llevando los codos al suelo mientras subes la cadera.</span>
+            <span class="tech-top">
+              <span class="tech-num">03</span>
+              <span class="tech-title">Guillotina con el brazo dentro</span>
+              <span class="tag tag--choke">Ahogo</span>
+              <span class="chev"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span>
             </span>
-            <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+            <span class="tech-teaser">Si el rival mete un brazo entre los dos al defenderse, envuelves su cuello y ese brazo juntos y aprietas llevando los codos al suelo mientras subes la cadera.</span>
           </button>
           <div class="collapse"><div class="collapse-inner"><div class="tech-content">
 
-            <p class="defenses-label">Defensa habitual</p>
-            <div class="defense">
+            <p class="ctx">Aparece cuando el rival mete un brazo entre los dos cuerpos al defenderse de la presión de pecho, quedando ese brazo atrapado junto al cuello.</p>
+
+            <p class="sect-label">Ejecución</p>
+            <ol class="steps">
+              <li>Envuelve su cuello y ese brazo juntos con el tuyo.</li>
+              <li>Entrelaza las manos por debajo de la barbilla.</li>
+              <li>Lleva los codos hacia el suelo mientras subes la cadera.</li>
+              <li>Si gira hacia el brazo atrapado, síguelo y sube a montada sin soltar el agarre.</li>
+            </ol>
+
+            <p class="sect-label gold">Detalles clave</p>
+            <ul class="details-list">
+              <li>El brazo atrapado dentro añade presión extra sobre la carótida de ese lado — no necesitas más fuerza, solo mantener el agarre.</li>
+            </ul>
+
+            <p class="sect-label">Defensa habitual</p>
+            <div class="defense-box">
               <p class="defense-title">Gira hacia el brazo atrapado para quitar ángulo</p>
-              <p class="tip"><strong>Transición:</strong> sigue el giro con él y sube a montada manteniendo el agarre; el giro no libera el brazo, solo cambia la posición.</p>
+              <p class="defense-body">El rival gira el cuerpo hacia el lado del brazo atrapado buscando aliviar la presión sobre el cuello.</p>
+              <div class="transition-tip">
+                <span class="tlabel">Transición</span>
+                <p>Sigue el giro con él y sube a montada manteniendo el agarre; el giro no libera el brazo, solo cambia la posición.</p>
+              </div>
             </div>
 
           </div></div></div>
@@ -1087,40 +1284,42 @@
 
         <!-- Kata gatame -->
         <div class="tech" data-open="false">
+          <span class="ghost-num">04</span>
           <button class="tech-head" type="button">
-            <span class="tech-num">04</span>
-            <span class="tech-body">
-              <span class="tech-top"><span class="tech-title">Kata gatame (brazo y cabeza)</span><span class="tag tag--choke">Ahogo</span></span>
-              <span class="tech-setup">Envuelves la cabeza y un brazo del rival juntos con tu brazo, entrelazas las manos por detrás del hombro y aprietas subiendo la cadera; también sirve para pasar a montada saltando por encima.</span>
+            <span class="tech-top">
+              <span class="tech-num">04</span>
+              <span class="tech-title">Kata gatame (brazo y cabeza)</span>
+              <span class="tag tag--choke">Ahogo</span>
+              <span class="chev"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span>
             </span>
-            <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+            <span class="tech-teaser">Envuelves la cabeza y un brazo del rival juntos con tu brazo, entrelazas las manos por detrás del hombro y aprietas subiendo la cadera.</span>
           </button>
           <div class="collapse"><div class="collapse-inner"><div class="tech-content">
 
-            <div class="demo">
-              <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="55" cy="90" r="24" fill="var(--rival-dark)"/>
-                <rect x="65" y="80" width="90" height="46" rx="23" fill="var(--rival-dark)"/>
-                <g stroke="var(--rival)" stroke-width="15" stroke-linecap="round" fill="none"><path d="M150 100 L182 118"/></g>
-                <ellipse cx="188" cy="122" rx="9" ry="7" fill="var(--rival-light)"/>
-                <rect x="90" y="120" width="120" height="48" rx="24" fill="var(--accent)"/>
-                <circle cx="215" cy="105" r="22" fill="var(--accent)"/>
-                <g class="anim-rot" style="--origin:35% 55%; --rot:-6deg;">
-                  <g stroke="var(--accent)" stroke-width="20" stroke-linecap="round" fill="none">
-                    <path d="M200 128 L110 100"/><path d="M110 100 L58 108"/>
-                  </g>
-                  <circle cx="110" cy="100" r="12" fill="var(--accent)"/>
-                  <ellipse cx="50" cy="112" rx="12" ry="10" fill="var(--accent-light)"/>
-                </g>
-                <path d="M58 90 A58 58 0 0 1 110 130" fill="none" stroke="var(--choke)" stroke-width="2.5" stroke-dasharray="5 5" class="anim-ring"/>
-              </svg>
-              <p class="demo-cap">Cabeza y brazo envueltos juntos · manos entrelazadas tras el hombro</p>
-            </div>
+            <p class="ctx">Se abre cuando puedes envolver la cabeza y el brazo cercano del rival juntos con tu brazo, atrapándolos como si fueran una sola pieza.</p>
 
-            <p class="defenses-label">Defensa habitual</p>
-            <div class="defense">
+            <p class="sect-label">Ejecución</p>
+            <ol class="steps">
+              <li>Envuelve cabeza y brazo con tu brazo, pasando la mano por debajo de su nuca.</li>
+              <li>Entrelaza las manos por detrás de su hombro.</li>
+              <li>Sube la cadera y junta los codos hacia el centro.</li>
+              <li>Para pasar a montada, salta la pierna libre por encima sin soltar el agarre.</li>
+            </ol>
+
+            <p class="sect-label gold">Detalles clave</p>
+            <ul class="details-list">
+              <li>Cuanto más apretados queden cabeza y brazo entre sí, más rápido llega la estrangulación — el propio brazo del rival hace de cuña contra su cuello.</li>
+              <li>Esta posición es también un excelente punto de partida para pasar a montada saltando por encima sin soltar el agarre.</li>
+            </ul>
+
+            <p class="sect-label">Defensa habitual</p>
+            <div class="defense-box">
               <p class="defense-title">Gira el cuerpo hacia el hombro libre para quitar presión</p>
-              <p class="tip"><strong>Transición:</strong> acompaña el giro y salta la pierna por encima para pasar a montada sin soltar el agarre — es la transición clásica de kata gatame.</p>
+              <p class="defense-body">El rival gira buscando el lado sin atrapar para aliviar la presión combinada de brazo y cabeza sobre el cuello.</p>
+              <div class="transition-tip">
+                <span class="tlabel">Transición</span>
+                <p>Acompaña el giro y salta la pierna por encima para pasar a montada sin soltar el agarre — es la transición clásica de kata gatame.</p>
+              </div>
             </div>
 
           </div></div></div>
